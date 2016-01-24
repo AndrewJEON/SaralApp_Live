@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#296EC2</color>
+    <color name="colorPrimaryDark">#1559AB</color>
+
+    <color name="textColor_black">#424242</color>
+
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#939393</color>
+    <color name="tabsScrollColor">#fff</color>
+
+<!-- now code NiceTab-->
+    <color name="divider_color">#22000000</color>
+    <color name="demo_item_color">#333</color>
+    <color name="content_title_color">#99000000</color>
+    <color name="green">#47B00A</color>
+    <color name="red">#D32F2F</color>
+    <color name="home">#4CAF50</color>
+    <color name="blue">#296ec2</color>
+    <color name="brown">#D39A74</color>
+    <color name="btn_float">#ED3237</color>
+    <color name="spinner_base_color">#505050</color>
+
+<!--Text color code-->
+    <color name="text_white">#FFF</color>
+    <color name="edittext">#505050</color>
+    <color name="Textcolor_dark">#353535</color>
+    <color name="Textcolor_lightblue">#296EC2</color>
+    <color name="Textcolor_light">#939393</color>
+    <color name="textColor">#505050</color>
+    <color name="textColor_white">#FFFFFF</color>
+
+    <!--Backgroun code-->
+    <color name="cardview_background">#FAFAFA</color>
+    <color name="background">#EEEEEE</color>
+    <color name="btn_background">#C7C7C7</color>
+    <color name="windowBackground">#fff</color>
+    <color name="tab_background">#5F5F5F</color>
+    <color name="cmp_background">#1E4856</color>
+    <color name="transparent">#00000000</color>
+
+
+    <item name="status_bar_color" type="color">#303F9F</item>
+    <item name="red_s" type="color">#ff0000</item>
+    <item name="blue_s" type="color">#0a0ee5</item>
+    <item name="green_s" type="color">#109c03</item>
+    <item name="yellow" type="color">#e5f20b</item>
+    <item name="white" type="color">#FFFFFF</item>
+
+
+    <!--- Fab Menu -->
+    <color name="fab_red">#ED3237</color>
+    <color name="sa_green_transparent">#801E9618</color>
+
+    <color name="fb_color">#44619C</color>
+    <color name="g_color">#DD4C39</color>
+</resources>

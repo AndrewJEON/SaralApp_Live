@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="easyratingdialog-1.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.fernandodev.easyratingdialog/easyratingdialog/1.1.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.fernandodev.easyratingdialog/easyratingdialog/1.1.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.fernandodev.easyratingdialog/easyratingdialog/1.1.0/e43d1a8dffc8ab754b386f558735719c17b6637d/easyratingdialog-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

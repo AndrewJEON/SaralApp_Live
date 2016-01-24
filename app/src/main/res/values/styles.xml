@@ -1,0 +1,137 @@
+<resources>
+    <style name="AppTheme" parent="AppTheme.Base">
+
+    </style>
+
+    <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:windowBackground">@drawable/background</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:typeface">serif</item>
+
+        <!--switch style-->
+        <!-- Active thumb color & Active track color(30% transparency) -->
+        <item name="colorControlActivated">@color/Red</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/text_white</item>
+        <!-- Inactive track color(30% transparency) -->
+        <!--<item name="android:colorForeground">@color/blue</item>-->
+       <!-- <item name="android:typeface"></item>-->
+
+       <!-- <item name="android:alertDialogTheme">@style/MyDialogTheme</item>-->
+    </style>
+
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        //hint color And Label Color in False State
+        <item name="android:textColorHint">@color/edittext</item>
+        <item name="android:textSize">16dp</item>
+        //Label color in True State And Bar Color False And True State
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorControlNormal">@color/edittext</item>
+        <item name="colorControlActivated">@color/blue</item>
+    </style>
+
+    <!--CheckTextView-->
+    <style name="SampleTheme" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/home</item>
+        <item name="android:textColorSecondary">@color/edittext</item>
+    </style>
+
+<!--for fab-->
+    <style name="MenuLabelsStyle">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="MenuButtonsStyle">
+        <item name="fab_size">mini</item>
+        <item name="fab_showAnimation">@anim/jump_from_down</item>
+        <item name="fab_hideAnimation">@anim/jump_to_down</item>
+        <item name="fab_shadowColor">#444</item>
+        <item name="fab_colorNormal">#DA4336</item>
+        <item name="fab_colorPressed">#E75043</item>
+        <item name="fab_colorRipple">#99FFFFFF</item>
+
+    </style>
+
+    <!-- MaterialDesign Dialogbox-->
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+    <style name="AppBarTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@color/btn_background</item>
+    </style>
+
+    <!--for tabbar but i am not use at this project-->
+   <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabMaxWidth">@dimen/tab_max_width</item>
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+
+    <!-- FAB-->
+    <style name="FloatingActionButton" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@drawable/fab_back</item>
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">56dp</item>
+    </style>
+
+    <style name="FloatingActionButton.Mini">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <!--Switch Compat-->
+    <style name="FavSwitchCompat" parent="Widget.AppCompat.CompoundButton.Switch" >
+        <item name="colorControlActivated">@color/green_s</item>
+        <item name="android:textSize">20dp</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/text_white</item>
+
+    </style>
+
+
+
+    <style name="UnFavSwitchCompat" parent="Widget.AppCompat.CompoundButton.Switch" >
+        <item name="colorControlActivated">@color/red_s</item>
+        <item name="android:textSize">20dp</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/text_white</item>
+    </style>
+
+    <!--Switch Compat-->
+    <style name="ChatWindow" parent="Widget.AppCompat.EditText" >
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+
+
+
+    <!--  SwictCompat End -->
+
+</resources>

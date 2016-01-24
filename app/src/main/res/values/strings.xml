@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">Saral Vaastu</string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_you">You</string>
+    <string name="tab_chat">Chat</string>
+    <string name="tab_invite">Invite Friends</string>
+    <string name="tab_plane">For Plan</string>
+    <string name="tab_long_long_title">Long Long Title</string>
+
+    <!--Login screen resources-->
+    <string name="dont_haveAc">Dont have an account</string>
+    <string name="register">Register</string>
+
+    <string name="termandcond">I Agree,Terms &amp; Conditions</string>
+    <string name="marri">Marriage &amp; Relationship</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="array_name">
+        <item>Array Item One</item>
+        <item>Array Item Two</item>
+        <item>Array Item Three</item>
+    </string-array>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_user_autherise">UserAutheriseActivity</string>
+
+    <string name="fbapp_id">431114927078617</string>
+    <string name="title_activity_showcase_guide">Showcase_guide</string>
+    <string name="title_activity_test2">test2</string>
+    <string name="title_activity_user_profile_">UserProfile_Activity</string>
+    <string name="title_activity_edit_profile">EditProfile</string>
+
+    <!--Campass variable-->
+    <string name="north">N</string>
+    <string name="east">E</string>
+    <string name="south">S</string>
+    <string name="west">W</string>
+
+    <string name="carrire">Job/Business</string>
+    <string name="helth">Health</string>
+    <string name="welth">Wealth</string>
+    <string name="education">Education</string>
+
+
+    <string name="hint_name">Full Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_sign_up">Sign Up</string>
+
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+
+
+    <string name="error_timeout">Oops! Your Connection Timed Out</string>
+    <string name="error_auth_failure">Oops! Saral Vaastu Says It Doesn\'t Recognize You</string>
+    <string name="error_network">Oops! Saral Vaastu Server Just Messed Up</string>
+    <string name="error_parser">Oops! Data Received Was An Unreadable Mess</string>
+
+    <string name="crouton">Done</string>
+
+    <string name="login">Login</string>
+
+    <string name="health">Health</string>
+    <string name="wealth">Wealth</string>
+    <string name="career">Job/Business</string>
+    
+    
+    <string name="app_email">app@saralvaastu.com</string>
+    <string name="support_email">support@saralvaastu.com</string>
+    <string name="cgp_contact">022 61092732</string>
+
+    <string name="feedback_title">Please share your feedback if you would have taken any Services from Saral Vaastu</string>
+<string name="about_us">Saral Vaastu is a part of CG Parivar Group of Companies and is headed by Guruji and has more than 1300+ professionals who are relentlessly striving with the objective of bringing happiness to the people at large across the world and are staying true to the philosophy <b>“Vasudaiva Kutumbakam”</b>, meaning that the whole universe is one family.
+\n\nSaral Vaastu is relevant and has been successfully implemented for all types of buildings irrespective of their use like residences, industries, business establishments, lodges, hotels, educational institutes and others.
+\n\nSaral Vaastu is currently operational across 11 states and is expanding to have a pan – India footprint.
+\n\n<b>Till date, Saral Vaastu has over lakhs of happy beneficiaries all over the world who have taken the solutions and are leading a happy and prosperous life.</b>
+    </string>
+</resources>

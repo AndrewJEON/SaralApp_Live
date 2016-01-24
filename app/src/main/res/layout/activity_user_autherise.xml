@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.cgp.saral.activity.UserAuthoriseActivity">
+    <!--<FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />-->
+    <!--<fragment
+        android:id="@+id/reg_frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.cgp.saral.fragments.LoginHomeFragment"
+        tools:layout="@layout/fragment_login_home"></fragment>
+-->
+
+</RelativeLayout>

@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'saral'
+            keyPassword 'vaastu'
+            storeFile file('/Users/WeeSync/Desktop/Saral/BitBucket_Saral/saral_key.jks')
+            storePassword 'vaastu'
+        }
+    }
+    compileSdkVersion 22
+    buildToolsVersion "23.0.1"
+    defaultConfig {
+        applicationId "com.cgp.saral"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 14
+        versionName "1.0.14"
+        renderscriptSupportModeEnabled true
+        multiDexEnabled true
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            zipAlignEnabled true
+        }
+    }
+    dexOptions {
+        incremental = true;
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
+    }
+    //  useLibrary 'org.apache.http.legacy'
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //now use external lib
+    compile project(':floatlable_spinlib')
+    compile project(':tourguide')
+    compile 'com.squareup:otto:1.3.6'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:recyclerview-v7:22+'
+    compile 'com.android.support:cardview-v7:22+'
+    compile 'com.facebook.android:facebook-android-sdk:4.3.0'
+    compile 'com.google.android.gms:play-services:7.8.+'
+    compile 'com.google.android.gms:play-services-base:7.8.0'
+    compile 'com.google.android.gms:play-services-appinvite:7.8.0'
+    //Alternate way to is to add the project source code as a library module, which is cumbersome
+    compile 'com.mcxiaoke.volley:library:1.0.18'
+    // compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+    // compile 'com.squareup.picasso:picasso:2.4.0'
+    //Picasso lib for image load
+    compile 'com.squareup.picasso:picasso:2.4.0'
+    //OKHTTP client for Picasso
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    //Gson for JSON to model mapping
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.facebook.stetho:stetho:1.2.0'
+    compile 'com.android.support:multidex:'
+    // compile 'com.squareup.okio:okio:1.6.0'
+    compile 'com.github.curioustechizen.android-ago:library:1.3.0'
+    // Leak Carnarry Commented
+    //debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
+    //releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+    compile('com.github.fernandodev.easyratingdialog:easyratingdialog:1.1.0') {
+        exclude module: 'material-dialogs'
+    }
+    //compile 'com.android.support:support-v4:22.2.1'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:support-v4:22.2.1'
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+
+    <TextView android:id="@+id/textUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="50dp"
+        android:text="Upload Floor Plan"
+        android:textSize="20dp"
+        />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="320dp"
+        android:id="@+id/imageViewUpload"
+        android:layout_below="@+id/textUpload"
+        android:layout_above="@+id/bottum"
+        android:scaleType="fitXY"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:id="@+id/bottum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/from_right"
+        android:layout_marginLeft="@dimen/from_right"
+        android:layout_marginRight="@dimen/from_right">
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_image_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top"
+            android:layout_toLeftOf="@+id/view"
+            android:alpha="0.80"
+            android:background="@drawable/btn_backgroundstate"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="10dp"
+            android:text="RETAKE"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="2dp"
+            android:layout_height="15dp"
+            android:layout_centerHorizontal="true" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_upload_plan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top"
+            android:layout_toRightOf="@+id/view"
+            android:alpha="0.80"
+            android:background="@drawable/btn_backgroundstate"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="10dp"
+            android:text="Upload"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+
+
+</RelativeLayout>

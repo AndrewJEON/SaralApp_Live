@@ -1,0 +1,91 @@
+<resources>
+    <style name="AppTheme" parent="AppTheme.Base">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+    </style>
+
+
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        //hint color And Label Color in False State
+        <item name="android:textColorHint">@color/edittext</item>
+        <item name="android:textSize">16dp</item>
+        //Label color in True State And Bar Color False And True State
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorControlNormal">@color/edittext</item>
+        <item name="colorControlActivated">@color/blue</item>
+    </style>
+
+    <!--CheckTextView-->
+    <style name="SampleTheme" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/home</item>
+        <item name="android:textColorSecondary">@color/edittext</item>
+    </style>
+
+    <!--for fab-->
+    <style name="MenuLabelsStyle">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="MenuButtonsStyle">
+        <item name="fab_size">mini</item>
+        <item name="fab_showAnimation">@anim/jump_from_down</item>
+        <item name="fab_hideAnimation">@anim/jump_to_down</item>
+        <item name="fab_shadowColor">#444</item>
+        <item name="fab_colorNormal">#DA4336</item>
+        <item name="fab_colorPressed">#E75043</item>
+        <item name="fab_colorRipple">#99FFFFFF</item>
+
+    </style>
+
+    <!-- MaterialDesign Dialogbox-->
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+    <style name="AppBarTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@color/btn_background</item>
+    </style>
+
+    <!--for tabbar but i am not use at this project-->
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabMaxWidth">@dimen/tab_max_width</item>
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+
+    <style name="FavSwitchCompat" parent="Widget.AppCompat.CompoundButton.Switch" >
+        <item name="colorControlActivated">@color/green_s</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/text_white</item>
+    </style>
+
+
+
+    <style name="UnFavSwitchCompat" parent="Widget.AppCompat.CompoundButton.Switch" >
+        <item name="colorControlActivated">@color/red_s</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/text_white</item>
+    </style>
+
+
+
+</resources>

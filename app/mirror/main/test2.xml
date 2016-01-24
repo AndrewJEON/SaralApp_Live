@@ -1,0 +1,24 @@
+<!-- [ Mirror metadata ] generatedAt: 1443711829175 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <_content layout="@layout/test2">
+        <!-- TextView Examples:
+        <tv_postheader text="@string/string_resource" />
+        <tv_postheader text="Text literal" textSize="14sp" /> -->
+        <tv_postheader />
+        <tv_postmassege />
+        <tv_posttime />
+        <tv_posttme />
+        <!-- ImageView Examples:
+        <mGreyRepost src="@drawable/image_resource" />
+        <mGreyRepost src="relative_path/image.jpg" /> -->
+        <mGreyRepost />
+        <mtxtGreyRepost />
+        <mGreyFavrts />
+        <mtxtGreyFavrts />
+    </_content>
+</screen>

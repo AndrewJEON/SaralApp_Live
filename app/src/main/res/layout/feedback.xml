@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        android:paddingTop="50dp">
+
+        <TextView
+            android:id="@+id/tv_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:text="@string/feedback_title"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <!-- <TextView
+             android:id="@+id/textViewPhoneNo"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="5dp"
+             android:text="To : "
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:visibility="gone" />
+ -->
+        <!-- <EditText
+             android:id="@+id/editTextTo"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/tv_feedback"
+             android:hint="To :"
+             android:inputType="textEmailAddress"
+             android:theme="@style/TextLabel">
+
+             <requestFocus />
+
+         </EditText>-->
+
+        <!--<TextView
+            android:id="@+id/textViewSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Subject : "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:visibility="gone" />-->
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editTextSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_feedback"
+
+            android:theme="@style/TextLabel">
+            <!--android:theme="@style/TextLabel"-->
+
+            <EditText
+                android:id="@+id/editTextSubject1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="15dp"
+
+                android:layout_below="@+id/tv_feedback"
+                android:hint="Subject "
+                android:paddingBottom="30dp"
+                android:textColor="#424242"
+                android:theme="@style/TextLabel"></EditText>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/editTextMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextSubject"
+
+            android:theme="@style/TextLabel">
+            <!--android:theme="@style/TextLabel"-->
+
+            <EditText
+                android:id="@+id/editTextSubject2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="15dp"
+
+                android:layout_below="@+id/tv_feedback"
+                android:hint="Message "
+                android:paddingBottom="30dp"
+                android:textColor="#424242"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:theme="@style/TextLabel"></EditText>
+
+
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <!-- <TextView
+             android:id="@+id/textViewMessage"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="5dp"
+             android:text="Message : "
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:visibility="gone" />-->
+
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/buttonSendF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/editTextMessage"
+
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:alpha="0.80"
+            android:background="@drawable/btn_backgroundstate"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:paddingTop="5dp"
+            android:text="Send"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/textColor" />
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

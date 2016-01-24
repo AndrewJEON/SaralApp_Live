@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profile"
+    tools:context="com.cgp.saral.fragments.LoginHomeFragment">
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/from_right"
+        android:layout_marginRight="@dimen/from_right">
+
+        <ImageView
+            android:id="@+id/ddds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_logo" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <!--android:layout_marginRight="@dimen/from_right"
+            android:layout_marginLeft="@dimen/from_right"-->
+        <!--<ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile"
+            android:id="@+id/imageView"
+            android:layout_centerHorizontal="true"
+            />-->
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/from_right"
+        android:layout_marginLeft="@dimen/from_right"
+        android:layout_marginRight="@dimen/from_right">
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_homelogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top"
+            android:layout_toLeftOf="@+id/view"
+            android:alpha="0.80"
+            android:background="@drawable/btn_backgroundstate"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="10dp"
+            android:text="LOGIN"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="2dp"
+            android:layout_height="15dp"
+            android:layout_centerHorizontal="true" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_homeregist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top"
+            android:layout_toRightOf="@+id/view"
+            android:alpha="0.80"
+            android:background="@drawable/btn_backgroundstate"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="10dp"
+            android:text="REGISTER"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

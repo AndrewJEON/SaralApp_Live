@@ -1,0 +1,33 @@
+<!-- [ Mirror metadata ] generatedAt: 1443711828748 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <_content layout="@layout/fragment_campass">
+        <!-- TextView Examples:
+        <tv_usrname text="@string/string_resource" />
+        <tv_usrname text="Text literal" textSize="14sp" /> -->
+        <tv_usrname />
+        <!-- ImageView Examples:
+        <cmp_image src="@drawable/image_resource" />
+        <cmp_image src="relative_path/image.jpg" /> -->
+        <cmp_image />
+        <tv_fav />
+        <tv_color1 />
+        <tv_color2 />
+        <tv_color3 />
+        <tv_color4 />
+        <tv_unfav />
+        <tv_uncolor1 />
+        <tv_uncolor2 />
+        <tv_uncolor3 />
+        <tv_uncolor4 />
+        <tv_nutral />
+        <tv_ncolor1 />
+        <tv_ncolor2 />
+        <tv_ncolor3 />
+        <tv_ncolor4 />
+    </_content>
+</screen>

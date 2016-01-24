@@ -1,0 +1,41 @@
+<!-- [ Mirror metadata ] generatedAt: 1443711829234 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <_content layout="@layout/user_profiledetails">
+        <!-- ImageView Examples:
+        <iv_back src="@drawable/image_resource" />
+        <iv_back src="relative_path/image.jpg" /> -->
+        <iv_back />
+        <!-- TextView Examples:
+        <txt_title text="@string/string_resource" />
+        <txt_title text="Text literal" textSize="14sp" /> -->
+        <txt_title />
+        <iv_edit />
+        <userName />
+        <tv_useraddress />
+        <iv_gender />
+        <tv_gender />
+        <iv_birth />
+        <tv_birth />
+        <tv_invite23 />
+        <tv_invite32 />
+        <iv1 />
+        <tv_mail />
+        <iv2 />
+        <tv_lang />
+        <iv8 />
+        <tv_contact />
+        <iv9 />
+        <tv_contalternate />
+        <iv13 />
+        <tv_helth />
+        <iv122 />
+        <tv_invite_frnd />
+        <iv16 />
+        <tv_logout />
+    </_content>
+</screen>

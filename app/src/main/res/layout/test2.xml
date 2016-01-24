@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp" >
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:scrollbars="none"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="2dp"
+        card_view:contentPadding="1dp" >
+
+        <!--<RelativeLayout
+            android:id="@+id/favoiriterelativelayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+             >
+
+            <ImageView
+                android:id="@+id/tv_repost_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:src="@drawable/ic_mail" />
+
+            <TextView
+                android:id="@+id/tv_repostedby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_repost_icon"
+                android:gravity="center_horizontal"
+                android:paddingTop="5dp"
+                android:text=" "
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/textColor_black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_repostedbyname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_repostedby"
+                android:paddingTop="5dp"
+                android:text="&#45;&#45;"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/textColor_black"
+                android:textStyle="bold" />
+        </RelativeLayout-->>
+
+        <RelativeLayout
+            android:id="@+id/favoiriterelativelayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp" >
+
+            <!--<com.ccs.howzzatt.customview.CircledNetworkImageView
+                android:id="@+id/img_user_pic"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_mail" />
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/img_user_pic"
+                android:layout_toRightOf="@+id/img_user_pic"
+                android:paddingTop="10dp"
+                android:text=" "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#990000"
+                android:textStyle="normal" />
+-->
+
+
+            <TextView
+                android:id="@+id/tv_postheader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:padding="5dp"
+                android:text="Study Room Vastu Tips"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/textColor_black" />
+
+            <!-- <com.android.volley.toolbox.NetworkImageView -->
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/img_postimage"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/tv_postheader"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:adjustViewBounds="true"
+                android:padding="1dp"
+                android:scaleType="centerCrop"
+
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_postmassege"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_postimage"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:padding="5dp"
+                android:text="Saral Vaastu helps to enhance our Body’s Positive Energy Source, through the driving away of our body’s Negative Energy Source"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/textColor" />
+
+            <TextView
+                android:id="@+id/tv_posttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_postmassege"
+                android:layout_marginLeft="2dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="2dp"
+                android:text="5"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/Textcolor_lightblue" />
+            <TextView
+                android:id="@+id/tv_posttme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_postmassege"
+                android:layout_toRightOf="@+id/tv_posttime"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="2dp"
+                android:text="minutes ago"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/Textcolor_lightblue" />
+
+            <RelativeLayout
+                android:id="@+id/like_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_posttime"
+                android:layout_marginTop="5dp"
+                android:background="#fff"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/container2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/view1"
+                    android:layout_marginBottom="5dp"
+                     >
+
+                    <ImageView
+                        android:id="@+id/mGreyRepost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_like_b"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/mtxtGreyRepost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@+id/mGreyRepost"
+                        android:text="&#45;&#45;"
+                        android:textColor="@color/textColor_black" />
+                </RelativeLayout>
+
+          <View
+              android:id="@+id/view1"
+              android:layout_width="50dp"
+              android:layout_height="1dp"
+              android:layout_centerHorizontal="true"
+              />
+
+                <RelativeLayout
+                    android:id="@+id/container3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   android:layout_toRightOf="@+id/view1"
+                    >
+
+                    <ImageView
+                        android:id="@+id/mGreyFavrts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_like_b" />
+
+                    <TextView
+                        android:id="@+id/mtxtGreyFavrts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@+id/mGreyFavrts"
+                        android:text="---"
+                         />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!--
+<RelativeLayout 
+    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="#b8b8b8"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/img_postimage"
+                    
+    >
+    
+    <TextView
+                    android:id="@+id/myfavoirite_cardview_tv_po"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="The first two round "         
+                    android:padding="5dp"
+                    android:layout_below="@+id/view1"
+                    android:textColor="#A9A9A9" />
+</RelativeLayout>
+            -->
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

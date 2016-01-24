@@ -1,0 +1,25 @@
+<!-- [ Mirror metadata ] generatedAt: 1443711828815 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <_content layout="@layout/fragment_hometab_adapter">
+        <!-- TextView Examples:
+        <tv_postheader text="@string/string_resource" />
+        <tv_postheader text="Text literal" textSize="14sp" /> -->
+        <tv_postheader />
+        <!-- ImageView Examples:
+        <img_postimage src="@drawable/image_resource" />
+        <img_postimage src="relative_path/image.jpg" /> -->
+        <img_postimage />
+        <tv_postmassege />
+        <tv_posttime />
+        <tv_posttme />
+        <iv_like />
+        <tv_like />
+        <iv_dislike />
+        <tv_dislike />
+    </_content>
+</screen>

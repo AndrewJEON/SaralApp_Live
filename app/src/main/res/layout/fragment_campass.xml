@@ -1,0 +1,660 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:showText="true">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <RelativeLayout
+                    android:id="@+id/camp_cp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:padding="5dp">
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/switch_fav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Favorable"
+                        android:textSize="17dp"
+                        fab:backgroundTint="@color/abc_background_cache_hint_selector_material_light"
+                        fab:theme="@style/FavSwitchCompat"
+                        fab:thumbTextPadding="20dp" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/switch_unfav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:padding="5dp"
+                        android:text="Unfavorable"
+                        android:textSize="17dp"
+                        fab:backgroundTint="@color/abc_background_cache_hint_selector_material_light"
+                        fab:theme="@style/UnFavSwitchCompat"
+                        fab:thumbTextPadding="20dp"
+
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_usrname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/camp_cp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:gravity="center_horizontal"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/textColor_white"
+                    android:textSize="20dp" />
+                <TextView android:id="@+id/text_Note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/tv_usrname"
+                    android:visibility="gone"
+                    android:text="NOTE : Point the red needle towards the North Direction."
+
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/camp_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_Note"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/favUnfav"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <RelativeLayout
+                            android:id="@+id/FavDir_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="Favorable Directions"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/textColor_black" />
+
+                            <LinearLayout
+                                android:id="@+id/ll"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_"
+                                android:orientation="horizontal">
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/lay_no"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ll"
+                                android:orientation="horizontal">
+
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <!--8***************************************Custom create textview block**************************************************-->
+                        <RelativeLayout
+                            android:id="@+id/UnfavDir_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/FavDir_parent">
+
+                            <TextView
+                                android:id="@+id/tv_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:layout_centerHorizontal="true"
+                                android:gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="Unfavorable Directions"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/textColor_black" />
+
+
+                            <LinearLayout
+                                android:id="@+id/unfav_lay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_1"
+                                android:orientation="horizontal">
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/unlay_no"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/unfav_lay"
+                                android:orientation="horizontal">
+
+
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+
+                    <!--8***************************************Compassss**************************************************-->
+                    <RelativeLayout
+                        android:id="@+id/compass_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <com.cgp.saral.customviews.CompassView
+                            android:id="@+id/cmp"
+                            android:layout_width="320dp"
+                            android:layout_height="320dp"
+
+                            android:layout_centerInParent="true"
+                             />
+                        <ImageView
+                            android:id="@+id/cmp_image2"
+                            android:layout_width="260dp"
+                            android:layout_height="260dp"
+                            android:padding="10dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/compass_bg" />
+                        <ImageView
+                            android:id="@+id/cmp_image"
+                            android:layout_width="220dp"
+                            android:layout_height="220dp"
+                            android:layout_centerInParent="true"
+                            android:padding="5dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_compass" />
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <!--8***************************************Help msg**************************************************-->
+
+                <TextView
+                    android:id="@+id/msg2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/camp_center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="Note:- Please press the orange button and select the respective theme to know your favorable direction related to different aspects of life."
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/textColor_black" />
+
+
+                <TextView
+                    android:id="@+id/tv_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/msg2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="Favorable Colors"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/textColor_black" />
+
+                <TableLayout
+                    android:id="@+id/camp_bottom1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_fav"
+                    android:gravity="center_horizontal"
+                    android:padding="2dp"
+
+                    >
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_color1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Green"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_color2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Red"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_color3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Blue"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_color4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="White"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_color5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Gold"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+                    </TableRow>
+
+                </TableLayout>
+                <!--fab start-->
+
+                <!--fab end-->
+                <TextView
+                    android:id="@+id/tv_unfav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/camp_bottom1"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="Unfavorable Colors"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/textColor_black" />
+
+                <TableLayout
+                    android:id="@+id/camp_bottom2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_unfav"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp">
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_uncolor1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Green"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_uncolor2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Red"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_uncolor3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Blue"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_uncolor4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="White"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_uncolor5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Gold"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/tv_nutral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/camp_bottom2"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="Neutral Colors"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/textColor_black" />
+
+                <TableLayout
+                    android:id="@+id/camp_bottom3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_nutral"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp">
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_ncolor1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Green"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_ncolor2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Red"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_ncolor3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Blue"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_ncolor4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="White"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                        <View
+
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
+                            android:background="#fff" />
+
+                        <TextView
+                            android:id="@+id/tv_ncolor5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="1"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="Gold"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColor_black" />
+
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+        <!--<include layout="@layout/fab"
+             />-->
+
+        <com.cgp.saral.fab.FloatingActionMenu
+            android:id="@+id/home_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            fab:menu_backgroundColor="#ccffffff"
+            fab:menu_colorNormal="#FF6A00"
+            fab:menu_colorPressed="#E75043"
+            fab:menu_colorRipple="#99FFFFFF"
+            fab:menu_labels_ellipsize="end"
+            fab:menu_labels_singleLine="true"
+            fab:menu_labels_style="@style/MenuLabelsStyle"
+
+            >
+
+            <com.cgp.saral.fab.FloatingActionButton
+                android:id="@+id/fab_marriage"
+                style="@style/MenuButtonsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_marriage_white"
+                fab:fab_label="@string/marri"
+                fab:fab_size="mini" />
+
+            <com.cgp.saral.fab.FloatingActionButton
+                android:id="@+id/fab_career"
+                style="@style/MenuButtonsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_career"
+                fab:fab_label="@string/carrire"
+                fab:fab_size="mini"
+
+                />
+
+            <com.cgp.saral.fab.FloatingActionButton
+                android:id="@+id/fab_edu"
+                style="@style/MenuButtonsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_education_white"
+                fab:fab_label="@string/education"
+                fab:fab_size="mini" />
+
+            <com.cgp.saral.fab.FloatingActionButton
+                android:id="@+id/fab_wealth"
+                style="@style/MenuButtonsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_wealth"
+                fab:fab_label="@string/welth"
+                fab:fab_size="mini" />
+
+            <com.cgp.saral.fab.FloatingActionButton
+                android:id="@+id/fab_health"
+                style="@style/MenuButtonsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_health"
+                fab:fab_label="@string/helth"
+                fab:fab_size="mini" />
+
+        </com.cgp.saral.fab.FloatingActionMenu>
+
+    </FrameLayout>
+</RelativeLayout>

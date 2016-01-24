@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/fab_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:clipChildren="false">
+
+        <ImageButton
+            android:id="@+id/fab_action_5"
+            style="@style/FloatingActionButton.Mini"
+            android:src="@drawable/ic_marriage_white"
+            android:layout_above="@+id/fab_action_4"
+            android:layout_alignParentRight="true"
+            android:text="M R"
+            android:contentDescription="@string/marri"
+            />
+        <ImageButton
+            android:id="@+id/fab_action_4"
+            style="@style/FloatingActionButton.Mini"
+            android:src="@drawable/ic_career"
+            android:layout_above="@+id/fab_action_3"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/career"
+            />
+        <ImageButton
+            android:id="@+id/fab_action_3"
+            style="@style/FloatingActionButton.Mini"
+            android:src="@drawable/ic_education_white"
+            android:layout_above="@+id/fab_action_2"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/education"
+            />
+
+        <ImageButton
+            android:id="@id/fab_action_2"
+            style="@style/FloatingActionButton.Mini"
+            android:src="@drawable/ic_wealth"
+            android:layout_above="@+id/fab_action_1"
+            android:contentDescription="@string/wealth"
+            android:layout_alignParentRight="true"
+
+            />
+
+       <!-- <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/fabmain"
+            android:text="Health"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:paddingBottom="10dp"
+
+            android:layout_toLeftOf="@id/fab_action_1"
+
+            />-->
+        <ImageButton
+            android:id="@id/fab_action_1"
+            style="@style/FloatingActionButton.Mini"
+            android:src="@drawable/ic_health"
+            android:layout_above="@+id/fabmain"
+            android:contentDescription="@string/health"
+            android:layout_alignParentRight="true"
+            />
+
+
+        <ImageButton
+            android:id="@+id/fabmain"
+            style="@style/FloatingActionButton"
+            android:src="@drawable/fab_add"
+            android:layout_alignParentBottom="true"
+            android:contentDescription="@null"
+            android:layout_alignParentRight="true"
+            android:visibility="visible"
+            android:layout_marginTop="8dp" />
+
+    </RelativeLayout>
+</merge>

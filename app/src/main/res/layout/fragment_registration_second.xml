@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:fitsSystemWindows="true">
+    <include layout="@layout/toolbar_transparent" android:id="@+id/trans_tool"/>
+    <RelativeLayout
+        android:id="@+id/parent_reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trans_tool"
+        android:layout_marginLeft="@dimen/profileright"
+        android:layout_marginRight="@dimen/profileright"
+        android:layout_marginBottom="@dimen/profileright"
+        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView"
+            android:scrollbars="none"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <!-- name Label -->
+                <ImageView android:id="@+id/ic1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignBottom="@+id/tv_username"
+                    android:src="@drawable/ic_name"/>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_username"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/ic1"
+                    android:layout_alignParentTop="true"
+                    android:theme="@style/TextLabel"
+
+                    >
+
+                    <EditText android:id="@+id/et_username1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:textColor="#424242"
+                        android:drawablePadding="15dp"
+                        android:hint="Name*" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Password Label -->
+                <ImageView android:id="@+id/ic2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/tv_dob"
+                    android:layout_below="@+id/tv_username"
+                    android:src="@drawable/ic_dob"/>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tv_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_username"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/ic2"
+                    android:theme="@style/TextLabel"
+
+                    android:drawableLeft="@drawable/home_selctor"
+
+                    >
+                    <EditText android:id="@+id/et_dob1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="date"
+                        android:focusableInTouchMode="false"
+                        android:drawablePadding="15dp"
+                        android:hint="DOB*"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Password Label -->
+                <ImageView android:id="@+id/ic3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/tv_regsecMobile"
+                    android:layout_below="@+id/tv_dob"
+                    android:src="@drawable/ic_call"/>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tv_regsecMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_dob"
+                    android:layout_toRightOf="@+id/ic3"
+                    android:layout_marginTop="10dp"
+                    android:theme="@style/TextLabel"
+
+
+                    >
+                    <EditText android:id="@+id/et_regsecMobile1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textColor="#424242"
+                        android:drawablePadding="15dp"
+                        android:maxLength="10"
+                        android:hint="Mobile Number*"/>
+
+                </android.support.design.widget.TextInputLayout>
+                <!--Email Lable-->
+
+
+                <!--Gender Lable-->
+                <ImageView android:id="@+id/ic4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/spinnergender"
+                    android:layout_below="@+id/tv_regsecMobile"
+
+                    android:src="@drawable/ic_gender"/>
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spinnergender"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:ms_alignLabels="false"
+                    android:layout_below="@+id/tv_regsecMobile"
+                    app:ms_hint="Gender*"
+                    android:layout_toRightOf="@+id/ic6"
+                    android:background="@null"
+                    app:ms_baseColor="@color/spinner_base_color"
+                    app:ms_multiline="false" />
+                <TextView android:id="@+id/tv_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_below="@+id/tv_regsecMobile"
+                    android:visibility="gone"/>
+
+
+                <!--Email -->
+                <ImageView android:id="@+id/tve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/tv_regsecMail"
+                    android:layout_below="@+id/spinnergender"
+                    android:src="@drawable/ic_email"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tv_regsecMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/spinnergender"
+                    android:layout_toRightOf="@+id/tve"
+                    android:drawableLeft="@drawable/home_selctor"
+                    android:theme="@style/TextLabel"
+                    >
+                    <!--android:theme="@style/TextLabel"-->
+                    <EditText android:id="@+id/et_regsecMail1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:textColor="#424242"
+                        android:drawablePadding="15dp"
+                        android:maxLength="50"
+                        android:hint="Email*"/>
+
+                </android.support.design.widget.TextInputLayout>
+                <!--state lable-->
+
+                <ImageView android:id="@+id/ic5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/spinnerstate"
+                    android:layout_below="@+id/tv_regsecMail"
+                    android:src="@drawable/ic_state"/>
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spinnerstate"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:ms_alignLabels="false"
+                    android:layout_below="@+id/tv_regsecMail"
+                    android:layout_toRightOf="@+id/ic6"
+                    android:background="@null"
+                    app:ms_hint="State*"
+                    app:ms_baseColor="@color/spinner_base_color"
+                    app:ms_multiline="false" />
+                <!--city -->
+                <ImageView android:id="@+id/iccity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/spinnercity"
+                    android:layout_below="@+id/spinnerstate"
+                    android:src="@drawable/ic_city"
+                    android:visibility="gone"/>
+
+
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spinnercity"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:ms_alignLabels="false"
+                    android:layout_below="@+id/spinnerstate"
+                    android:layout_toRightOf="@+id/ic6"
+                    android:background="@null"
+                    app:ms_hint="City*"
+                    app:ms_baseColor="@color/spinner_base_color"
+                    app:ms_multiline="false" android:visibility="gone"/>
+                <!--district-->
+
+                <ImageView android:id="@+id/icdis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/spinnerdist"
+                    android:layout_below="@+id/spinnercity"
+                    android:src="@drawable/ic_district"/>
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spinnerdist"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:ms_alignLabels="false"
+                    android:layout_below="@+id/spinnercity"
+                    android:layout_toRightOf="@+id/ic6"
+                    android:background="@null"
+                    app:ms_hint="District*"
+                    app:ms_baseColor="@color/spinner_base_color"
+                    app:ms_multiline="false" />
+
+
+                <!--Address -->
+                <ImageView android:id="@+id/tv_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/tv_address"
+                    android:layout_below="@+id/icdis"
+                    android:src="@drawable/ic_address"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tv_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/spinnerdist"
+                    android:layout_toRightOf="@+id/tve"
+                    android:drawableLeft="@drawable/home_selctor"
+                    android:theme="@style/TextLabel"
+                    >
+                    <!--android:theme="@style/TextLabel"-->
+                    <EditText android:id="@+id/et_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress"
+                        android:textColor="#424242"
+                        android:drawablePadding="15dp"
+                        android:maxLength="250"
+                        android:hint="Address*"/>
+
+                </android.support.design.widget.TextInputLayout>
+                <!--Language-->
+                <ImageView android:id="@+id/ic6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/spinnerlanguage"
+                    android:layout_below="@+id/tv_address"
+                    android:src="@drawable/ic_language"/>
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spinnerlanguage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    app:ms_alignLabels="false"
+                    android:layout_below="@+id/tv_address"
+                    android:layout_toRightOf="@+id/ic6"
+                    android:background="@null"
+                    app:ms_hint="Language*"
+                    app:ms_baseColor="@color/spinner_base_color"
+                    app:ms_multiline="false" />
+                 <!--Interest Lable-->
+
+                <ImageView android:id="@+id/ic7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignBottom="@+id/spinnerintrest"
+                    android:layout_below="@+id/spinnerlanguage"
+                    android:src="@drawable/ic_interest"/>
+
+                <!--<fr.ganfra.materialspinner.MaterialSpinner
+                     android:id="@+id/spinnerintrest"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     app:ms_alignLabels="false"
+                     app:spinnerMode="dialog"
+                     android:layout_below="@+id/spinnerlanguage"
+                     android:layout_toRightOf="@+id/ic6"
+                     android:background="@null"
+                     app:ms_baseColor="@color/spinner_base_color"
+                     app:ms_multiline="false" />-->
+                <com.cgp.saral.customviews.MultiSpinner
+                    android:id="@+id/spinnerintrest"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/spinnerlanguage"
+                    android:layout_toRightOf="@+id/ic6"
+
+                    android:padding="5dp"
+                    />
+
+
+
+                <RelativeLayout
+                    android:id="@+id/tv_termcondition_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/spinnerintrest"
+                    >
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_termcondition"
+                        android:clickable="true"
+                        android:layout_centerVertical="true"
+                        android:button="@drawable/termand_condselector"
+                        />
+                    <TextView
+                        android:id="@+id/term"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/termandcond"
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerVertical="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_toRightOf="@+id/tv_termcondition"
+                        android:textColor="@color/Textcolor_lightblue"
+                        />
+                </RelativeLayout>
+
+                <!--<CheckedTextView
+                    android:id="@+id/tv_termcondition"
+                    android:layout_below="@+id/spinnerintrest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/edittext"
+                    android:layout_marginTop="@dimen/top"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:checked="false"
+                    android:checkMark="@drawable/termand_condselector"
+                    android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+                    android:text="@string/termandcond"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    />-->
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_termcondition_lay"
+                    android:layout_marginTop="@dimen/top"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:background="@drawable/btn_backgroundstate"
+                    android:paddingRight="35dp"
+                    android:paddingLeft="35dp"
+                    android:paddingBottom="5dp"
+                    android:alpha="0.80"
+                    android:paddingTop="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="SUBMIT"/>
+
+
+            </RelativeLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

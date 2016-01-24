@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:fitsSystemWindows="true">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="@dimen/from_right"
+        android:layout_marginLeft="@dimen/from_right"
+        android:src="@drawable/ic_logo"
+        android:id="@+id/ddds"
+        />
+    <RelativeLayout
+        android:id="@+id/parent_reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/profileright"
+        android:layout_marginRight="@dimen/profileright"
+        >
+
+        <!-- Email Label -->
+        <ImageView android:id="@+id/ic1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/tv_lableemail"
+            android:src="@drawable/ic_call"/>
+      <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_lableemail"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/ic1"
+            android:layout_alignParentTop="true"
+            android:theme="@style/TextLabel"
+
+            >
+
+            <EditText android:id="@+id/et_contact1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="#424242"
+                android:drawablePadding="15dp"
+                android:maxLength="10"
+                android:autoText="true"
+                android:hint="Mobile Number" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Label -->
+        <ImageView android:id="@+id/ic2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/tv_lablepass"
+            android:layout_below="@+id/tv_lableemail"
+            android:src="@drawable/ic_password"/>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tv_lablepass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_lableemail"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/ic2"
+            android:theme="@style/TextLabel"
+            >
+            <EditText android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="#424242"
+                android:drawablePadding="15dp"
+
+                android:hint="Password"
+                android:imeOptions="actionDone"
+                android:imeActionId="@+id/action_login"
+                android:imeActionLabel="@string/login"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Label -->
+        <ImageView android:id="@+id/tv_forgatepass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@+id/tv2"
+            android:layout_below="@+id/tv_lablepass"
+            android:visibility="gone"
+           android:src="@drawable/ic_password"/>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_lablepass"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/tv_forgatepass"
+            android:theme="@style/TextLabel"
+            >
+            <EditText android:id="@+id/et_confpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="#424242"
+                android:drawablePadding="15dp"
+                android:visibility="gone"
+
+                android:hint="Confirm Password"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_next1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv2"
+            android:layout_marginTop="@dimen/top"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/btn_backgroundstate"
+            android:paddingRight="35dp"
+            android:paddingLeft="35dp"
+            android:paddingBottom="5dp"
+            android:alpha="0.80"
+            android:paddingTop="5dp"
+            android:textColor="@color/textColor"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="NEXT"/>
+
+      <TextView android:id="@+id/tv_test"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_next1"
+            android:text=""
+            android:gravity="center"
+            android:textColor="@color/edittext"
+            android:layout_marginTop="@dimen/top"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        >
+        <TextView android:id="@+id/haveanac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account,"
+            android:textColor="@color/edittext"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+        <TextView android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/edittext"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+    </RelativeLayout>
+</RelativeLayout>
