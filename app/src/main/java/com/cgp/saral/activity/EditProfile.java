@@ -5,6 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +46,10 @@ import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,6 +58,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.Bind;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class EditProfile extends AppCompatActivity implements View.OnClickListener {
@@ -72,6 +79,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     HashMap<Integer, String> statemap = new HashMap<>();
     HashMap<Integer, String> distMap = new HashMap<>();
 
+    ImageView usrPic;
+    ImageView ivEdit;
     int statePoss = 0;
     int distPoss = 0;
     int languagePos = 0;
@@ -102,7 +111,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     boolean statusStateDist;
   //  String strGenderD="";
 
-
+    private final int SELECT_PHOTO = 1;
+    String localProfileImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,7 +157,6 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         submit = (AppCompatButton) findViewById(R.id.btn_submit);
         submit.setOnClickListener(this);
 
-
         spinnerdist = (MaterialSpinner) findViewById(R.id.spinnerdistE);
         address = (TextInputLayout) findViewById(R.id.tv_addressE);
 
@@ -170,8 +179,16 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
         // gender.setOnItemClickListener(null);
 
-
+        usrPic = (ImageView) findViewById(R.id.iv_userpro);
+        ivEdit = (ImageView) findViewById(R.id.iv_edit);
         if (bean != null) {
+
+            if (bean.getImgurl()!=null){
+                Picasso.with(ctx).load(bean.getImgurl())
+                        .placeholder(R.drawable.ic_dp_grey).error(R.drawable.ic_dp_grey).into(usrPic);
+            }else{
+                usrPic.setImageResource(R.drawable.ic_dp_grey);
+            }
             address.getEditText().setText(bean.getAddress());
             name.getEditText().setText(bean.getUserFName());
             name.getEditText().setOnKeyListener(null);
@@ -233,6 +250,39 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                 }
             });
 
+            ivEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    /*Launching Action pic for selecting photo*/
+                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    photoPickerIntent.setType("image/*");
+                    startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+                }
+            });
+
+        }
+    }
+
+    /* Catching selected photo from exter intent*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        switch(requestCode) {
+            case SELECT_PHOTO:
+                if(resultCode == RESULT_OK){
+                    try {
+                        final Uri imageUri = imageReturnedIntent.getData();
+                        localProfileImg = imageUri.toString();
+                       // usr_pic.setImageBitmap(selectedImage);
+                        Picasso.with(ctx).load(localProfileImg)
+                                .placeholder(R.drawable.ic_dp_grey).error(R.drawable.ic_dp_grey).into(usrPic);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
         }
     }
 
@@ -493,8 +543,6 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         newbean.setDistrictName(strDist);
 
 
-
-
         if (strState.isEmpty()) {
             Toast.makeText(EditProfile.this, "Please select your state", Toast.LENGTH_SHORT).show();
             return;
@@ -615,8 +663,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         }
 
         dataFromBean.addProperty("RoleId", "3");
-
-        dataFromBean.addProperty("PhotoPath", bean.getImgurl());
+        if(localProfileImg != null){
+            dataFromBean.addProperty("PhotoPath", localProfileImg);
+        }else {
+            dataFromBean.addProperty("PhotoPath", bean.getImgurl());
+        }
         dataFromBean.addProperty("InterestsTag", "" + intrestides);
 
         data.addProperty("modifiedBy", bean.getUserId());

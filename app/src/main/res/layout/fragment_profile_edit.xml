@@ -9,12 +9,40 @@
     <include
         android:id="@+id/trans_tool"
         layout="@layout/toolbar_transparent" />
+    <RelativeLayout
+
+        android:id="@+id/profileBox1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
+        >
+
+
+    </RelativeLayout>
+    <com.cgp.saral.customviews.ImageViewRounded
+        android:id="@+id/iv_userpro"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_dp_grey"
+        android:layout_marginTop="50dp" />
+
+
+    <ImageView
+        android:id="@+id/iv_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="80dp"
+        />
 
     <RelativeLayout
         android:id="@+id/parent_reg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/trans_tool"
+        android:layout_below="@+id/iv_edit"
         android:layout_marginBottom="@dimen/profileright"
         android:layout_marginLeft="@dimen/profileright"
         android:layout_marginRight="@dimen/profileright">
