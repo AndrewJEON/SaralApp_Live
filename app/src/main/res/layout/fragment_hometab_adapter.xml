@@ -118,6 +118,16 @@
                     android:src="@drawable/splash"
                     android:scaleType="fitXY"
                     android:visibility="gone" />
+                <WebView
+                    android:id="@+id/vid_postvideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:adjustViewBounds="true"
+                    android:padding="1dp"
+                    android:scaleType="fitXY"
+                    android:visibility="gone" />
 
                 <ProgressBar
                     android:id="@+id/progress_bar"

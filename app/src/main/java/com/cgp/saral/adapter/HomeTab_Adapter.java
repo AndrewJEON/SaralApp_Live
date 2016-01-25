@@ -3,7 +3,6 @@ package com.cgp.saral.adapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -47,8 +49,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import butterknife.OnClick;
 
 /**
  * Created by karamjeetsingh on 04/09/15.
@@ -272,10 +272,35 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (strMediaType.equals("700002")) {
             holdview.mediaLayout.setVisibility(View.VISIBLE);
             if (!strImageThumbNail.isEmpty()) {
-                // holdview.progressBar.setVisibility(View.VISIBLE);
-
-
                 String strVideoThumbnail = d.getContentDetails().get(0).getThumbnailPath();
+                holdview.list_icon.setVisibility(View.VISIBLE);
+                holdview.list_icon.setImageBitmap(null);
+                PicassoSingleton
+                        .getPicassoInstance(context).cancelRequest(holdview.list_icon);
+
+                if (!strVideoThumbnail.isEmpty()) {
+                    PicassoSingleton
+                            .getPicassoInstance(context)
+                            .load(strVideoThumbnail).placeholder(R.drawable.list_item).error(R.drawable.list_item)
+                            .into(holdview.list_icon);
+                }
+
+                strURL = d.getContentDetails().get(0).getMediaPath();
+
+                holdview.videoView.loadUrl("http://www.youtube.com/embed/" + strURL + "?autoplay=1&vq=small&showinfo=0");
+                holdview.videoView.getSettings().setJavaScriptEnabled(true);
+                holdview.videoView.setVisibility(View.VISIBLE);
+                holdview.videoView.getSettings().setPluginState(WebSettings.PluginState.ON);; //sets MediaController in the video view
+
+                holdview.videoView.requestFocus();//give focus to a specific view
+                holdview.videoView.setWebViewClient(new WebViewClient() {
+                    public void onPageFinished(WebView view, String url) {
+                        holdview.list_icon.setVisibility(View.GONE);
+                    }
+                });
+
+
+                /*String strVideoThumbnail = d.getContentDetails().get(0).getThumbnailPath();
                 //  holdview.youtube_player.setVisibility(View.VISIBLE);
                 strURL = d.getContentDetails().get(0).getMediaPath();
                 //Log.e("Video Data URL", "" + strURL);
@@ -295,8 +320,9 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 holdview.list_icon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        holdview.list_icon.setVisibility(View.GONE);
                         holdview.progressBar.setVisibility(View.VISIBLE);
+
                         String video_path = "http://www.youtube.com/watch?v=" + strURL;
                         Uri uri = Uri.parse(video_path);
 
@@ -304,13 +330,22 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         // Without it you will be prompted with a list of the application to choose.
                         uri = Uri.parse("vnd.youtube:" + uri.getQueryParameter("v"));
 
+*//*
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         context.startActivity(intent);
+*//*
+                        holdview.videoView.loadUrl("http://www.youtube.com/embed/" + strURL + "?autoplay=1&vq=small");
+                        holdview.videoView.getSettings().setJavaScriptEnabled(true);
+                        holdview.videoView.setVisibility(View.VISIBLE);
+                        holdview.videoView.getSettings().setPluginState(WebSettings.PluginState.ON);; //sets MediaController in the video view
+
+                        holdview.videoView.requestFocus();//give focus to a specific view
+                        holdview.videoView.setWebChromeClient(new WebChromeClient());
                         holdview.progressBar.setVisibility(View.GONE);
 
 
                     }
-                });
+                });*/
 
 
             } else {
@@ -711,7 +746,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView dislikeTv;
         ImageView list_icon;
         ImageButton like, unlike;
-
+        WebView videoView;
 
         LinearLayout mediaLayout;
         ProgressBar progressBar;
@@ -734,7 +769,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             //unlike.setTag(this);
             mediaLayout = (LinearLayout) itemView.findViewById(R.id.mediaLayout);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_bar);
-
+            videoView = (WebView) itemView.findViewById(R.id.vid_postvideo);
 
         }
 
