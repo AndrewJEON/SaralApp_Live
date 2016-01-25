@@ -42,7 +42,7 @@
         android:id="@+id/parent_reg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_edit"
+        android:layout_below="@+id/iv_userpro"
         android:layout_marginBottom="@dimen/profileright"
         android:layout_marginLeft="@dimen/profileright"
         android:layout_marginRight="@dimen/profileright">
