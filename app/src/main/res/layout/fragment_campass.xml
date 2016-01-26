@@ -80,7 +80,15 @@
                     android:text="NOTE : Point the red needle towards the North Direction."
 
                     />
-
+                <CheckBox
+                    android:id="@+id/audio_help"
+                    android:text="Help"
+                    android:textColor="@color/Orange"
+                    android:button="@xml/audio_help_checkbox_selector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/text_Note"/>
                 <RelativeLayout
                     android:id="@+id/camp_center"
                     android:layout_width="match_parent"

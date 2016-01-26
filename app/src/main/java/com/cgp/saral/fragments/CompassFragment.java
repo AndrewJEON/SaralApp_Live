@@ -1,27 +1,22 @@
 package com.cgp.saral.fragments;
 
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -138,6 +133,9 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     TextView ncolor4;
     @Bind(R.id.tv_ncolor5)
     TextView ncolor5;
+    @Bind(R.id.audio_help)
+    CheckBox audioHelp;
+
 
     ArrayList<TextView> arrColors = new ArrayList<>();
     ArrayList<TextView> arrUColors = new ArrayList<>();
@@ -346,6 +344,38 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
         edu.setOnClickListener(this);
 
 
+        final String url = "http://appapi.saralvaastu.com/guideforyoupage.mp3"; // your URL here
+        final MediaPlayer mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            mediaPlayer.setDataSource(url);
+            mediaPlayer.prepareAsync();// might take long! (for buffering, etc)
+
+        }catch (Exception e){
+            Log.e("Audio play",e.getMessage());
+        }
+        audioHelp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //Is the switch is on?
+                boolean on = ((CheckBox) v).isChecked();
+                if(on)
+                {
+                    try {
+                        mediaPlayer.start();
+                    }catch (Exception e){
+                        Log.e("Audio play",e.getMessage());
+                    }
+                }
+                else
+                {
+                 if(mediaPlayer.isPlaying()) {
+                     mediaPlayer.pause();
+                 }
+
+                }
+            }
+        });
         return view;
     }
 
