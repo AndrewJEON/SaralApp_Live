@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="2dp"
-                android:paddingBottom="5dp"
+                android:paddingBottom="10dp"
                 android:paddingLeft="0dp"
                 android:paddingTop="2dp"
                 android:text="Study Room Vastu Tips"
@@ -82,7 +82,7 @@
                 android:layout_below="@+id/mediaLayout"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="2dp"
-                android:padding="0dp"
+                android:paddingTop="10dp"
                 android:autoLink="all"
                 android:text="Saral Vaastu helps to enhance our Body’s Positive Energy Source, through the driving away of our body’s Negative Energy Source"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -106,12 +106,13 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/Textcolor_lightblue" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/like_container"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_postmassege"
                 android:paddingTop="5dp"
+                android:layout_marginLeft="15dp"
                 >
 
                 <RelativeLayout
@@ -186,14 +187,24 @@
                         />
                 </RelativeLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
     <LinearLayout android:orientation="vertical" android:layout_alignParentBottom="true" android:id="@+id/ll_main" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dp">
-
-        <View android:id="@+id/list_item_seperator" android:background="@color/header_bg_color" android:layout_width="fill_parent" android:layout_height="2dp" />
+        <RelativeLayout
+            android:id="@+id/shareBtnRl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+            <ImageButton
+                android:id="@+id/shareBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_action_social_share" />
+        </RelativeLayout>
+        <View android:id="@+id/list_item_seperator" android:background="@color/header_bg_color" android:layout_width="fill_parent" android:layout_height="3dp" />
         <View android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="@dimen/list_divider_height" />
     </LinearLayout>
 </RelativeLayout>

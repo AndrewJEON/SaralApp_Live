@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -154,21 +155,25 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private void doProcessDataBinding(int i, final HomeHolderView holdview) {
         final Datum d = list.get(i);
-
-        holdview.listItemSeperator.setBackgroundColor(Color.parseColor(itemSepColors.get(i%4)));
-        holdview.timestamp.setTextColor(Color.parseColor(itemSepColors.get(i%4)));
-
+        int listSepColor = Color.parseColor(itemSepColors.get(i%4));
+        holdview.listItemSeperator.setBackgroundColor(listSepColor);
+        holdview.timestamp.setTextColor(listSepColor);
+        holdview.shareBtnRl.setBackgroundColor(listSepColor);
         holdview.title.setText(d.getSummary());
 
+        holdview.shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT,d.getSummary());
+                sendIntent.putExtra(Intent.EXTRA_TEXT, d.getDescription());
+                sendIntent.setType("text/plain");
+                v.getContext().startActivity(Intent.createChooser(sendIntent, "Share via"));
 
-
-
-
-
-        // holdview.description.setText(d.getDescription());
-
-
+            }
+        });
         final String strImageThumbNail = "http://" + d.getContentDetails().get(0).getThumbnailPath();
 
         // Log.e("Thumbnail Image Path ", "--->" + strImageThumbNail);
@@ -758,6 +763,8 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         View listItemSeperator;
         LinearLayout mediaLayout;
         ProgressBar progressBar;
+        ImageButton shareBtn;
+        RelativeLayout shareBtnRl;
         // YouTubePlayerView youtube_player;
 
         public HomeHolderView(View itemView) {
@@ -779,6 +786,8 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_bar);
             videoView = (WebView) itemView.findViewById(R.id.vid_postvideo);
             listItemSeperator = itemView.findViewById(R.id.list_item_seperator);
+            shareBtn = (ImageButton) itemView.findViewById(R.id.shareBtn);
+            shareBtnRl = (RelativeLayout)itemView.findViewById(R.id.shareBtnRl);
         }
 
 
