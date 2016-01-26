@@ -3,21 +3,21 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@color/background"
     tools:context="com.cgp.saral.fragments.HomeTabFragment">
 
     <RelativeLayout
         android:id="@+id/frhome_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp">
 
         <RelativeLayout
             android:id="@+id/frhome_cat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:padding="0dp">
 
             <TextView
                 android:id="@+id/tv_category"
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:background="#fff"
+                android:background="@color/background"
                 android:scrollbars="none" />
         </android.support.v4.widget.SwipeRefreshLayout>
 

@@ -30,4 +30,5 @@
 
 
     <integer name="fab_duration">100</integer>
+    <dimen name="list_divider_height">10dp</dimen>
 </resources>

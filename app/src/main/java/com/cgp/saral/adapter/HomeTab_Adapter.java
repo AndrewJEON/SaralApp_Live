@@ -3,6 +3,7 @@ package com.cgp.saral.adapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
@@ -95,11 +96,17 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     ArrayList<Content_Action> contents = new ArrayList<>();
 
+    ArrayList<String> itemSepColors = new ArrayList<String>();
+
     public HomeTab_Adapter(Activity ctx, ArrayList<Datum> data, DataController dbController) {
         this.list = data;
         this.context = ctx;
         this.originalData = data;
         this.dbController = dbController;
+        itemSepColors.add("#ff2189df");
+        itemSepColors.add("#ff009682");
+        itemSepColors.add("#ffc52c18");
+        itemSepColors.add("#ffdb8d11");
     }
 
     @Override
@@ -148,7 +155,8 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void doProcessDataBinding(int i, final HomeHolderView holdview) {
         final Datum d = list.get(i);
 
-
+        holdview.listItemSeperator.setBackgroundColor(Color.parseColor(itemSepColors.get(i%4)));
+        holdview.timestamp.setTextColor(Color.parseColor(itemSepColors.get(i%4)));
 
         holdview.title.setText(d.getSummary());
 
@@ -272,18 +280,18 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (strMediaType.equals("700002")) {
             holdview.mediaLayout.setVisibility(View.VISIBLE);
             if (!strImageThumbNail.isEmpty()) {
-                String strVideoThumbnail = d.getContentDetails().get(0).getThumbnailPath();
+                //String strVideoThumbnail = d.getContentDetails().get(0).getThumbnailPath();
                 holdview.list_icon.setVisibility(View.VISIBLE);
                 holdview.list_icon.setImageBitmap(null);
                 PicassoSingleton
                         .getPicassoInstance(context).cancelRequest(holdview.list_icon);
 
-                if (!strVideoThumbnail.isEmpty()) {
+               // if (!strVideoThumbnail.isEmpty()) {
                     PicassoSingleton
                             .getPicassoInstance(context)
-                            .load(strVideoThumbnail).placeholder(R.drawable.list_item).error(R.drawable.list_item)
+                            .load(R.drawable.list_item).placeholder(R.drawable.list_item).error(R.drawable.list_item)
                             .into(holdview.list_icon);
-                }
+               // }
 
                 strURL = d.getContentDetails().get(0).getMediaPath();
 
@@ -747,7 +755,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ImageView list_icon;
         ImageButton like, unlike;
         WebView videoView;
-
+        View listItemSeperator;
         LinearLayout mediaLayout;
         ProgressBar progressBar;
         // YouTubePlayerView youtube_player;
@@ -770,7 +778,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mediaLayout = (LinearLayout) itemView.findViewById(R.id.mediaLayout);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_bar);
             videoView = (WebView) itemView.findViewById(R.id.vid_postvideo);
-
+            listItemSeperator = itemView.findViewById(R.id.list_item_seperator);
         }
 
 

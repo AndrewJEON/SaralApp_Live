@@ -54,4 +54,5 @@
 
     <color name="fb_color">#44619C</color>
     <color name="g_color">#DD4C39</color>
+    <color name="header_bg_color">#ff1d75ff</color>
 </resources>
