@@ -245,10 +245,10 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
     {
         boolean isHave=false;
 
-        if (userdata.getImgurl()!=null)
+        if (bean.getImgurl()!=null)
         {
 
-            Picasso.with(ctx).load(userdata.getImgurl())
+            Picasso.with(ctx).load(bean.getImgurl())
                     .placeholder(R.drawable.ic_dp_grey).error(R.drawable.ic_dp_grey).into(usr_pic);
             //usr_pic.setImageBitmap(thePic);
             isHave=true;
