@@ -7,11 +7,11 @@ import java.io.Serializable;
  */
 public class LocationData implements Serializable{
 
-    public com.cgp.saral.model.GetAllLocationsResult getGetAllLocationsResult() {
+    public GetAllLocationsResult getGetAllLocationsResult() {
         return GetAllLocationsResult;
     }
 
-    public LocationData setGetAllLocationsResult(com.cgp.saral.model.GetAllLocationsResult getAllLocationsResult) {
+    public LocationData setGetAllLocationsResult(GetAllLocationsResult getAllLocationsResult) {
         GetAllLocationsResult = getAllLocationsResult;
         return this;
     }

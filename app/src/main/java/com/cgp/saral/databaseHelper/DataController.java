@@ -83,7 +83,6 @@ public class DataController {
                 mCount.moveToFirst();
                 row = mCount.getCount();
                 mCount.close();
-
                 Log.e("Row Count", " " + row);
 
                 if (row == 0) {

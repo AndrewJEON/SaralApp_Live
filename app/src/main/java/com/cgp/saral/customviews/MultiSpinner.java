@@ -207,7 +207,7 @@ public class MultiSpinner extends Spinner implements
         List<Integer> selection = new LinkedList<>();
         for (int i = 0; i < _items.length; ++i) {
             if (mSelection[i]) {
-                selection.add(i+1);
+                selection.add(i);
             }
         }
         return selection;

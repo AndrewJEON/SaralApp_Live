@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +35,6 @@ import com.cgp.saral.network.VolleySingleton;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -73,28 +71,6 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
 
     private static final String ARG_PAGE_NUMBER = "page_number";
-
-
-    /*private static final String TRANSLATION_Y = "translationY";
-    private ImageButton fab;
-    private boolean expanded = false;
-    private View fab_marriage_h;
-    private View fab_career_h;
-    private View fab_education_h;
-    private View fab_wealth_h;
-    private View fab_health_h;*/
-
-    private boolean fragmentResume = false;
-    private boolean fragmentVisible = false;
-    private boolean fragmentOnCreated = false;
-
-
-   /* private float offset1;
-    private float offset2;
-    private float offset3;
-    private float offset4;
-    private float offset5;*/
-
 
     ArrayList<Datum> feedList = new ArrayList<>();
     ArrayList<Datum> listData = new ArrayList<Datum>();
@@ -314,20 +290,9 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
         wealth.setOnClickListener(this);
         edu.setOnClickListener(this);
 
-        //adding a scroll listener to fetch further feed on user scroll
-        // addRecyclerViewScrollListener();
-
     }
 
 
-  /*  adapter.setOnItemClickListener(new HomeTab_Adapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(View view, int position) {
-            String name = users.get(position).name;
-            Toast.makeText(UserListActivity.this, name + " was clicked!", Toast.LENGTH_SHORT).show();
-        }
-    });
-*/
     public void getFeed(int page) {
 
 
@@ -437,39 +402,7 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
                         feedList.add(d);
                     }
                 }
-              //  Collections.sort(feedList, new DateSortComp());
 
-
-               /* if (feedList.size() == 0 && listData.size() > 0) {
-                    for (Datum d : listData) {
-                        feedList.add(d);
-                    }
-                } else {
-
-
-                    for (Datum d : listData) {
-
-                        String strListId = d.getId();
-                        for (Datum f : feedList) {
-                            String strFeedId = f.getId();
-                            if (!strListId.equals(strFeedId)) {
-                                feedList.add(d);
-
-                            }
-                        }
-
-                    }
-                }*/
-                Log.e("Size of AList-->", "" + feedList.size());
-
-                //add fetched feed to the FeedList bound to the adapter
-               /* for (int i = 0; i < listData.size(); i++) {
-                    feedList.add(listData.get(i));
-
-                    Log.e("Size of AList", "" + feedList.size() + "  Counter " + i);
-                }*/
-                // feedPage++;
-                //notify the adapter that the data set has changed
                 adapter.notifyDataSetChanged();
                 if (isPullRefresh) {
                     swipeRefreshLayout.setRefreshing(false);
@@ -549,114 +482,6 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
         });
     }
 
-  /*  public void fabInit(View view1) {
-
-        Log.e("Fab Init", ""+expanded);
-
-        final ViewGroup fabContainer = (ViewGroup) view1.findViewById(R.id.fab_container);
-        fab = (ImageButton) view1.findViewById(R.id.fabmain);
-        fab_health_h = view1.findViewById(R.id.fab_action_1);
-        fab_wealth_h = view1.findViewById(R.id.fab_action_2);
-        fab_education_h = view1.findViewById(R.id.fab_action_3);
-        fab_career_h = view1.findViewById(R.id.fab_action_4);
-        fab_marriage_h = view1.findViewById(R.id.fab_action_5);
-        fab_health_h.setOnClickListener(this);
-        fab_wealth_h.setOnClickListener(this);
-        fab_education_h.setOnClickListener(this);
-        fab_career_h.setOnClickListener(this);
-        fab_marriage_h.setOnClickListener(this);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expanded = !expanded;
-                category.setVisibility(View.GONE);
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-                if (expanded) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            expandFab();
-                        }
-                    });
-
-
-                } else {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            collapseFab();
-
-                        }
-                    });
-
-                }
-            }
-        });
-
-        fabContainer.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                fabContainer.getViewTreeObserver().removeOnPreDrawListener(this);
-                offset1 = fab.getY() - fab_health_h.getY();
-                fab_health_h.setTranslationY(offset1);
-                offset2 = fab.getY() - fab_wealth_h.getY();
-                fab_wealth_h.setTranslationY(offset2);
-                offset3 = fab.getY() - fab_education_h.getY();
-                fab_education_h.setTranslationY(offset3);
-                offset4 = fab.getY() - fab_career_h.getY();
-                fab_career_h.setTranslationY(offset4);
-                offset5 = fab.getY() - fab_marriage_h.getY();
-                fab_marriage_h.setTranslationY(offset5);
-                return true;
-            }
-        });
-    }*//**/
-
-    /*//****************
-    private void collapseFab() {
-        fab.setImageResource(R.drawable.fab_add);
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(createCollapseAnimator(fab_health_h, offset1),
-                createCollapseAnimator(fab_wealth_h, offset2),
-                createCollapseAnimator(fab_education_h, offset3),
-                createCollapseAnimator(fab_career_h, offset4),
-                createCollapseAnimator(fab_marriage_h, offset5));
-        animatorSet.start();
-        animateFab();
-    }
-
-    private void expandFab() {
-        fab.setImageResource(R.drawable.ic_close);
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(createExpandAnimator(fab_health_h, offset1),
-                createExpandAnimator(fab_wealth_h, offset2),
-                createExpandAnimator(fab_education_h, offset3),
-                createExpandAnimator(fab_career_h, offset4),
-                createExpandAnimator(fab_marriage_h, offset5)
-        );
-        animatorSet.start();
-        animateFab();
-    }
-
-    private Animator createCollapseAnimator(View view, float offset) {
-        return ObjectAnimator.ofFloat(view, TRANSLATION_Y, 0, offset)
-                .setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime));
-    }
-
-    private Animator createExpandAnimator(View view, float offset) {
-        return ObjectAnimator.ofFloat(view, TRANSLATION_Y, offset, 0)
-                .setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime));
-    }
-
-    private void animateFab() {
-        Drawable drawable = fab.getDrawable();
-        if (drawable instanceof Animatable) {
-            ((Animatable) drawable).start();
-        }
-    }
-*/
 
     @Override
     public void onClick(View v) {
@@ -665,14 +490,7 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
         adapter.notifyDataSetChanged();
         if (v == health) {
 
-           /* expanded = !expanded;
-            if (expanded) {
 
-                expandFab();
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-
-            } else {*/
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Health");
@@ -681,70 +499,36 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
             // }
         } else if (v == wealth) {
-           /* expanded = !expanded;
-            if (expanded) {
-                expandFab();
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
 
-            } else {
-                collapseFab();*/
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Wealth");
             adapter.getFilter().filter("" + 600007);
             adapter.notifyDataSetChanged();
 
-            // }
         } else if (v == edu) {
-           /* expanded = !expanded;
-            if (expanded) {
-                expandFab();
 
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-
-            } else {
-                collapseFab();*/
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Education");
             adapter.getFilter().filter("" + 600003);
             adapter.notifyDataSetChanged();
 
-            // }
         } else if (v == career) {
-           /* expanded = !expanded;
-            if (expanded) {
-                expandFab();
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
 
-            } else {
-                collapseFab();*/
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Career");
             adapter.getFilter().filter("" + 600002);
             adapter.notifyDataSetChanged();
 
-            //  }
         } else if (v == marriage) {
-            /*expanded = !expanded;
-            if (expanded) {
-                expandFab();
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-
-            } else {
-                collapseFab();*/
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Marriage & Relationship");
             adapter.getFilter().filter("" + 600006);
             adapter.notifyDataSetChanged();
 
-            //}
         }
 
 

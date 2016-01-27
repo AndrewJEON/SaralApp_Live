@@ -4,18 +4,16 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,14 +28,9 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.cgp.saral.R;
 import com.cgp.saral.activity.MainActivity;
-import com.cgp.saral.model.IsRegisteredBySocial;
-import com.cgp.saral.model.IsRegisteredBySocialResult;
-import com.cgp.saral.model.UserData;
-import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
-import com.cgp.saral.tuarguide.Showcase_guide;
 import com.google.gson.JsonObject;
 
 /**
@@ -48,7 +41,7 @@ public class FeedBack extends Fragment {
     View view;
 
     AppCompatButton buttonSend;
-    EditText textTo;
+    EditText editTextSubject1,editTextmessege1;
     TextInputLayout textSubject;
     TextInputLayout textMessage;
 
@@ -75,7 +68,8 @@ public class FeedBack extends Fragment {
         view = inflater.inflate(R.layout.feedback, container, false);
 
         buttonSend = (AppCompatButton) view.findViewById(R.id.buttonSendF);
-        /*textTo = (EditText) view.findViewById(R.id.editTextTo);*/
+        editTextSubject1 = (EditText) view.findViewById(R.id.editTextSubject1);
+        editTextmessege1 = (EditText) view.findViewById(R.id.editTextSubject2);
         textSubject = (TextInputLayout) view.findViewById(R.id.editTextSubject);
         textMessage = (TextInputLayout) view.findViewById(R.id.editTextMessage);
        // textTo.setText("app@saralvaastu.com");
@@ -86,7 +80,8 @@ public class FeedBack extends Fragment {
 
             @Override
             public void onClick(View v) {
-
+                hideKeyboard();
+                //hidekeybord();
                 // String to = textTo.getText().toString();
                 String subject = textSubject.getEditText().getText().toString();
                 String message = textMessage.getEditText().getText().toString();
@@ -151,7 +146,13 @@ public class FeedBack extends Fragment {
 
         return view;
     }
-
+    private void hideKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).
+                    hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 
     private Response.Listener<JsonObject> successListener() {
         return new Response.Listener<JsonObject>() {

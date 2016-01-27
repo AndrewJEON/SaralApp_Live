@@ -507,26 +507,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     Toast.makeText(context, "Already Un Liked", Toast.LENGTH_SHORT).show();
                 }
 
-              /*  if (!isClicked && d.getYouLiked().equals("false")) {
-                    holdview.unlike.setEnabled(false);
-                    holdview.like.setEnabled(false);
 
-                    String strU = String.valueOf(disLikeCount + 1);
-                    holdview.unlike.setBackgroundResource(R.drawable.ic_dislike_b);
-
-                    doPostAction(strContentId, "2");
-                    holdview.dislikeTv.getTag();
-                    holdview.dislikeTv.setText(strU);
-                    Content_Action action = new Content_Action();
-                    action.setStrContentId(strContentId);
-                    action.setStrLiked("0");
-                    action.setStrDisliked("1");
-
-                    dbController.contentAction(action);
-                    isClicked = true;
-                } else {
-                    Toast.makeText(context, "Already Un Liked", Toast.LENGTH_SHORT).show();
-                }*/
             }
 
         });
@@ -611,44 +592,10 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         int contentId = Integer.parseInt(d.getId());
 
-      //  dbController.contentAction(action);
-
-
-        //  holder.likeTv.setText(likesCountText);
-
-      //  notifyItemChanged(holder.getAdapterPosition());
         disLikesCount.put(holder.getAdapterPosition(), currentDisLikesCount);
     }
 
-   /* @Override
-    public void onClick(View view) {
-        final int viewId = view.getId();
-        if (viewId == R.id.iv_like) {
-            HomeHolderView holder = (HomeHolderView) view.getTag();
-            if (!likedPositions.contains(holder.getPosition())) {
-                likedPositions.add(holder.getPosition());
-                updateLikesCounter(holder);
 
-            }else
-            {
-                Toast.makeText(context, "Already Liked", Toast.LENGTH_SHORT).show();
-            }
-        }else if(viewId == R.id.iv_dislike)
-        {
-            HomeHolderView holder = (HomeHolderView) view.getTag();
-            if (!unLikedPositions.contains(holder.getPosition())) {
-                unLikedPositions.add(holder.getPosition());
-                updateDisLikesCounter(holder);
-
-
-            } else {
-                Toast.makeText(context, "Already Un Liked", Toast.LENGTH_SHORT).show();
-
-            }
-
-        }
-
-    }*/
 
     public void doPostAction(String strContentId, String strAction) {
 

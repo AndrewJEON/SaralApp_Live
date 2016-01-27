@@ -5,8 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -48,8 +46,6 @@ import com.cgp.saral.network.VolleySingleton;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,7 +54,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.Bind;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class EditProfile extends AppCompatActivity implements View.OnClickListener {
@@ -231,14 +226,14 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             Log.e("Intrested Tag", "" + faver);
             strspl = new int[faver.length()];
             for (int i = 0; i < faver.length(); i++) {
-                strspl[i] = Character.getNumericValue(faver.charAt(i))-1;
+                if(Character.getNumericValue(faver.charAt(i))>0) {
+                    strspl[i] = Character.getNumericValue(faver.charAt(i)) - 1;
+                }else{
+                    strspl[i] = 0;
+                }
             }
 
-
-            for (int i = 0; i < strspl.length; i++) {
-                Log.e("Interest Field", "" + strspl[i]);
-            }
-            //    strspl = Arrays.copyOfRange(strspl, 0, strspl.length);
+//    strspl = Arrays.copyOfRange(strspl, 0, strspl.length);
             intrest.setItems(Constants.intrestData);
             intrest.setSelection(strspl);
 
@@ -704,10 +699,10 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
                     if (data != null) {
 
-
+                        Log.e("User Update Resp", "Data not null" + response.UpdateUserResult.getSuccess());
                         if (result.getSuccess().toString().equals("true")) {
 
-
+                            Log.e("User Update Resp", "Status true");
                             UserData d = response.getUpdateUserResult().getData();
 
                             Userdata_Bean bean = new Userdata_Bean();
@@ -732,19 +727,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                                     bean.setImgurl(d.getPhotoPath());
                             }
 
-                           /* String fbId = d.getFacebookId();
-                            String gId = d.getGoogleId();
-                            Log.e("Facebook Id", "" + fbId + "  google id " + gId);
-                            if (!("null".equalsIgnoreCase(fbId))) {
-                                bean.setSocial_id(fbId);
-                                bean.setSocialtype("fb");
-                            } else if (!("null".equalsIgnoreCase(gId))) {
-                                bean.setSocial_id(gId);
-                                bean.setSocialtype("gplus");
-                            } else {
-                                bean.setSocial_id("");
-                                bean.setSocialtype("normal");
-                            }*/
+
                             if (!("null".equalsIgnoreCase(""+d.getFacebookId()))) {
                                 bean.setSocial_id(d.getFacebookId()+"");
                                 bean.setSocialtype("fb");
@@ -767,8 +750,9 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                             bean.setLucky_Chart(d.getLuckyChart());
 
                             controller.deleteUsers();
+                            Log.e("User Update Resp", "delete user");
                             controller.doprocessData(bean);
-
+                            Log.e("User Update Resp", "Update user ");
                             Constants.GLOBAL_USER_NAME = d.getFirstName() + " " + d.getLastName();
                             Constants.GLOBAL_USER_ID = d.getUserId();
                             Constants.GLOBAL_U_LUCK_NO = d.getLuckyNumber();
@@ -790,9 +774,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                             }
 
                             dismissDialog();
-                            startActivity(new Intent(EditProfile.this, MainActivity.class));
+                           // startActivity(new Intent(EditProfile.this, UserProfile_Activity.class));
                             finish();
-
 
                         } else {
                             dismissDialog();

@@ -13,9 +13,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.cgp.saral.R;
-import com.cgp.saral.activity.MainActivity;
 import com.cgp.saral.tuarguide.Showcase_guide;
 
 import java.util.Collections;
@@ -85,7 +85,7 @@ public class Utils {
     public static String getSelectedItemsAsString(String  _item, String [] str ) {
         StringBuilder sb = new StringBuilder();
         boolean foundOne = false;
-
+        Log.e(" utils "," String size "+str.length);
         for (int i = 0; i < str.length; ++i) {
             if (_item.contains(""+i)) {
                 if (foundOne) {
@@ -186,6 +186,7 @@ public class Utils {
         AlertDialog.Builder alert = new AlertDialog.Builder(
                 act.getActivity());
         alert.setTitle("Welcome, "+strName);
+        alert.setCancelable(false);
         alert.setIcon(R.drawable.ic_launcher); //app icon here
         alert.setMessage(strMessage);
 

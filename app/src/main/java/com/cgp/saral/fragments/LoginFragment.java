@@ -60,7 +60,8 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends Fragment implements FbConnectHelper.OnFbSignInListener, GooglePlusSignInHelper.OnGoogleSignInListener {
+public class LoginFragment extends Fragment implements FbConnectHelper.OnFbSignInListener,
+        GooglePlusSignInHelper.OnGoogleSignInListener {
 
     ProgressDialog progressDialog;
     private static final String TAG = LoginFragment.class.getSimpleName();

@@ -100,7 +100,6 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this);
         setContentView(R.layout.user_profiledetails);
@@ -125,15 +124,6 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
         dataController=DataController.getsInstance(this);
        // dataController.createDb();
 
-        List<Userdata_Bean> userdata = dataController.getAllData();
-        if (null != userdata) {
-            bean = userdata.get(0);
-        } else {
-            Log.e("Edit Profile ", "bean null");
-        }
-
-
-
         ctx= getApplicationContext();
 
         variableInit();
@@ -141,9 +131,6 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
             luckyNo.setText(bean.getLucky_No());
             Constants.GLOBAL_U_LUCK_CHART = bean.getLucky_Chart();
         }
-
-
-        setData();
         sign_out.setOnClickListener(this);
         usr_pic.setOnClickListener(this);
         iv_edit.setOnClickListener(this);
@@ -151,6 +138,34 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        List<Userdata_Bean> userdata = dataController.getAllData();
+        if (null != userdata) {
+            bean = userdata.get(0);
+        } else {
+            Log.e("Edit Profile ", "bean null");
+        }
+        setData();
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("Edit Profile ", "Resume");
+        onStart();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("Edit Profile ", "bean null");
+    }
 
     public void setData()
     {
@@ -184,8 +199,11 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
 
                 usr_address.setText(strProfileData);
                 usr_contact.setText(userdata.getContact1());
+              Log.e("Edit Profile ", "intrest "+userdata.getIntrest());
 
                 String strIntrest = Utils.getSelectedItemsAsString(userdata.getIntrest(), Constants.intrestData);
+            Log.e("Edit Profile ", "after method "+strIntrest);
+
                 usr_intrest.setText(strIntrest);
 
         }
