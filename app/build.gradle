@@ -6,7 +6,7 @@ android {
         config {
             keyAlias 'saral'
             keyPassword 'vaastu'
-            storeFile file('/Users/WeeSync/Desktop/Saral/BitBucket_Saral/saral_key.jks')
+            storeFile file('C:/Projects/saral/SaralApp_Live/SaralApp_Live/saral_key.jks')
             storePassword 'vaastu'
         }
     }

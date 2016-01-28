@@ -135,7 +135,7 @@
             android:label="@string/title_activity_edit_profile" >
         </activity>
 
-    </application>
+
 
 
     <!-- Optionally, register AnalyticsReceiver and AnalyticsService to support background
@@ -159,4 +159,5 @@
         </intent-filter>
     </receiver>
     <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+    </application>
 </manifest>
