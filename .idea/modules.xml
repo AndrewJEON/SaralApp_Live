@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SaralApp_Live.iml" filepath="$PROJECT_DIR$/SaralApp_Live.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/floatlable_spinlib/floatlable_spinlib.iml" filepath="$PROJECT_DIR$/floatlable_spinlib/floatlable_spinlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/saralapp.iml" filepath="$PROJECT_DIR$/saralapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/tourguide/tourguide.iml" filepath="$PROJECT_DIR$/tourguide/tourguide.iml" />
     </modules>
   </component>
