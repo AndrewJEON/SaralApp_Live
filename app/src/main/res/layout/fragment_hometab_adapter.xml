@@ -87,123 +87,154 @@
                 android:text="Saral Vaastu helps to enhance our Body’s Positive Energy Source, through the driving away of our body’s Negative Energy Source"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/textColor" />
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/tv_postmassege">
-            <com.github.curioustechizen.ago.RelativeTimeTextView
-                android:id="@+id/tv_posttime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="2dp"
-                android:text=" "
-                android:layout_gravity="center_vertical"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/Textcolor_lightblue" />
 
-            <LinearLayout
-                android:id="@+id/like_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_postmassege"
-                android:paddingTop="5dp"
-                android:layout_marginLeft="15dp"
-                >
-
-                <RelativeLayout
-                    android:id="@+id/container2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/view1"
-                    android:padding="0dp"
-                    >
-                    <RelativeLayout
-                        android:id="@+id/container23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         android:gravity="center_vertical"
-                        >
-
-                    <ImageButton
-                        android:id="@+id/iv_like"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_like_grey"
-                        android:layout_centerVertical="true"
-                        />
-
-                  </RelativeLayout>
-                    <TextView
-                        android:id="@+id/tv_like"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="2dp"
-                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="3dp"
-                        android:layout_toRightOf="@+id/container23"
-                        android:text="45"
-                        android:textColor="@color/textColor_black" />
-                </RelativeLayout>
-
-                <View
-                    android:id="@+id/view1"
-                    android:layout_width="20dp"
-                    android:layout_height="1dp"
-                    android:layout_centerHorizontal="true"
-                    />
-
-                <RelativeLayout
-                    android:id="@+id/container3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/view1"
-                    android:padding="5dp"
-
-                    >
-
-                    <ImageButton
-                        android:id="@+id/iv_dislike"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_dislike_grey"
-                        android:layout_marginTop="5dp"
-
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_dislike"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="5dp"
-
-                        android:layout_toRightOf="@+id/iv_dislike"
-                        android:text="23"
-                        />
-                </RelativeLayout>
-
-            </LinearLayout>
-        </LinearLayout>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
-    <LinearLayout android:orientation="vertical" android:layout_alignParentBottom="true" android:id="@+id/ll_main" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dp">
-        <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll_action_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <TextView
+            android:id="@+id/tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1145 likes"
+            android:textSize="11sp"/>
+        <View
+            android:layout_width="3dp"
+            android:layout_height="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/dot_seperator"/>
+        <TextView
+            android:id="@+id/tv_dislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23 dislikes"
+            android:textSize="11sp"/>
+        <View
+            android:layout_width="3dp"
+            android:layout_height="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/dot_seperator"/>
+        <TextView
+            android:id="@+id/tv_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 comments"
+            android:textSize="11sp"/>
+        <View
+            android:layout_width="3dp"
+            android:layout_height="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/dot_seperator"/>
+        <TextView
+            android:id="@+id/tv_shares"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 shares"
+            android:textSize="11sp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/thin_sep"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/cardview_light_background"
+        android:layout_below="@+id/ll_action_info"
+        />
+    <LinearLayout
+        android:id="@+id/ll_post_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/thin_sep"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <com.github.curioustechizen.ago.RelativeTimeTextView
+            android:id="@+id/tv_posttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:layout_gravity="center_vertical"
+            android:textStyle="normal"
+            android:textSize="11sp"/>
+
+        <RadioGroup
+            android:id="@+id/like_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_below="@+id/tv_postmassege">
+
+            <RadioButton
+                android:id="@+id/iv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_like"
+                android:text="Like"
+                android:textSize="11sp"
+                android:textStyle="normal"
+                android:textColor="#707070"/>
+            <RadioButton
+                android:id="@+id/iv_dislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_dislike"
+                android:text="Dislike"
+                android:textSize="11sp"
+                android:textStyle="normal"
+                android:textColor="#707070"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/commentBtnRl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/commentBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_action_communication_messenger" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comment"
+                android:textSize="11sp"/>
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/shareBtnRl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end">
+            android:gravity="center">
             <ImageButton
                 android:id="@+id/shareBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_action_social_share" />
-        </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share"
+                android:textSize="11sp"
+                android:ellipsize="end"
+                android:lines="1"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_below="@+id/ll_post_actions" android:id="@+id/ll_main" android:layout_width="fill_parent" android:layout_height="wrap_content">
         <View android:id="@+id/list_item_seperator" android:background="@color/header_bg_color" android:layout_width="fill_parent" android:layout_height="3dp" />
         <View android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="@dimen/list_divider_height" />
     </LinearLayout>

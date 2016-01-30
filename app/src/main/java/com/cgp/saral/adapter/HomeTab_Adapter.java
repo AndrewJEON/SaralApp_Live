@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -22,7 +21,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -116,8 +116,6 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         final View view = inflater.inflate(R.layout.fragment_hometab_adapter, viewGroup, false);
         final HomeHolderView holderView = new HomeHolderView(view);
-
-
         contents = dbController.contentActionList();
 
         return holderView;
@@ -157,8 +155,8 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final Datum d = list.get(i);
         int listSepColor = Color.parseColor(itemSepColors.get(i%4));
         holdview.listItemSeperator.setBackgroundColor(listSepColor);
-        holdview.timestamp.setTextColor(listSepColor);
-        holdview.shareBtnRl.setBackgroundColor(listSepColor);
+       // holdview.timestamp.setTextColor(listSepColor);
+       // holdview.shareBtnRl.setBackgroundColor(listSepColor);
         holdview.title.setText(d.getSummary());
 
         holdview.shareBtn.setOnClickListener(new View.OnClickListener() {
@@ -211,26 +209,23 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             likesCount.put(holdview.getAdapterPosition(), likeCount);
 
-            // fillLikesValues(holdview, d);
         }
         if(likesCount.containsKey(holdview.getAdapterPosition()))
         {
 
             holdview.likeTv.getTag();
-            holdview.likeTv.setText("" + likesCount.get(holdview.getAdapterPosition()));
+            holdview.likeTv.setText("" + likesCount.get(holdview.getAdapterPosition()) +" likes");
         }
 
         if (!disLikesCount.containsKey(holdview.getAdapterPosition())) {
 
             disLikesCount.put(holdview.getAdapterPosition(), disLikeCount);
-
-            // fillLikesValues(holdview, d);
         }
         if(disLikesCount.containsKey(holdview.getAdapterPosition()))
         {
 
             holdview.dislikeTv.getTag();
-            holdview.dislikeTv.setText("" + disLikesCount.get(holdview.getAdapterPosition()));
+            holdview.dislikeTv.setText("" + disLikesCount.get(holdview.getAdapterPosition()) +" dislikes");
         }
 
 
@@ -313,52 +308,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 });
 
 
-                /*String strVideoThumbnail = d.getContentDetails().get(0).getThumbnailPath();
-                //  holdview.youtube_player.setVisibility(View.VISIBLE);
-                strURL = d.getContentDetails().get(0).getMediaPath();
-                //Log.e("Video Data URL", "" + strURL);
 
-                holdview.list_icon.setVisibility(View.VISIBLE);
-                holdview.list_icon.setImageBitmap(null);
-                PicassoSingleton
-                        .getPicassoInstance(context).cancelRequest(holdview.list_icon);
-
-                if (!strVideoThumbnail.isEmpty()) {
-                    PicassoSingleton
-                            .getPicassoInstance(context)
-                            .load(strVideoThumbnail).placeholder(R.drawable.list_item).error(R.drawable.list_item)
-                            .into(holdview.list_icon);
-                }
-
-                holdview.list_icon.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        holdview.list_icon.setVisibility(View.GONE);
-                        holdview.progressBar.setVisibility(View.VISIBLE);
-
-                        String video_path = "http://www.youtube.com/watch?v=" + strURL;
-                        Uri uri = Uri.parse(video_path);
-
-                        // With this line the Youtube application, if installed, will launch immediately.
-                        // Without it you will be prompted with a list of the application to choose.
-                        uri = Uri.parse("vnd.youtube:" + uri.getQueryParameter("v"));
-
-*//*
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        context.startActivity(intent);
-*//*
-                        holdview.videoView.loadUrl("http://www.youtube.com/embed/" + strURL + "?autoplay=1&vq=small");
-                        holdview.videoView.getSettings().setJavaScriptEnabled(true);
-                        holdview.videoView.setVisibility(View.VISIBLE);
-                        holdview.videoView.getSettings().setPluginState(WebSettings.PluginState.ON);; //sets MediaController in the video view
-
-                        holdview.videoView.requestFocus();//give focus to a specific view
-                        holdview.videoView.setWebChromeClient(new WebChromeClient());
-                        holdview.progressBar.setVisibility(View.GONE);
-
-
-                    }
-                });*/
 
 
             } else {
@@ -385,46 +335,22 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         String strUnLiked = d.getYouDisliked();
         Log.e("StrLiked", "" + strLiked + "  unliked -->" + strUnLiked);
 
-        if (strLiked.equals("false") && strUnLiked.equals("false")) {
 
-            isClicked = false;
-
-
-            holdview.like.setEnabled(true);
-            holdview.like.setBackgroundResource(R.drawable.ic_like_grey);
-            holdview.unlike.setEnabled(true);
-            holdview.unlike.setBackgroundResource(R.drawable.ic_dislike_grey);
-           // notifyItemChanged(holdview.getAdapterPosition());
-
-            Log.e("Content Action"," No Action");
-
-        }
         if (strLiked.equals("true")&&strUnLiked.equals("false")) {
-
-
-          //  HomeHolderView holderView=
             int contentId = Integer.parseInt(d.getId());
 
             if (!likedPositions.contains(contentId)) {
 
                 likedPositions.add(contentId);
 
-               // fillLikesValues(holdview, d);
             }
             if(likedPositions.contains(contentId)&& likesCount.containsKey(holdview.getAdapterPosition()))
             {
 
-                fillLikesValues(holdview, d);
+               holdview.like.setChecked(true);
             }
-          //  Log.e("Content Action", " Liked");
-            // holdview.like.setEnabled(false);
-            // holdview.unlike.setEnabled(false);
-        }else
-        {
-            holdview.like.setBackgroundResource(R.drawable.ic_like_grey);
 
-        }
-        if (strLiked.equals("false")&&strUnLiked.equals("true")) {
+        }else if (strLiked.equals("false")&&strUnLiked.equals("true")) {
             int contentId = Integer.parseInt(d.getId());
 
             if (!unLikedPositions.contains(contentId)) {
@@ -435,107 +361,40 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             if(unLikedPositions.contains(contentId)&& disLikesCount.containsKey(holdview.getAdapterPosition()))
             {
-                fillDisLikesValues(holdview, d);
+                holdview.unlike.setChecked(true);
             }
-           // Log.e("Content Action", " Un Liked");
-
-
-        } else {
-              holdview.unlike.setBackgroundResource(R.drawable.ic_dislike_grey);
         }
 
-       // holdview.like.getTag();
 
-        holdview.like.setOnClickListener(new View.OnClickListener() {
+
+        holdview.likeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-
-
-                long mLastClickTime = 0;
-
-
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {
-                    return;
-                }
-
-
-                // holdview.like.getTag();
-                mLastClickTime = SystemClock.elapsedRealtime();
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton rb = (RadioButton) radioGroup.findViewById(i);
                 int contentId = Integer.parseInt(d.getId());
+                switch (i){
+                    case R.id.iv_like:
 
-                if (!likedPositions.contains(contentId)) {
+                            likedPositions.add(contentId);
+                            Log.e("Content Action", " Like The Content");
+                            updateLikesCounter(holdview,d);
 
-                    likedPositions.add(contentId);
-                    Log.e("Content Action", " Like The Content");
-                    updateLikesCounter(holdview,d);
-
-
-                } else {
-
-                    holdview.like.setBackgroundResource(R.drawable.ic_like_b);
-                    Toast.makeText(context, "Already Liked", Toast.LENGTH_SHORT).show();
-
+                        break;
+                    case R.id.iv_dislike:
+                            unLikedPositions.add(contentId);
+                            updateDisLikesCounter(holdview, d);
+                            Log.e("Content Action", " Unlike The Content");
+                        break;
                 }
             }
         });
 
-       // holdview.unlike.getTag();
-        holdview.unlike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                long mLastClickTime = 0;
-
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-
-                //  holdview.unlike.getTag();
-
-                int contentId = Integer.parseInt(d.getId());
-
-                if (!unLikedPositions.contains(contentId)) {
-                    unLikedPositions.add(contentId);
-                    updateDisLikesCounter(holdview, d);
-                    Log.e("Content Action", " Unlike The Content");
-
-
-                } else {
-
-                    holdview.unlike.setBackgroundResource(R.drawable.ic_dislike_b);
-                    Toast.makeText(context, "Already Un Liked", Toast.LENGTH_SHORT).show();
-                }
-
-
-            }
-
-        });
 
     }
 
 
-    private void fillLikesValues(HomeHolderView holdview, Datum d) {
 
-       // notifyItemChanged(holdview.getAdapterPosition());
-
-       // HomeHolderView view= holdview.
-        Log.e(" Liked Data Item","-->"+d.getYouLiked() +"  -->"+d.getSummary());
-        holdview.like.setBackgroundResource(R.drawable.ic_like_b);
-        holdview.like.setEnabled(false);
-        holdview.unlike.setEnabled(false);
-
-    }
-
-    private void fillDisLikesValues(HomeHolderView holdview, Datum d) {
-
-        //notifyItemChanged(holdview.getAdapterPosition());
-        Log.e(" Un Liked Data Item","-->"+d.getYouDisliked() +"  -->"+d.getSummary());
-        holdview.unlike.setBackgroundResource(R.drawable.ic_dislike_b);
-        holdview.like.setEnabled(false);
-        holdview.unlike.setEnabled(false);
-
-    }
 
     private void updateLikesCounter(HomeHolderView holder, Datum d) {
        // int currentLikesCount = Integer.parseInt(d.getContentStats().getLikes());
@@ -543,54 +402,33 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         int currentLikesCount = likesCount.get(holder.getAdapterPosition());
         String strContentId = d.getContentDetails().get(0).getContentId();
 
-        holder.like.setEnabled(false);
-        holder.unlike.setEnabled(false);
-
         doPostAction(strContentId, "1");
         currentLikesCount=currentLikesCount+1;
         String strL = String.valueOf(currentLikesCount);
 
-       // holder.likeTv.getTag();
-        holder.likeTv.setText(strL);
-        holder.like.setBackgroundResource(R.drawable.ic_like_b);
+        holder.likeTv.setText(strL +" likes");
         Content_Action action = new Content_Action();
         action.setStrContentId(strContentId);
         action.setStrLiked("1");
         action.setStrDisliked("0");
-        int contentId = Integer.parseInt(d.getId());
-      //  notifyItemChanged(holder.getAdapterPosition());
-
-        // dbController.contentAction(action);
-        //isClicked = true;
-
-        //  holder.likeTv.setText(likesCountText);
-
 
         likesCount.put(holder.getAdapterPosition(), currentLikesCount);
     }
 
     private void updateDisLikesCounter(HomeHolderView holder, Datum d) {
         int currentDisLikesCount = disLikesCount.get(holder.getAdapterPosition());
-     //  int currentDisLikesCount = disLikesCount.get(holder.getAdapterPosition()) + 1;
-       // int currentDisLikesCount = Integer.parseInt(d.getContentStats().getDisLikes());
 
         String strContentId = d.getContentDetails().get(0).getContentId();
-        holder.like.setEnabled(false);
-        holder.unlike.setEnabled(false);
 
         doPostAction(strContentId, "2");
         currentDisLikesCount=currentDisLikesCount+1;
         String strL = String.valueOf(currentDisLikesCount);
 
-        //holder.unlike.getTag();
-        holder.dislikeTv.setText(strL);
-        holder.unlike.setBackgroundResource(R.drawable.ic_dislike_b);
+        holder.dislikeTv.setText(strL +" dislikes");
         Content_Action action = new Content_Action();
         action.setStrContentId(strContentId);
         action.setStrLiked("0");
         action.setStrDisliked("1");
-
-        int contentId = Integer.parseInt(d.getId());
 
         disLikesCount.put(holder.getAdapterPosition(), currentDisLikesCount);
     }
@@ -705,13 +543,14 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView likeTv;
         TextView dislikeTv;
         ImageView list_icon;
-        ImageButton like, unlike;
+        RadioButton like, unlike;
         WebView videoView;
         View listItemSeperator;
         LinearLayout mediaLayout;
         ProgressBar progressBar;
         ImageButton shareBtn;
-        RelativeLayout shareBtnRl;
+        LinearLayout shareBtnRl;
+        RadioGroup likeGroup;
         // YouTubePlayerView youtube_player;
 
         public HomeHolderView(View itemView) {
@@ -725,16 +564,17 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             //dislikeTv.setTag(this);
             timestamp = (RelativeTimeTextView) itemView.findViewById(R.id.tv_posttime);
 
-            like = (ImageButton) itemView.findViewById(R.id.iv_like);
+            like = (RadioButton) itemView.findViewById(R.id.iv_like);
             //like.setTag(this);
-            unlike = (ImageButton) itemView.findViewById(R.id.iv_dislike);
+            unlike = (RadioButton) itemView.findViewById(R.id.iv_dislike);
             //unlike.setTag(this);
             mediaLayout = (LinearLayout) itemView.findViewById(R.id.mediaLayout);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_bar);
             videoView = (WebView) itemView.findViewById(R.id.vid_postvideo);
             listItemSeperator = itemView.findViewById(R.id.list_item_seperator);
             shareBtn = (ImageButton) itemView.findViewById(R.id.shareBtn);
-            shareBtnRl = (RelativeLayout)itemView.findViewById(R.id.shareBtnRl);
+            shareBtnRl = (LinearLayout)itemView.findViewById(R.id.shareBtnRl);
+            likeGroup = (RadioGroup)itemView.findViewById(R.id.like_container);
         }
 
 
