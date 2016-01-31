@@ -42,7 +42,7 @@ public class SharedPreferenceManager {
      * @param value
      * @return editor commit
      */
-    private boolean setStringInPreferences(String key, String value) {
+    public boolean setStringInPreferences(String key, String value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         return editor.commit();
@@ -53,7 +53,7 @@ public class SharedPreferenceManager {
      * @param key
      * @return data
      */
-    private String getStringFromPreferances(String key) {
+    public String getStringFromPreferances(String key) {
         String data = sharedPreferences.getString(key, EMPTY_STRING);
         return data;
     }

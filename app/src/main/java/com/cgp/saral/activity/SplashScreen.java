@@ -37,15 +37,14 @@ import com.cgp.saral.gif.GifImageView;
 import com.cgp.saral.model.GetAllLocationsResult;
 import com.cgp.saral.model.LocationData;
 import com.cgp.saral.model.LocationItems;
-import com.cgp.saral.model.UserData;
-import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.Constants;
+import com.cgp.saral.myutils.SharedPreferenceManager;
+import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SplashScreen extends AppCompatActivity implements SensorEventListener{
     private static int SPLASH_TIME_OUT = 500;
@@ -128,6 +127,7 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
         Log.e("Splash Screen",""+gifImageView.getFramesDisplayDuration()*1000);
        // Log.e("Splash Screen Frame, "" +gifImageView.getFramesDisplayDuration())
 
+        SharedPreferenceManager.getSharedInstance().setStringInPreferences("contacts", Utils.CONTACTS);
 
     }
 

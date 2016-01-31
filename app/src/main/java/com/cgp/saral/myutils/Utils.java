@@ -254,4 +254,56 @@ public class Utils {
     }
 
 
+    public static String CONTACTS = "{\n" +
+            "\t\tcorporate: {\n" +
+            "\t\t\tphone: \"+9122 61092732\",\n" +
+            "\t\t\temail: \"app@saralvaastu.com\"\n" +
+            "\t\t},\n" +
+            "\t\tbranches: [\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Maharashtra\",\n" +
+            "\t\t\tphone: \"+9192233 03355\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Karnataka\",\n" +
+            "\t\t\tphone: \"+9194482 86755\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Gujarat\",\n" +
+            "\t\t\tphone: \"+9196620 15070\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Goa\",\n" +
+            "\t\t\tphone: \"+9192253 65755\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Delhi\",\n" +
+            "\t\t\tphone: \"+9185889 20616\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Rajasthan\",\n" +
+            "\t\t\tphone: \"+9193147 20809\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Madhya Pradesh\",\n" +
+            "\t\t\tphone: \"+9191110 04406\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Chhattigarh\",\n" +
+            "\t\t\tphone: \"+9191110 18288\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Uttar Pradesh\",\n" +
+            "\t\t\tphone: \"+9193354 56002\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Tamil Nadu\",\n" +
+            "\t\t\tphone: \"+9193601 01001\"\n" +
+            "\t\t\t},\n" +
+            "\t\t\t{\n" +
+            "\t\t\tname:\t\"Haryana\",\n" +
+            "\t\t\tphone: \"+9193715 55542\"\n" +
+            "\t\t\t}\n" +
+            "\t\t]\n" +
+            "\t}";
 }
