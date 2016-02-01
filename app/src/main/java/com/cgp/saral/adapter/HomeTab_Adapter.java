@@ -397,7 +397,6 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     private void updateLikesCounter(HomeHolderView holder, Datum d) {
-       // int currentLikesCount = Integer.parseInt(d.getContentStats().getLikes());
 
         int currentLikesCount = likesCount.get(holder.getAdapterPosition());
         String strContentId = d.getContentDetails().get(0).getContentId();
@@ -407,12 +406,19 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         String strL = String.valueOf(currentLikesCount);
 
         holder.likeTv.setText(strL +" likes");
-        Content_Action action = new Content_Action();
-        action.setStrContentId(strContentId);
-        action.setStrLiked("1");
-        action.setStrDisliked("0");
 
         likesCount.put(holder.getAdapterPosition(), currentLikesCount);
+        int contentId = Integer.parseInt(d.getId());
+        if(unLikedPositions.contains(contentId)){
+            int currentDisLikesCount = disLikesCount.get(holder.getAdapterPosition());
+            currentDisLikesCount=currentDisLikesCount-1;
+             strL = String.valueOf(currentDisLikesCount);
+
+            holder.dislikeTv.setText(strL +" dislikes");
+
+            disLikesCount.put(holder.getAdapterPosition(), currentDisLikesCount);
+            unLikedPositions.remove(Integer.getInteger(contentId+""));
+        }
     }
 
     private void updateDisLikesCounter(HomeHolderView holder, Datum d) {
@@ -425,12 +431,19 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         String strL = String.valueOf(currentDisLikesCount);
 
         holder.dislikeTv.setText(strL +" dislikes");
-        Content_Action action = new Content_Action();
-        action.setStrContentId(strContentId);
-        action.setStrLiked("0");
-        action.setStrDisliked("1");
 
         disLikesCount.put(holder.getAdapterPosition(), currentDisLikesCount);
+        int contentId = Integer.parseInt(d.getId());
+        if(likedPositions.contains(contentId)){
+            int currentLikesCount = likesCount.get(holder.getAdapterPosition());
+            currentLikesCount=currentLikesCount-1;
+            strL = String.valueOf(currentLikesCount);
+
+            holder.likeTv.setText(strL +" likes");
+
+            likesCount.put(holder.getAdapterPosition(), currentLikesCount);
+            likedPositions.remove(Integer.getInteger(contentId+""));
+        }
     }
 
 
