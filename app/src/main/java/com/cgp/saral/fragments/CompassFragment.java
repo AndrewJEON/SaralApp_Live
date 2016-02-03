@@ -98,6 +98,23 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     @Bind(R.id.UnfavDir_parent)
     RelativeLayout UnfavDir_parent;
 
+    @Bind(R.id.fabLayout)
+    RelativeLayout fabLayout;
+    @Bind(R.id.msg2)
+    TextView msg;
+
+    @Bind(R.id.wealthdir)
+    TextView wealthdir;
+    @Bind(R.id.healthdir)
+    TextView healthdir;
+    @Bind(R.id.edudir)
+    TextView edudir;
+    @Bind(R.id.jobdir)
+    TextView jobdir;
+    @Bind(R.id.marriagedir)
+    TextView marriagedir;
+
+
 
     @Bind(R.id.tv_color1)
     TextView color1;
@@ -141,6 +158,9 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     ArrayList<TextView> arrUColors = new ArrayList<>();
     ArrayList<TextView> arrNColors = new ArrayList<>();
 
+    ArrayList<TextView> DirectionTextview = new ArrayList<>();
+    ArrayList<String> directionList = new ArrayList<>();
+
     boolean isCompassVisible =false;
 
 
@@ -180,6 +200,11 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
 
         view = inflater.inflate(R.layout.fragment_campass, container, false);
         ButterKnife.bind(this, view);
+        DirectionTextview.add(wealthdir);
+        DirectionTextview.add(healthdir);
+        DirectionTextview.add(marriagedir);
+        DirectionTextview.add(edudir);
+        DirectionTextview.add(jobdir);
 
 
         ctx = getActivity();
@@ -199,6 +224,7 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
             //Toast.makeText(getActivity()," Accel "+accel+"  Compass "+comp+" Gyro "+gyro,Toast.LENGTH_LONG).show();
             compass = new Compass(getActivity());
             Constants.initColorMap();
+            Constants.initDirectionMap();
             if (comp) {
                 isCompassVisible =true;
                 favDirectionState = false;
@@ -207,6 +233,10 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                 compass_layout.setVisibility(View.VISIBLE);
                 FavDir_parent.setVisibility(View.GONE);
                 UnfavDir_parent.setVisibility(View.GONE);
+                msg.setVisibility(View.VISIBLE);
+                msg.setText(getResources().getString(R.string.note2));
+                fabLayout.setVisibility(View.GONE);
+                menu1.setVisibility(View.VISIBLE);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -218,6 +248,10 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                     }
                 });
             } else {
+                msg.setVisibility(View.VISIBLE);
+                msg.setText(getResources().getString(R.string.note1));
+                menu1.setVisibility(View.GONE);
+                fabLayout.setVisibility(View.VISIBLE);
                 text_Note.setVisibility(View.GONE);
                 camp_cp.setVisibility(View.GONE);
                 isCompassVisible=false;
@@ -226,6 +260,7 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                 FavDir_parent.setVisibility(View.VISIBLE);
                 UnfavDir_parent.setVisibility(View.VISIBLE);
                 favUnfav_Direction();
+                setfabFixDirection();
             }
 
         }catch(Exception ex)
@@ -291,6 +326,14 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                 Log.e("Fab Menu", "" + opened);
 
                 if (!opened) {
+                    if (favor.isChecked()==true)
+                    {
+                        favor.setChecked(false);
+                    }
+                    if (unfavor.isChecked()==true)
+                    {
+                        unfavor.setChecked(false);
+                    }
                     compassView.doUnToggle(Constants.RESET);
 
                     if(!isCompassVisible)
@@ -385,6 +428,49 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
         super.onActivityCreated(savedInstanceState);
         initilization(view);
 
+
+    }
+
+
+
+    private void setfabFixDirection()
+    {
+        String strF = Constants.GLOBAL_U_LUCK_CHART;
+        if (!strF.equals("null")) {
+            String[] str = Utils.chartAnalysis(strF);
+            fab = str[0].trim();
+            unFab = str[1].trim();
+
+
+            char crW = fab.charAt(0);
+            char crC = fab.charAt(0);
+            char crM = fab.charAt(2);
+            char crE = fab.charAt(3);
+            char crH = fab.charAt(1);
+
+            mr = String.valueOf(crM);
+            w = String.valueOf(crW);
+            hl = String.valueOf(crH);
+            e = String.valueOf(crE);
+            cr = String.valueOf(crC);
+
+            directionList.add(w);
+            directionList.add(hl);
+            directionList.add(mr);
+            directionList.add(e);
+            directionList.add(cr);
+
+
+            for (int i = 0; i < directionList.size(); i++) {
+
+                String s=Constants.containKeyDirection(directionList.get(i), Constants.directionMap);
+
+                    DirectionTextview.get(i).setText(s);
+                Log.e("Direction"," Dir "+s);
+                    //arrColors.get(i).setBackgroundColor(getResources().getColor(R.color.green));
+
+            }
+        }
 
     }
 

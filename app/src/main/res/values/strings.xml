@@ -74,7 +74,15 @@
     
     <string name="app_email">app@saralvaastu.com</string>
     <string name="support_email">support@saralvaastu.com</string>
-    <string name="cgp_contact">+91 2261092732</string>
+    <string name="cgp_contact">+912261092732</string>
+
+
+
+    <string name="job1">Job/\nBusiness</string>
+    <string name="health1">Health</string>
+    <string name="wealth1">Wealth</string>
+    <string name="education1">Education</string>
+    <string name="marriage1">Marriage/\nRelationship</string>
 
     <string name="feedback_title">Please share your feedback if you would have taken any Services from Saral Vaastu</string>
 <string name="about_us">Saral Vaastu is a part of CG Parivar Group of Companies and is headed by Guruji and has more than 1300+ professionals who are relentlessly striving with the objective of bringing happiness to the people at large across the world and are staying true to the philosophy <b>“Vasudaiva Kutumbakam”</b>, meaning that the whole universe is one family.
@@ -82,4 +90,8 @@
 \n\nSaral Vaastu is currently operational across 11 states and is expanding to have a pan – India footprint.
 \n\n<b>Till date, Saral Vaastu has over lakhs of happy beneficiaries all over the world who have taken the solutions and are leading a happy and prosperous life.</b>
     </string>
+
+
+    <string name="note2">Note:- Please press the orange button and select the respective theme to know your favorable direction related to different aspects of life.</string>
+    <string name="note1">Note:- Your mobile phone does not support gyroscope hence compass feature can not be enabled. Kindly download this app in any other mobile phone which has the gyroscope to enable the compass feature.</string>
 </resources>

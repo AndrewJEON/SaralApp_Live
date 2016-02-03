@@ -112,6 +112,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_profile_edit);
+        Log.e("iv_edit", " iv_edit 2");
+        ctx=this;
         intent = getIntent();
         preferences = getSharedPreferences(Constants.PREFS_NAME_EDIT, Context.MODE_PRIVATE);
         lngeditor = preferences.edit();
@@ -120,10 +122,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         distEdit = preferences.edit();
         recievePrefrences();
         controller = DataController.getsInstance(this);
-
+        Log.e("iv_edit", " iv_edit 3");
         // userdata= (List<Userdata_Bean>) intent.getExtras().getSerializable("user");
 
         userdata = controller.getAllData();
+        Log.e("iv_edit", " iv_edit w4");
         if (null != userdata) {
             bean = userdata.get(0);
         } else {
@@ -132,6 +135,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         inIt();
         variableInit();
         setAdapter();
+        Log.e("iv_edit", " iv_edit 4");
     }
 
     public void recievePrefrences() {
@@ -148,7 +152,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     }
 
     public void inIt() {
-        ctx = getApplicationContext();
+
         submit = (AppCompatButton) findViewById(R.id.btn_submit);
         submit.setOnClickListener(this);
 
@@ -171,7 +175,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         term = (TextView) findViewById(R.id.term);
         term.setVisibility(View.INVISIBLE);
 
-
+        Log.e("iv_edit", " iv_edit 5");
         // gender.setOnItemClickListener(null);
 
         usrPic = (ImageView) findViewById(R.id.iv_userpro);
@@ -203,6 +207,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             dob.getEditText().setFocusable(false);
             genderTI.getEditText().setEnabled(false);
             genderTI.getEditText().setOnKeyListener(null);
+            Log.e("iv_edit", " iv_edit 6");
 
             genderTI.getEditText().setFocusable(false);
             try {
@@ -220,7 +225,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             {
                 Log.e("gender",""+ex.toString());
             }
-
+            Log.e("iv_edit", " iv_edit 7");
             String faver = bean.getIntrest();
 
             Log.e("Intrested Tag", "" + faver);
@@ -507,13 +512,21 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
     }
 
-
+    List<Integer> ids=new ArrayList<>();
     @Override
     public void onClick(View v) {
 
 
         List<Integer> id = intrest.getSelectedIndices();
-        intrestides = Utils.intrestValue(id);
+        //intrestides = Utils.intrestValue(id);
+
+        //int[] strspl = new int[intrestides.length()];
+
+        for (int i = 0; i < id.size(); i++) {
+            ids.add(id.get(i) + 1);
+        }
+        intrestides = Utils.intrestValue(ids);
+
         Log.e("Intrest data", " Selected Data intrest" + strIntrest);
         Log.e("Intrest data", " Selected Data intrest id length " + id.size() + " and data " + intrestides);
 

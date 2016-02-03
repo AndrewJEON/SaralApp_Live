@@ -1,16 +1,17 @@
 package com.cgp.saral.fragments;
 
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -31,9 +32,10 @@ public class InviteTabFragment extends BaseFragment {
     @Bind(R.id.img_phonecontact)
     ImageView imgSMS;
 
-    @Bind(R.id.progress_bar)ProgressBar progressBar;
+    @Bind(R.id.progress_bar)
+    ProgressBar progressBar;
 
-    String strMessage ="It's wonderful to use Vaastu for better life ! Please use Saral Vaastu App !!!";
+    String strMessage = "It's wonderful to use Vaastu for better life ! Please use Saral Vaastu App !!!";
 
     private static final String ARG_PAGE_NUMBER = "page_number";
 
@@ -55,7 +57,6 @@ public class InviteTabFragment extends BaseFragment {
         view = inflater.inflate(R.layout.invite_friend, container, false);
 
         ButterKnife.bind(this, view);
-
 
 
         wtsApp.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +93,32 @@ public class InviteTabFragment extends BaseFragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        //
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        hideKeyboard();
+
+    }
+
+
+    private void hideKeyboard() {
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            @Override
+            public void run() {
+                getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+            }
+        };
+
+        handler.postDelayed(runnable, 1000);
+    }
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
@@ -115,8 +142,7 @@ public class InviteTabFragment extends BaseFragment {
                 break;
 
             case 5000:
-                if(resultCode == getActivity().RESULT_OK)
-            {
+                if (resultCode == getActivity().RESULT_OK) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), "Invitation Sent", Toast.LENGTH_LONG).show();
 
@@ -131,8 +157,7 @@ public class InviteTabFragment extends BaseFragment {
     public void onStop() {
         super.onStop();
 
-        if(progressBar !=null)
-        {
+        if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
         }
     }

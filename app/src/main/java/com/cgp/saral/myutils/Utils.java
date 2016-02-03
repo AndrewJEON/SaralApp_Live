@@ -235,7 +235,7 @@ public class Utils {
                     public void onClick(DialogInterface dialog, int which) {
 
                         // final String appName = getApplicationContext().getPackageName();
-                        final String appName = "com.ccs.howzzatt";
+                        final String appName = "com.cgp.saral";
                         try {
                             act.startActivity(new Intent(Intent.ACTION_VIEW,
                                     Uri.parse("market://details?id="

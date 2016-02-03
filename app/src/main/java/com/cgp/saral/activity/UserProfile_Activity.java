@@ -127,10 +127,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
         ctx= getApplicationContext();
 
         variableInit();
-        if(bean !=null) {
-            luckyNo.setText(bean.getLucky_No());
-            Constants.GLOBAL_U_LUCK_CHART = bean.getLucky_Chart();
-        }
+
         sign_out.setOnClickListener(this);
         usr_pic.setOnClickListener(this);
         iv_edit.setOnClickListener(this);
@@ -147,6 +144,13 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
             bean = userdata.get(0);
         } else {
             Log.e("Edit Profile ", "bean null");
+        }
+        if(bean !=null) {
+
+            Constants.GLOBAL_U_LUCK_CHART = bean.getLucky_Chart();
+            luckyNo.setText(bean.getLucky_No());
+
+            Log.e("Data"," Lucky nnnn "+bean.getLucky_No());
         }
         setData();
 
@@ -171,8 +175,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
     {
         title.setText("Profile");
         back.setVisibility(View.VISIBLE);
-        if(userdata !=null )
-        {
+        if(userdata !=null ) {
 
                 String gend = userdata.getGender();
                 isProfilePic();
@@ -187,22 +190,33 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
                 }
 
                 usr_birth.setText(userdata.getDob().substring(0, 10));
-                String lang = Constants.containKey(userdata.getLanguage(), langMap);
+            String lang = Constants.containKey(bean.getLanguage(), langMap);
                 usr_language.setText(lang);
-                String state = Constants.containKey(userdata.getState(), statemap);
+            String state = Constants.containKey(bean.getState(), statemap);
 
-                String strTemp=userdata.getDistrictName();
-                Log.e("Location dist",""+strTemp);
-                String dist=dataController.locationName(strTemp).getName();
+            String strTemp = bean.getDistrictName();
+            Log.e("Location dist", "" + strTemp);
+            String dist = dataController.locationName(strTemp).getName();
                // String dist=//Constants.containKey(userdata.getDistrictId(),distmap);
-                String strProfileData=userdata.getAddress() + "," +dist + "," + state;
+            String strProfileData = bean.getAddress() + "," + dist + "," + state;
 
                 usr_address.setText(strProfileData);
                 usr_contact.setText(userdata.getContact1());
-              Log.e("Edit Profile ", "intrest "+userdata.getIntrest());
+            // Log.e("Edit Profile ", "intrest " + userdata.getIntrest());
+            //int[] strspl = new int[bean.getIntrest().length()];
+            StringBuffer buffer= new StringBuffer();
+            for (int i = 0; i < bean.getIntrest().length(); i++) {
+                //strspl[i] = Character.getNumericValue(bean.getIntrest().charAt(i) - 1);
+                buffer.append(Character.getNumericValue(bean.getIntrest().charAt(i) - 1));
+            }
 
-                String strIntrest = Utils.getSelectedItemsAsString(userdata.getIntrest(), Constants.intrestData);
-            Log.e("Edit Profile ", "after method "+strIntrest);
+
+
+
+
+            String strBuff= buffer.toString();
+                String strIntrest = Utils.getSelectedItemsAsString(strBuff, Constants.intrestData);
+            Log.e("Edit Profile ", "after method " + strIntrest);
 
                 usr_intrest.setText(strIntrest);
 
@@ -272,10 +286,11 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
     }
         else if (v==iv_edit)
     {
+        Log.e("iv_edit"," iv_edit ");
         Bundle b= new Bundle();
         b.putSerializable("user", userdata);
         startActivity(new Intent(UserProfile_Activity.this, EditProfile.class).putExtras(b));
-
+        Log.e("iv_edit", " iv_edit 1");
     }
         else if (v==back)
      {

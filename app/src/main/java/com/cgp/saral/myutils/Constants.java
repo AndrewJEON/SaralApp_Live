@@ -9,14 +9,12 @@ import android.util.SparseArray;
 import com.google.gson.JsonObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.TimeZone;
 
 
 /**
@@ -199,6 +197,8 @@ public class Constants {
 
 
     public static HashMap<String, String> colorMap = new HashMap<>();
+    public static HashMap<String, String> directionMap = new HashMap<>();
+
 
 
 
@@ -230,6 +230,18 @@ public class Constants {
 
 
         // DPSXY
+    }
+    public static void initDirectionMap()
+    {
+        Constants.directionMap.put("1","N");
+        Constants.directionMap.put("2","NE");
+        Constants.directionMap.put("3", "E");
+        Constants.directionMap.put("4","ES");
+        Constants.directionMap.put("5","S");
+        Constants.directionMap.put("6","SW");
+        Constants.directionMap.put("7","W");
+        Constants.directionMap.put("8","NW");
+
     }
 
 
@@ -305,6 +317,20 @@ public class Constants {
 
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             if (entry.getKey().equals(k)) {
+                System.out.println(entry.getValue());
+                Log.e("Key", " key is ff" + entry.getValue());
+                value = entry.getValue();
+            }
+        }
+        return value;
+    }
+    public static String containKeyDirection(String key, HashMap<String, String> map) {
+        String value = "";
+
+        Log.e("Key", " key is " + key);
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            if (entry.getKey().equals(key)) {
                 System.out.println(entry.getValue());
                 Log.e("Key", " key is ff" + entry.getValue());
                 value = entry.getValue();

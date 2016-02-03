@@ -213,7 +213,7 @@ public class MultiSpinner extends Spinner implements
         return selection;
     }
 
-    private String buildSelectedItemString() {
+    private String buildSelectedItemString() throws IllegalArgumentException{
         StringBuilder sb = new StringBuilder();
         boolean foundOne = false;
 

@@ -35,7 +35,6 @@
                 android:inputType="textEmailAddress"
                 android:textColor="#424242"
                 android:drawablePadding="15dp"
-
                 android:hint="Email" />
 
 

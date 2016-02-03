@@ -41,7 +41,7 @@ public class FeedBack extends Fragment {
     View view;
 
     AppCompatButton buttonSend;
-    EditText editTextSubject1,editTextmessege1;
+    EditText editTextSubject1, editTextmessege1;
     TextInputLayout textSubject;
     TextInputLayout textMessage;
 
@@ -75,7 +75,7 @@ public class FeedBack extends Fragment {
        // textTo.setText("app@saralvaastu.com");
       //  textTo.setOnClickListener(null);
 
-
+        hideKeyboard();
         buttonSend.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -146,6 +146,7 @@ public class FeedBack extends Fragment {
 
         return view;
     }
+
     private void hideKeyboard() {
         View view = getActivity().getCurrentFocus();
         if (view != null) {
@@ -201,9 +202,6 @@ public class FeedBack extends Fragment {
     }
 
 
-
-
-
     private Response.ErrorListener errorListener() {
         return new Response.ErrorListener() {
             @Override
@@ -218,7 +216,7 @@ public class FeedBack extends Fragment {
         };
     }
 
-String str;
+    String str;
 
     private void handleVolleyError(VolleyError error) {
         //if any error occurs in the network operations, show the TextView that contains the error message
@@ -275,6 +273,7 @@ String str;
     }
 
     ProgressDialog progressDialog;
+
     public void showProgressDialog(Activity ctx, String msg) {
 
 

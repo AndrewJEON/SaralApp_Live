@@ -122,28 +122,13 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-   /* @Override
-    public int getItemViewType(int position) {
-        if (position == 0) {
-            return VIEW_TYPE_IMAGE | VIEW_TYPE_VIDEO;
-        } else {
-            return VIEW_TYPE_DEFAULT;
-        }
-    }*/
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder hView, int i) {
 
         final HomeHolderView holdview = (HomeHolderView) hView;
 
-       /* if (getItemViewType(i) == VIEW_TYPE_DEFAULT) {
-            doProcessDataBinding(i, holdview);
-        } else if (getItemViewType(i) == VIEW_TYPE_IMAGE) {
-            doProcessDataBinding(i, holdview);
-        }else if(getItemViewType(i) == VIEW_TYPE_VIDEO)
-        {
 
-        }*/
         doProcessDataBinding(i, holdview);
 
 
