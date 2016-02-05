@@ -124,26 +124,30 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_gravity="center"
-            android:background="@drawable/dot_seperator"/>
+            android:background="@drawable/dot_seperator"
+            android:visibility="gone"/>
         <TextView
             android:id="@+id/tv_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0 comments"
-            android:textSize="11sp"/>
+            android:textSize="11sp"
+            android:visibility="gone"/>
         <View
             android:layout_width="3dp"
             android:layout_height="3dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_gravity="center"
-            android:background="@drawable/dot_seperator"/>
+            android:background="@drawable/dot_seperator"
+            android:visibility="gone"/>
         <TextView
             android:id="@+id/tv_shares"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0 shares"
-            android:textSize="11sp"/>
+            android:textSize="11sp"
+            android:visibility="gone"/>
     </LinearLayout>
     <View
         android:id="@+id/thin_sep"
@@ -202,7 +206,8 @@
             android:id="@+id/commentBtnRl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:visibility="gone">
 
             <ImageButton
                 android:id="@+id/commentBtn"
