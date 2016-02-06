@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 public class GifDataDownloader extends AsyncTask<String, Void, byte[]> {
@@ -37,14 +36,14 @@ public class GifDataDownloader extends AsyncTask<String, Void, byte[]> {
 
             if(assetManager !=null) {
 
-                try {
-                    InputStream is = assetManager.open("compass.gif");
+               /* try {
+                    *//*InputStream is = assetManager.open("compass.gif");
                     gif = new byte[is.available()];
                     is.read(gif);
-                    is.close();
+                    is.close();*//*
                 } catch (IOException ex) {
                     Log.e("file IO Exception", "" + ex.toString());
-                }
+                }*/
             }else
             {
                 Toast.makeText(ctx, "No Assets", Toast.LENGTH_LONG).show();

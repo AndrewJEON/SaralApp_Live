@@ -170,6 +170,7 @@ public class Constants {
 
     public static String location = "12.4214425,9.3464666";
 
+    public static String SLIDER_IMG_PATH = "http://appapi.saralvaastu.com/sliderimages/";
 
     public static JsonObject getDeviceInfo() {
         JsonObject data = new JsonObject();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -35,6 +36,7 @@ public class Utils {
 
  //  public static GoogleApiClient mGoogleApiClient;
 
+    public static int deviceWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
 
     public static HashMap sortByValues(HashMap map) {
 
@@ -306,4 +308,22 @@ public class Utils {
             "\t\t\t}\n" +
             "\t\t]\n" +
             "\t}";
+
+    public static String getSliderImagePath(int i){
+        String folder = "";
+        if(deviceWidth <= 200){
+            folder = "200";
+        }else if(deviceWidth <= 320){
+            folder = "320";
+        }else if(deviceWidth <= 480){
+            folder = "480";
+        }else if(deviceWidth <= 720){
+            folder = "720";
+        }else if(deviceWidth <= 960){
+            folder = "960";
+        }else{
+            folder = "1280";
+        }
+        return Constants.SLIDER_IMG_PATH + "/" + folder +"/" +i + ".jpg" ;
+    }
 }

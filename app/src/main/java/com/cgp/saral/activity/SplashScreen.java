@@ -16,8 +16,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -32,8 +36,6 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.cgp.saral.R;
 import com.cgp.saral.databaseHelper.DataController;
-import com.cgp.saral.gif.GifDataDownloader;
-import com.cgp.saral.gif.GifImageView;
 import com.cgp.saral.model.GetAllLocationsResult;
 import com.cgp.saral.model.LocationData;
 import com.cgp.saral.model.LocationItems;
@@ -41,19 +43,20 @@ import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
+import com.cgp.saral.network.PicassoSingleton;
 import com.cgp.saral.network.VolleySingleton;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
 public class SplashScreen extends AppCompatActivity implements SensorEventListener{
-    private static int SPLASH_TIME_OUT = 500;
+    private static int SPLASH_TIME_OUT = 5000;
     //private static long SPLASH_TIME_OUT =16000;
     boolean status = false;
-    private GifImageView gifImageView;
+   // private GifImageView gifImageView;
     SharedPreferences preferences;
     FragmentManager fragmentManager;
-    byte[] imagedata = null;
+   // byte[] imagedata = null;
     boolean condtion = false;
     DataController dataController;
     Context ctx;
@@ -62,6 +65,8 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
     private SensorManager mSensorManager;
     private Sensor mGyroSensor;
     boolean userExist;
+
+    private ViewFlipper sliderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +84,6 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
 
         ctx = getApplicationContext();
 
-
         String strId = preferences.getString(Constants.PREFS_USER_ID, "");
 
         if (!strId.equals("")) {
@@ -89,9 +93,34 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
         if (Constants.ctx == null) {
             Constants.ctx = ctx;
         }
-        splashScreen();
+       // splashScreen();
 
+        /* Slider images*/
+        sliderView = (ViewFlipper) findViewById(R.id.view_flipper);
+        Animation animationFlipIn  = AnimationUtils.loadAnimation(this, R.anim.slide_in);
+        Animation animationFlipOut = AnimationUtils.loadAnimation(this, R.anim.slide_out);
+        sliderView.setInAnimation(animationFlipIn);
+        sliderView.setOutAnimation(animationFlipOut);
+        for(int i = 1; i <= 4; i++){
+            final ImageView imageView = new ImageView(ctx);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            Log.i("SplashScreen:", Utils.getSliderImagePath(i));
+            PicassoSingleton.getPicassoInstance(ctx).load(Utils.getSliderImagePath(i)).into(imageView,new com.squareup.picasso.Callback() {
+                @Override
+                public void onSuccess() {
+                    sliderView.addView(imageView);
+                }
 
+                @Override
+                public void onError() {
+
+                }
+            });
+
+            sliderView.startFlipping();
+        }
+
+        /* End Slider images*/
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mGyroSensor=mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
@@ -124,7 +153,7 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
        // DataController.getsInstance(this).closeDB();
 
 
-        Log.e("Splash Screen",""+gifImageView.getFramesDisplayDuration()*1000);
+      //  Log.e("Splash Screen",""+gifImageView.getFramesDisplayDuration()*1000);
        // Log.e("Splash Screen Frame, "" +gifImageView.getFramesDisplayDuration())
 
         SharedPreferenceManager.getSharedInstance().setStringInPreferences("contacts", Utils.CONTACTS);
@@ -154,7 +183,7 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
     }
 
 
-    public void splashScreen() {
+   /* public void splashScreen() {
         gifImageView = (GifImageView) findViewById(R.id.gifImageView);
         new GifDataDownloader(this) {
             @Override
@@ -167,13 +196,13 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
               //  SPLASH_TIME_OUT=gifImageView.getFramesDisplayDuration()*1000;
             }
         }.execute("htt");
-    }
+    }*/
 
     @Override
     protected void onStop() {
         super.onStop();
-        gifImageView.stopAnimation();
-        gifImageView.clear();
+       // gifImageView.stopAnimation();
+       // gifImageView.clear();
         // gifImageView=null;
         // imagedata =null;
     }
@@ -181,8 +210,8 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        gifImageView.stopAnimation();
-        gifImageView.clear();
+        //gifImageView.stopAnimation();
+       // gifImageView.clear();
         VolleySingleton.getInstance(this).getRequestQueue().cancelAll("dataSync");
         // imagedata=null;
     }
