@@ -46,7 +46,6 @@ import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
-import com.cgp.saral.tuarguide.Showcase_guide;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -599,13 +598,13 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
 
 
                             preferences = getActivity().getSharedPreferences(Constants.PREF_TOURGUIDE_NAME, Context.MODE_PRIVATE);
-                            boolean status = preferences.getBoolean(Constants.PREFS_TOURGUIDE_KEY, false);
+                           /* boolean status = preferences.getBoolean(Constants.PREFS_TOURGUIDE_KEY, false);
                             if (status == false) {
                                 Bundle b = new Bundle();
                                 b.putSerializable("user", bean);
                                 startActivity(new Intent(RegistrationFragment.this.getActivity(), Showcase_guide.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtras(b));
                                 RegistrationFragment.this.getActivity().finish();
-                            }else {
+                            }else {*/
                                 Bundle b = new Bundle();
                                 b.putSerializable("user", bean);
                                 Intent i = new Intent(RegistrationFragment.this.getActivity(), MainActivity.class);
@@ -613,7 +612,7 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
                                 i.putExtras(b);
                                 RegistrationFragment.this.getActivity().startActivity(i);
                                 RegistrationFragment.this.getActivity().finish();
-                            }
+                            /*}*/
 
                            /* Bundle b = new Bundle();
                             b.putSerializable("user", bean);

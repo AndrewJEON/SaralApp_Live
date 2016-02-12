@@ -42,7 +42,6 @@ import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
 import com.cgp.saral.social.helper.FbConnectHelper;
 import com.cgp.saral.social.helper.GooglePlusSignInHelper;
-import com.cgp.saral.tuarguide.Showcase_guide;
 import com.facebook.GraphResponse;
 import com.google.android.gms.plus.model.people.Person;
 import com.google.gson.JsonObject;
@@ -563,13 +562,13 @@ Log.e("FB"," fb dat"+response.getIsRegisteredBySocialResult());
     public void doRegProcess(Userdata_Bean bean) {
         if (isRegistered) {
             preferences = getActivity().getSharedPreferences(Constants.PREF_TOURGUIDE_NAME, Context.MODE_PRIVATE);
-            boolean status = preferences.getBoolean(Constants.PREFS_TOURGUIDE_KEY, false);
+            /*boolean status = preferences.getBoolean(Constants.PREFS_TOURGUIDE_KEY, false);
             if (status == false) {
                 Bundle b = new Bundle();
                 b.putSerializable("user", bean);
-                startActivity(new Intent(LoginFragment.this.getActivity(), Showcase_guide.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtras(b));
+                startActivity(new Intent(LoginFragment.this.getActivity(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtras(b));
                 LoginFragment.this.getActivity().finish();
-            }else {
+            }else {*/
                 Bundle b = new Bundle();
                 b.putSerializable("user", bean);
                 Intent i = new Intent(LoginFragment.this.getActivity(), MainActivity.class);
@@ -577,7 +576,7 @@ Log.e("FB"," fb dat"+response.getIsRegisteredBySocialResult());
                 i.putExtras(b);
                 LoginFragment.this.getActivity().startActivity(i);
                 LoginFragment.this.getActivity().finish();
-            }
+            /*}*/
 
         } else {
             //Toast.makeText(getActivity(), result.getMessage(), Toast.LENGTH_SHORT).show();

@@ -17,7 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.cgp.saral.R;
-import com.cgp.saral.tuarguide.Showcase_guide;
+import com.cgp.saral.activity.MainActivity;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -203,7 +203,7 @@ public class Utils {
 
 
                       //  startActivity(new Intent(RegistrationFragment.this.getActivity(), Showcase_guide.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtras(b));
-                        Intent i = new Intent(act.getActivity(), Showcase_guide.class);
+                        Intent i = new Intent(act.getActivity(), MainActivity.class);
                         //i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         // i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 

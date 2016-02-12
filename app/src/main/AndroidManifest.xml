@@ -123,10 +123,6 @@
             android:value="@string/fbapp_id" />
 
         <activity
-            android:name=".tuarguide.Showcase_guide"
-            android:label="@string/title_activity_showcase_guide" >
-        </activity>
-        <activity
             android:name=".activity.UserProfile_Activity"
             android:label="@string/title_activity_user_profile_" >
         </activity>
