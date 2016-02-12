@@ -3,7 +3,7 @@
     android:id="@+id/linearLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/floor_plan"
+    android:background="@drawable/form_background"
     android:orientation="vertical">
 
     <LinearLayout
