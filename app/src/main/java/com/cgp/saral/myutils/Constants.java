@@ -171,7 +171,9 @@ public class Constants {
     public static String location = "12.4214425,9.3464666";
 
     public static String SLIDER_IMG_PATH = "http://appapi.saralvaastu.com/sliderimages/";
+    public static String LUCKY_CHAT_URL = "http://luckychartapi.cgparivar.com/api.php";
 
+    public static String LUCKY_CHAT_APIKEY = "saralvaastu";
     public static JsonObject getDeviceInfo() {
         JsonObject data = new JsonObject();
         JsonObject d = new JsonObject();

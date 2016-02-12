@@ -219,6 +219,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             long refTime = new Date(d.getApprovalDate()).getTime();
 
             holdview.timestamp.setReferenceTime(refTime);
+            holdview.timestamp.setPrefix("Posted on ");
         } catch (Exception ex) {
             // Log.e("Exception in Date Parse", "" + d.getApprovalDate());
         }

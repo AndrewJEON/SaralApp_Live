@@ -18,7 +18,9 @@ import android.util.Log;
 
 import com.cgp.saral.R;
 import com.cgp.saral.tuarguide.Showcase_guide;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -268,7 +270,7 @@ public class Utils {
             "\t\t\t},\n" +
             "\t\t\t{\n" +
             "\t\t\tname:\t\"Karnataka\",\n" +
-            "\t\t\tphone: \"+9194482 86755\"\n" +
+            "\t\t\tphone: \"+9194482 86755 +9194482 86755\"\n" +
             "\t\t\t},\n" +
             "\t\t\t{\n" +
             "\t\t\tname:\t\"Gujarat\",\n" +
@@ -325,5 +327,17 @@ public class Utils {
             folder = "1280";
         }
         return Constants.SLIDER_IMG_PATH + "/" + folder +"/" +i + ".jpg" ;
+    }
+
+    public static <T> T getObjectFromJSON(String serializedData, Type tClass) {
+        // Use GSON to instantiate this class using the JSON representation of the state
+
+        Gson gson = new Gson();
+       return (T) gson.fromJson(serializedData, tClass);
+    }
+
+    public static  String toJSONString(Object srcObj, Type tClass){
+        Gson gson = new Gson();
+        return gson.toJson(srcObj,tClass);
     }
 }

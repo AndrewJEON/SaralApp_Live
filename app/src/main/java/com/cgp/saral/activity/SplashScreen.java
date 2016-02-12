@@ -101,6 +101,27 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
         Animation animationFlipOut = AnimationUtils.loadAnimation(this, R.anim.slide_out);
         sliderView.setInAnimation(animationFlipIn);
         sliderView.setOutAnimation(animationFlipOut);
+        Animation.AnimationListener mAnimationListener = new Animation.AnimationListener() {
+            public void onAnimationStart(Animation animation) {
+                //animation started event
+            }
+
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            public void onAnimationEnd(Animation animation) {
+                //TODO animation stopped event
+                if (sliderView.getDisplayedChild()==sliderView.getChildCount()){
+                    sliderView.stopFlipping();
+                }
+            }
+        };
+
+        //Get a reference to one of the animations set on the ViewFlipper
+        //In this example, I used the "In Animation"
+        sliderView.getInAnimation().setAnimationListener(mAnimationListener);
+
+
         for(int i = 1; i <= 4; i++){
             final ImageView imageView = new ImageView(ctx);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -117,8 +138,10 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
                 }
             });
 
-            sliderView.startFlipping();
+
         }
+        sliderView.startFlipping();
+
 
         /* End Slider images*/
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);

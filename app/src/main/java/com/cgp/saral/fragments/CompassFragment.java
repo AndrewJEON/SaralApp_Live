@@ -23,13 +23,25 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
 import com.cgp.saral.R;
 import com.cgp.saral.customviews.Compass;
 import com.cgp.saral.customviews.CompassView;
+import com.cgp.saral.databaseHelper.DataController;
 import com.cgp.saral.fab.FloatingActionButton;
 import com.cgp.saral.fab.FloatingActionMenu;
+import com.cgp.saral.model.LuckyChartResponse;
+import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.Constants;
+import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.cgp.saral.myutils.Utils;
+import com.cgp.saral.network.GsonRequestPost;
+import com.cgp.saral.network.VolleySingleton;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +65,7 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     static CompassView compassView;
     // MyCompassView compassView;
 
-
+    private String luckyChart;
     private boolean notHavingSensor = true;
 
     private boolean fragmentResume = false;
@@ -206,7 +218,6 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
         DirectionTextview.add(edudir);
         DirectionTextview.add(jobdir);
 
-
         ctx = getActivity();
         try {
 
@@ -269,19 +280,6 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
             Toast.makeText(ctx,"Opps",Toast.LENGTH_SHORT).show();
         }
 
-        String[] str = Utils.chartAnalysis(Constants.GLOBAL_U_LUCK_CHART);
-
-        for (int i = 2; i < str.length; i++) {
-            Log.e("Lucky No ", " " + i + "     " + str);
-
-
-        }
-
-        if (str != null) {
-            strFavColor = str[2];
-            strUnFavColor = str[3];
-            strNeutralColor = str[4];
-        }
         if (!fragmentResume && fragmentVisible) {   //only when first time fragment is created
 
             isNameValid();
@@ -419,6 +417,7 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                 }
             }
         });
+        loadLuckyChart();
         return view;
     }
 
@@ -426,7 +425,7 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initilization(view);
+        //initilization(view);
 
 
     }
@@ -435,9 +434,9 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
 
     private void setfabFixDirection()
     {
-        String strF = Constants.GLOBAL_U_LUCK_CHART;
-        if (!strF.equals("null")) {
-            String[] str = Utils.chartAnalysis(strF);
+        //String strF = luckyChart;
+        if (luckyChart != null && !luckyChart.equals("null")) {
+            String[] str = Utils.chartAnalysis(luckyChart);
             fab = str[0].trim();
             unFab = str[1].trim();
 
@@ -501,10 +500,10 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
 
     private void favUnfav_Direction() {
 
-        String strF = Constants.GLOBAL_U_LUCK_CHART;
-        Log.e("initCompass", strF);
-        if (!strF.equals("null")) {
-            String[] str = Utils.chartAnalysis(strF);
+        //String strF = Constants.GLOBAL_U_LUCK_CHART;
+        Log.e("initCompass", luckyChart);
+        if (luckyChart != null && !luckyChart.equals("null")) {
+            String[] str = Utils.chartAnalysis(luckyChart);
             fab = str[0].trim();
             unFab = str[1].trim();
 
@@ -722,6 +721,7 @@ int j=0;
 
 
     public void initilization(final View view) {
+
         usr_name = (TextView) view.findViewById(R.id.tv_usrname);
         favor = (SwitchCompat) view.findViewById(R.id.switch_fav);
         unfavor = (SwitchCompat) view.findViewById(R.id.switch_unfav);
@@ -729,6 +729,22 @@ int j=0;
         unfavor.setOnCheckedChangeListener(this);
 
         compassView = (CompassView) view.findViewById(R.id.cmp);
+
+        if(luckyChart != null) {
+            String[] str = Utils.chartAnalysis(luckyChart);
+
+            for (int i = 2; i < str.length; i++) {
+                Log.e("Lucky No ", " " + i + "     " + str);
+
+
+            }
+
+            if (str != null) {
+                strFavColor = str[2];
+                strUnFavColor = str[3];
+                strNeutralColor = str[4];
+            }
+
 
 
         for (int i = 0; i < 5; i++) {
@@ -757,7 +773,7 @@ int j=0;
                 arrNColors.get(i).setBackgroundColor(getResources().getColor(R.color.brown));
             }
         }
-
+        }
 
     }
 
@@ -900,4 +916,71 @@ int j=0;
     }
 
 
+    private void loadLuckyChart(){
+        String luckyChat =  SharedPreferenceManager.getSharedInstance().getStringFromPreferances("LUCKY_CHAT");
+        if(luckyChat == null || luckyChat.isEmpty()){
+
+            DataController  dbController = DataController.getsInstance(getActivity());
+            List<Userdata_Bean> userData = dbController.getAllData();
+            if (userData != null && !userData.isEmpty()) {
+
+
+
+                String parameters = "apikey="+Constants.LUCKY_CHAT_APIKEY;
+
+                if (userData.get(0).getGender().equalsIgnoreCase("200001")) {
+                    parameters = parameters + "&gender="+"male" ;
+                } else {
+                    parameters = parameters + "&gender="+"female" ;
+                }
+                parameters = parameters + "&dob=" + userData.get(0).getDob().substring(0,10);
+                GsonRequestPost<LuckyChartResponse> myReq = new GsonRequestPost<>(
+                        Request.Method.POST, Constants.LUCKY_CHAT_URL+"?"+parameters, LuckyChartResponse.class, null,
+                        successListener(), errorListener(), new JsonObject());
+                //
+                Log.d(TAG,"Lucky Chart request data " + parameters);
+                int socketTimeout = 50000;//50 seconds
+                RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                myReq.setRetryPolicy(policy);
+                VolleySingleton.getInstance(getActivity()).addToRequestQueue(myReq, "compassReq");
+            }
+        }else{
+            this.luckyChart = luckyChat;
+            initilization(view);
+        }
+    }
+
+    private Response.Listener<LuckyChartResponse>  successListener(){
+        return new Response.Listener<LuckyChartResponse>() {
+            @Override
+            public void onResponse(LuckyChartResponse response) {
+                Log.e(TAG, "Lucky Response");
+               String luckyNumber =  response.getLuckyNumber();
+                luckyChart =  response.getLuckyChart();
+                SharedPreferenceManager.getSharedInstance().setStringInPreferences("LUCKY_CHAT",luckyChart);
+                Constants.GLOBAL_U_LUCK_CHART = luckyChart;
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        initilization(view);
+
+                    }
+                });
+
+            }
+
+
+        };
+    }
+
+    private Response.ErrorListener errorListener(){
+        return new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+Log.e(TAG, error.getMessage());
+            }
+        };
+    }
 }
