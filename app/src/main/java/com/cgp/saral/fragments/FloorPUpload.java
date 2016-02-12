@@ -9,35 +9,33 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.CursorLoader;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cgp.saral.R;
-import com.cgp.saral.activity.CameraActivity;
 import com.cgp.saral.activity.MainActivity;
 import com.cgp.saral.bus.ActivityResultBus;
 import com.cgp.saral.event.ActivityResultEvent;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.RealPathUtil;
+import com.cgp.saral.myutils.Utils;
 import com.squareup.otto.Subscribe;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -87,6 +85,8 @@ public class FloorPUpload extends Fragment {
     public static final int RESULT_LOAD_IMG = 10111;
 
     private static final String ARG_PAGE_NUMBER = "page_number";
+
+    WebView videoView;
 
     public FloorPUpload() {
         super();
@@ -154,6 +154,13 @@ public class FloorPUpload extends Fragment {
         }
 
        // setRetainInstance(true);
+        videoView =(WebView) view.findViewById(R.id.vid_postvideo);
+        videoView.loadUrl(Utils.getFloorPlanVideoUrl());
+        videoView.getSettings().setJavaScriptEnabled(true);
+        videoView.setVisibility(View.VISIBLE);
+        videoView.getSettings().setPluginState(WebSettings.PluginState.ON);; //sets MediaController in the video view
+
+        videoView.requestFocus();//give focus to a specific view
 
         return view;
     }

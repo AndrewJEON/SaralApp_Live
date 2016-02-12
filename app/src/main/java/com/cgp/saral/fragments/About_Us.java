@@ -2,16 +2,15 @@ package com.cgp.saral.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.cgp.saral.R;
-
-import java.io.InputStream;
+import com.cgp.saral.myutils.Utils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -53,6 +52,15 @@ public class About_Us extends Fragment{
 
         /*tvAbout.setText(Html.fromHtml(s));
         tvAbout.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);*/
+        WebView videoView;
+        videoView =(WebView) view.findViewById(R.id.vid_postvideo);
+        videoView.loadUrl(Utils.getAboutVideoUrl());
+        videoView.getSettings().setJavaScriptEnabled(true);
+        videoView.setVisibility(View.VISIBLE);
+        videoView.getSettings().setPluginState(WebSettings.PluginState.ON);; //sets MediaController in the video view
+
+        videoView.requestFocus();//give focus to a specific view
+
         return view;
     }
 

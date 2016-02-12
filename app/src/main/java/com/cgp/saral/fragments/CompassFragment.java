@@ -164,7 +164,8 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     TextView ncolor5;
     @Bind(R.id.audio_help)
     CheckBox audioHelp;
-
+    @Bind(R.id.audio_help_hindi)
+    CheckBox audioHindiHelp;
 
     ArrayList<TextView> arrColors = new ArrayList<>();
     ArrayList<TextView> arrUColors = new ArrayList<>();
@@ -385,16 +386,28 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
         edu.setOnClickListener(this);
 
 
-        final String url = "http://appapi.saralvaastu.com/guideforyoupage.mp3"; // your URL here
+
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        final MediaPlayer mediaPlayerHindi = new MediaPlayer();
+        mediaPlayerHindi.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
         try {
-            mediaPlayer.setDataSource(url);
+            mediaPlayerHindi.setDataSource(Utils.getAudioHelpHindiUrl());
+            mediaPlayerHindi.prepareAsync();// might take long! (for buffering, etc)
+
+        }catch (Exception e){
+            Log.e("Audio play",e.getMessage());
+        }
+
+        try {
+            mediaPlayer.setDataSource(Utils.getAudioHelpEnglishUrl());
             mediaPlayer.prepareAsync();// might take long! (for buffering, etc)
 
         }catch (Exception e){
             Log.e("Audio play",e.getMessage());
         }
+
         audioHelp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -403,6 +416,10 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                 if(on)
                 {
                     try {
+                        if(mediaPlayerHindi.isPlaying()) {
+                            mediaPlayerHindi.pause();
+                            audioHindiHelp.setChecked(false);
+                        }
                         mediaPlayer.start();
                     }catch (Exception e){
                         Log.e("Audio play",e.getMessage());
@@ -413,6 +430,33 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                  if(mediaPlayer.isPlaying()) {
                      mediaPlayer.pause();
                  }
+
+                }
+            }
+        });
+
+        audioHindiHelp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //Is the switch is on?
+                boolean on = ((CheckBox) v).isChecked();
+                if(on)
+                {
+                    try {
+                        if(mediaPlayer.isPlaying()) {
+                            mediaPlayer.pause();
+                            audioHelp.setChecked(false);
+                        }
+                        mediaPlayerHindi.start();
+                    }catch (Exception e){
+                        Log.e("Audio play",e.getMessage());
+                    }
+                }
+                else
+                {
+                    if(mediaPlayerHindi.isPlaying()) {
+                        mediaPlayerHindi.pause();
+                    }
 
                 }
             }

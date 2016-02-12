@@ -3,7 +3,7 @@
     android:id="@+id/homeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/form_background"
     tools:context="com.cgp.saral.activity.UserAuthoriseActivity">
     <!--<FrameLayout
 

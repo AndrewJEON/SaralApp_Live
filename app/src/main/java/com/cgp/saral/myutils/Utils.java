@@ -20,6 +20,8 @@ import com.cgp.saral.R;
 import com.cgp.saral.tuarguide.Showcase_guide;
 import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.Comparator;
@@ -278,10 +280,80 @@ public class Utils {
         return Constants.SLIDER_IMG_PATH + "/" + folder +"/" +i + ".jpg" ;
     }
 
-    public static String getAudioHelpUrl(){
-        String jsonString = SharedPreferenceManager.getSharedInstance().getStringFromPreferances(Constants.GLOBAL_SETTINGS);
-        return "";
+    public static String getAudioHelpEnglishUrl(){
+        String url = "";
+        try {
+            JSONObject jsonObject = Utils.getJSONUrls();
+            if(jsonObject != null) {
+                JSONObject urls =jsonObject.getJSONObject("urls");
+                if(urls!= null) {
+                    url = urls.getString("audioHelpEnglish");
+                }
+            }
+        }catch (Exception e){
+
+        }
+        return url;
     }
+
+    public static String getAudioHelpHindiUrl(){
+        String url = "";
+        try {
+            JSONObject jsonObject = Utils.getJSONUrls();
+            if(jsonObject != null) {
+                JSONObject urls =jsonObject.getJSONObject("urls");
+                if(urls!= null) {
+                    url = urls.getString("audioHelpHindi");
+                }
+            }
+        }catch (Exception e){
+
+        }
+        return url;
+    }
+    public static JSONObject getJSONUrls(){
+        String jsonString = SharedPreferenceManager.getSharedInstance().getStringFromPreferances(Constants.GLOBAL_SETTINGS);
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(jsonString);
+        }catch (Exception e){
+
+        }
+        return jsonObject;
+    }
+
+    public static String getFloorPlanVideoUrl(){
+        String floorPlan="";
+        try {
+            JSONObject jsonObject = Utils.getJSONUrls();
+            if(jsonObject != null) {
+                JSONObject urls =jsonObject.getJSONObject("urls");
+                if(urls!= null) {
+                    floorPlan = urls.getString("floorPlan");
+                }
+            }
+        }catch (Exception e){
+
+        }
+        return floorPlan;
+    }
+
+    public static String getAboutVideoUrl(){
+        String about="";
+        try {
+            JSONObject jsonObject = Utils.getJSONUrls();
+            if(jsonObject != null) {
+                JSONObject urls =jsonObject.getJSONObject("urls");
+                if(urls!= null) {
+                    about = urls.getString("about");
+                }
+            }
+        }catch (Exception e){
+
+        }
+        return about;
+    }
+
     public static <T> T getObjectFromJSON(String serializedData, Type tClass) {
         // Use GSON to instantiate this class using the JSON representation of the state
 
