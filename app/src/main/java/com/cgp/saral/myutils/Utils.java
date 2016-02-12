@@ -258,58 +258,7 @@ public class Utils {
     }
 
 
-    public static String CONTACTS = "{\n" +
-            "\t\tcorporate: {\n" +
-            "\t\t\tphone: \"+9122 61092732\",\n" +
-            "\t\t\temail: \"app@saralvaastu.com\"\n" +
-            "\t\t},\n" +
-            "\t\tbranches: [\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Maharashtra\",\n" +
-            "\t\t\tphone: \"+9192233 03355\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Karnataka\",\n" +
-            "\t\t\tphone: \"+9194482 86755 +9194482 86755\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Gujarat\",\n" +
-            "\t\t\tphone: \"+9196620 15070\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Goa\",\n" +
-            "\t\t\tphone: \"+9192253 65755\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Delhi\",\n" +
-            "\t\t\tphone: \"+9185889 20616\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Rajasthan\",\n" +
-            "\t\t\tphone: \"+9193147 20809\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Madhya Pradesh\",\n" +
-            "\t\t\tphone: \"+9191110 04406\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Chhattigarh\",\n" +
-            "\t\t\tphone: \"+9191110 18288\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Uttar Pradesh\",\n" +
-            "\t\t\tphone: \"+9193354 56002\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Tamil Nadu\",\n" +
-            "\t\t\tphone: \"+9193601 01001\"\n" +
-            "\t\t\t},\n" +
-            "\t\t\t{\n" +
-            "\t\t\tname:\t\"Haryana\",\n" +
-            "\t\t\tphone: \"+9193715 55542\"\n" +
-            "\t\t\t}\n" +
-            "\t\t]\n" +
-            "\t}";
+    public static String GLOBAL_SETTINGS = "{ urls: { audioHelpEnglish : \"http://appapi.saralvaastu.com/mp3/help_english.mp3\", audioHelpHindi: \"http://appapi.saralvaastu.com/mp3/help_hindi.mp3\", about: \"http://appapi.saralvaastu.com/videos/aboutUs.mp4\", floorPlan: \"http://appapi.saralvaastu.com/videos/floorPlan.mp4\" }, slider: { count : \"4\", url: \"http://appapi.saralvaastu.com/sliderimages/\" }, corporate: { phone: \"+9122 61092732\", email: \"app@saralvaastu.com\" }, branches: [ { name:\t\"Maharashtra\", phone: \"+9192233 03355\" }, { name:\t\"Karnataka\", phone: \"+9194482 86755\" }, { name: \"Gujarat\", phone: \"+9196620 15070\" }, { name:\t\"Goa\", phone: \"+9192253 65755\" }, { name:\t\"Delhi\", phone: \"+9185889 20616\" }, { name:\t\"Rajasthan\", phone: \"+9193147 20809\" }, { name: \"Madhya Pradesh\", phone: \"+9191110 04406\" }, { name:\t\"Chhattigarh\", phone: \"+9191110 18288\" }, { name:\t\"Uttar Pradesh\", phone: \"+9193354 56002\" }, { name:\t\"Tamil Nadu\", phone: \"+9193601 01001\" }, { name:\t\"Haryana\", phone: \"+9193715 55542\" } ] }";
 
     public static String getSliderImagePath(int i){
         String folder = "";
@@ -329,6 +278,10 @@ public class Utils {
         return Constants.SLIDER_IMG_PATH + "/" + folder +"/" +i + ".jpg" ;
     }
 
+    public static String getAudioHelpUrl(){
+        String jsonString = SharedPreferenceManager.getSharedInstance().getStringFromPreferances(Constants.GLOBAL_SETTINGS);
+        return "";
+    }
     public static <T> T getObjectFromJSON(String serializedData, Type tClass) {
         // Use GSON to instantiate this class using the JSON representation of the state
 

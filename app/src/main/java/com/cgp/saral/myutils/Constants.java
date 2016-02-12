@@ -119,7 +119,7 @@ public class Constants {
 
     public static String strFormatChat = "yyyy-MM-dd HH:mm:ss SSS";
 
-
+    public static String GLOBAL_SETTINGS = "GLOBAL_SETTINGS";
 
     //for testing server
     //public static final String IMAGE_FILE_UPLOAD_URL = "http://appuitest.cgparivar.com/admin/images/fileUpload.php";
@@ -172,6 +172,7 @@ public class Constants {
 
     public static String SLIDER_IMG_PATH = "http://appapi.saralvaastu.com/sliderimages/";
     public static String LUCKY_CHAT_URL = "http://luckychartapi.cgparivar.com/api.php";
+    public static String BOOKNOW_URL = "http://api.cgparivar.com/service_request.php";
 
     public static String LUCKY_CHAT_APIKEY = "saralvaastu";
     public static JsonObject getDeviceInfo() {

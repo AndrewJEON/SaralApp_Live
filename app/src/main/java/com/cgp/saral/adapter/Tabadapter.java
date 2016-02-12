@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
+import com.cgp.saral.fragments.BookNowTabFragment;
 import com.cgp.saral.fragments.CompassFragment;
-import com.cgp.saral.fragments.FloorPUpload;
 import com.cgp.saral.fragments.HomeTabFragment;
 import com.cgp.saral.fragments.InviteTabFragment;
 import com.cgp.saral.fragments.YouFragment;
@@ -50,13 +50,13 @@ String title[];
                 return  CompassFragment.newInstance(1);
             case 2:
                 //Fragment for Windows Tab
-                return  YouFragment.newInstance(2);
+                return  BookNowTabFragment.newInstance(2);
             case 3:
                 //Fragment for Windows Tab
                 return  InviteTabFragment.newInstance(3);
-          //  case 4:
+           case 4:
                 //Fragment for Windows Tab
-           //     return  FloorPUpload.newInstance(4);
+               return  YouFragment.newInstance(4);
         }
         return null;
 
@@ -78,7 +78,7 @@ String title[];
     @Override
     public int getCount() {
 
-        return 4; //No of Tabs
+        return 5; //No of Tabs
     }
 
 

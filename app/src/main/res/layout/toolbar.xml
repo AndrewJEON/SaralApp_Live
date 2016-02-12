@@ -31,7 +31,18 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/iv_logo"
             android:layout_toEndOf="@+id/iv_logo" />
-
+    <Button
+        android:id="@+id/callback"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:drawableLeft="@drawable/ic_contact_us"
+        android:text="Call Back"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/settingLayout"
+        android:layout_toStartOf="@+id/settingLayout"
+        android:background="@color/transparent"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
         <RelativeLayout
             android:id="@+id/settingLayout"

@@ -89,6 +89,15 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/text_Note"/>
+                <CheckBox
+                    android:id="@+id/audio_help_hindi"
+                    android:text="मदद"
+                    android:textColor="@color/Orange"
+                    android:button="@xml/audio_help_checkbox_selector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/audio_help"/>
                 <RelativeLayout
                     android:id="@+id/camp_center"
                     android:layout_width="match_parent"

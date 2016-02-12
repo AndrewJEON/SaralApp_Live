@@ -179,7 +179,7 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
       //  Log.e("Splash Screen",""+gifImageView.getFramesDisplayDuration()*1000);
        // Log.e("Splash Screen Frame, "" +gifImageView.getFramesDisplayDuration())
 
-        SharedPreferenceManager.getSharedInstance().setStringInPreferences("contacts", Utils.CONTACTS);
+        SharedPreferenceManager.getSharedInstance().setStringInPreferences(Constants.GLOBAL_SETTINGS, Utils.GLOBAL_SETTINGS);
 
     }
 

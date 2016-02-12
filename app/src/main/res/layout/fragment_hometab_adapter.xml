@@ -5,7 +5,17 @@
     android:background="@color/background"
     android:paddingLeft="0dp"
     android:paddingRight="0dp" >
-
+    <TextView
+        android:id="@+id/tv_postheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Study Room Vastu Tips"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/saralGreen"
+        android:layout_marginTop="5dp"/>
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card"
@@ -15,7 +25,9 @@
         card_view:cardCornerRadius="0dp"
         card_view:cardElevation="0dp"
         card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="@color/background">
+        card_view:contentPaddingTop="0dp"
+        card_view:cardBackgroundColor="@color/background"
+        android:layout_below="@id/tv_postheader">
 
 
         <RelativeLayout
@@ -24,26 +36,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp" >
 
-            <TextView
-                android:id="@+id/tv_postheader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="2dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="0dp"
-                android:paddingTop="2dp"
-                android:text="Study Room Vastu Tips"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="bold"
-                android:textColor="@color/Black"/>
+
             <LinearLayout
                 android:id="@+id/mediaLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="250dp"
                 android:visibility="visible"
-                android:orientation="vertical"
-                android:layout_below="@+id/tv_postheader">
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/img_postimage"
@@ -162,8 +161,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/thin_sep"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:background="@color/saralBlue">
 
         <com.github.curioustechizen.ago.RelativeTimeTextView
             android:id="@+id/tv_posttime"
@@ -172,7 +170,9 @@
             android:text=" "
             android:layout_gravity="center_vertical"
             android:textStyle="normal"
-            android:textSize="11sp"/>
+            android:textSize="11sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"/>
 
         <RadioGroup
             android:id="@+id/like_container"
@@ -190,7 +190,7 @@
                 android:text="Like"
                 android:textSize="11sp"
                 android:textStyle="normal"
-                android:textColor="#707070"/>
+                android:textColor="@color/white"/>
             <RadioButton
                 android:id="@+id/iv_dislike"
                 android:layout_width="wrap_content"
@@ -199,7 +199,7 @@
                 android:text="Dislike"
                 android:textSize="11sp"
                 android:textStyle="normal"
-                android:textColor="#707070"/>
+                android:textColor="@color/white"/>
         </RadioGroup>
 
         <LinearLayout
@@ -236,7 +236,8 @@
                 android:text="Share"
                 android:textSize="11sp"
                 android:ellipsize="end"
-                android:lines="1"/>
+                android:lines="1"
+                android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout android:orientation="vertical" android:layout_below="@+id/ll_post_actions" android:id="@+id/ll_main" android:layout_width="fill_parent" android:layout_height="wrap_content">

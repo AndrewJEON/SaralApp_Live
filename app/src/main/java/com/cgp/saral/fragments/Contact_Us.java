@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.cgp.saral.R;
+import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.google.gson.Gson;
 
@@ -34,8 +35,6 @@ public class Contact_Us extends Fragment {
     @Bind(R.id.contactList)
     ListView contacts;
 
-    @Bind(R.id.tvCorpPhone)
-    TextView tvCorpPhone;
     @Bind(R.id.tvCorpEmail)
     TextView tvCorpEmail;
 
@@ -59,7 +58,7 @@ public class Contact_Us extends Fragment {
         JSONObject corporate = null;
         ArrayList<HashMap<String, String>> feedList= new ArrayList<HashMap<String, String>>();
         try {
-                String jsonString = SharedPreferenceManager.getSharedInstance().getStringFromPreferances("contacts");
+                String jsonString = SharedPreferenceManager.getSharedInstance().getStringFromPreferances(Constants.GLOBAL_SETTINGS);
 
                 JSONObject jsonObject = new JSONObject(jsonString);
                 JSONArray branches = jsonObject.getJSONArray("branches");
@@ -77,7 +76,6 @@ public class Contact_Us extends Fragment {
 
         if(corporate != null){
             try {
-                tvCorpPhone.setText(corporate.getString("phone"));
                 tvCorpEmail.setText(corporate.getString("email"));
             }catch(Exception e){
                 Log.e("ContactUs","Unable to parse contacts :"+ e.getMessage());
@@ -100,7 +98,9 @@ public class Contact_Us extends Fragment {
         feedList.add(map);*/
 
         SimpleAdapter contactsAdapter = new SimpleAdapter(getActivity(), feedList, R.layout.contact_row, new String[]{"name", "phone"}, new int[]{R.id.textViewName, R.id.textViewPhone});
+        contacts.setScrollContainer(false);
         contacts.setAdapter(contactsAdapter);
+
         return view;
     }
 }

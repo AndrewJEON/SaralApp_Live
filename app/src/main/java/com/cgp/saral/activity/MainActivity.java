@@ -16,27 +16,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cgp.saral.R;
 import com.cgp.saral.SaralApplication;
 import com.cgp.saral.adapter.RightSideAdapter;
-import com.cgp.saral.bus.ActivityResultBus;
 import com.cgp.saral.customviews.OnItemClickListener;
 import com.cgp.saral.databaseHelper.DataController;
-import com.cgp.saral.event.ActivityResultEvent;
 import com.cgp.saral.fragments.About_Us;
 import com.cgp.saral.fragments.BaseFragment;
+import com.cgp.saral.fragments.CallbackTabFragment;
 import com.cgp.saral.fragments.Contact_Us;
 import com.cgp.saral.fragments.FeedBack;
 import com.cgp.saral.fragments.FloorPUpload;
@@ -76,7 +73,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     ProgressDialog progressDialog;
-
+    Button callBack;
     public static MainActivity instanceMain;
 
 
@@ -329,7 +326,16 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         iv_setting.setVisibility(View.VISIBLE);
         iv_userpro.setOnClickListener(this);
         username.setOnClickListener(this);
+        callBack = (Button) findViewById(R.id.callback);
+        callBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new CallbackTabFragment();
+                startTransaction(fragment, "callback");
+                tv_title.setText("Call Back");
 
+            }
+        });
          ((SaralApplication) getApplication()).trackEvent(MainActivity.this, "MainActivity", "App Flow", "fragment Switching ");
     }
 
