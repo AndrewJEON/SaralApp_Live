@@ -16,8 +16,8 @@ android {
         applicationId "com.cgp.saral"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 18
-        versionName "1.0.18"
+        versionCode 19
+        versionName "1.0.19"
         renderscriptSupportModeEnabled true
         multiDexEnabled true
 

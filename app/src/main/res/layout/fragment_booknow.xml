@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_userpro"
-        android:layout_marginBottom="@dimen/profileright"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="@dimen/profileright"
         android:layout_marginRight="@dimen/profileright"
         android:layout_marginTop="20dp">

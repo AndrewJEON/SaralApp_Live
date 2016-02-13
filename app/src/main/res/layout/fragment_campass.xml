@@ -102,7 +102,7 @@
                     android:id="@+id/camp_center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_Note"
+                    android:layout_below="@+id/audio_help_hindi"
                     >
 
                     <RelativeLayout

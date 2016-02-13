@@ -224,6 +224,27 @@ try{
         try {
 
 
+            arrColors.add(color1);
+            arrColors.add(color2);
+            arrColors.add(color3);
+            arrColors.add(color4);
+            arrColors.add(color5);
+
+            arrUColors.add(ucolor1);
+            arrUColors.add(ucolor2);
+            arrUColors.add(ucolor3);
+            arrUColors.add(ucolor4);
+            arrUColors.add(ucolor5);
+
+
+            arrNColors.add(ncolor1);
+            arrNColors.add(ncolor2);
+            arrNColors.add(ncolor3);
+            arrNColors.add(ncolor4);
+            arrNColors.add(ncolor5);
+            Constants.initColorMap();
+            Constants.initDirectionMap();
+            loadLuckyChart();
             mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
             mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             mMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -236,8 +257,7 @@ try{
             Log.e("Compass ",""+" Accel "+accel+"  Compass "+comp+" Gyro "+gyro);
             //Toast.makeText(getActivity()," Accel "+accel+"  Compass "+comp+" Gyro "+gyro,Toast.LENGTH_LONG).show();
             compass = new Compass(getActivity());
-            Constants.initColorMap();
-            Constants.initDirectionMap();
+
             if (comp) {
                 isCompassVisible =true;
                 favDirectionState = false;
@@ -288,24 +308,7 @@ try{
 
         }
 
-        arrColors.add(color1);
-        arrColors.add(color2);
-        arrColors.add(color3);
-        arrColors.add(color4);
-        arrColors.add(color5);
 
-        arrUColors.add(ucolor1);
-        arrUColors.add(ucolor2);
-        arrUColors.add(ucolor3);
-        arrUColors.add(ucolor4);
-        arrUColors.add(ucolor5);
-
-
-        arrNColors.add(ncolor1);
-        arrNColors.add(ncolor2);
-        arrNColors.add(ncolor3);
-        arrNColors.add(ncolor4);
-        arrNColors.add(ncolor5);
 
 
         menu1.setOnClickListener(new View.OnClickListener() {
@@ -467,7 +470,7 @@ try{
                 }
             }
         });
-        loadLuckyChart();
+
 }catch (Throwable t){
     Log.e("CompassView",t.getMessage(),t);
 }
@@ -697,7 +700,8 @@ int j=0;
                     textView.setBackgroundColor(getResources().getColor(R.color.red));
                 } else if (String.valueOf(unFab.charAt(i)).equals("6")) {
                     textView.setText("SW");
-                    textView1.setText("" + i);
+                    j=i+1;
+                    textView1.setText("" + j);
                     textView.setBackgroundColor(getResources().getColor(R.color.red));
                 } else if (String.valueOf(unFab.charAt(i)).equals("7")) {
                     textView.setText("W");

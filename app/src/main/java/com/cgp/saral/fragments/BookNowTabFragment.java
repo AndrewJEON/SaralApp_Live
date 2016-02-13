@@ -55,7 +55,7 @@ import java.util.Locale;
 import butterknife.ButterKnife;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link android.support.v4.app.Fragment} subclass.
  */
 public class BookNowTabFragment extends BaseFragment implements View.OnClickListener {
     View view;
@@ -254,11 +254,9 @@ public class BookNowTabFragment extends BaseFragment implements View.OnClickList
             Toast.makeText(getActivity(), "Please enter your pincode", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation strName" + strName);
             return;
-        }else if (!strPincode.isEmpty()) {
-            if(strPincode.length()!= 6) {
+        }else if (!strPincode.isEmpty() && strPincode.length()!= 6) {
                 Toast.makeText(getActivity(), "Please enter your 6 digits pincode ", Toast.LENGTH_SHORT).show();
                 return;
-            }
             //Log.e("NewBean", "Validation strName" + strName);
 
         }else if (strPreferredDate.isEmpty()) {
