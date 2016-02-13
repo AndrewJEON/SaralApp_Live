@@ -49,8 +49,12 @@ public class CompassView extends View {
     public Handler uiThread = new Handler();
 
     public void setBearing(float _bearing) {
+        try{
         bearing = _bearing;
         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED);
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     public float getBearing() {
@@ -59,26 +63,37 @@ public class CompassView extends View {
 
     public CompassView(Context context) {
         super(context);
-
+        try{
         // this.flag = flg;
         initCompassView();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     public CompassView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        try{
         initCompassView();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     public CompassView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        try{
         initCompassView();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     private void initCompassView() {
-
+try{
         String strF = Constants.GLOBAL_U_LUCK_CHART;
         Log.e("initCompass", strF);
-        if (!strF.equals("null")) {
+        if (strF!= null && !strF.isEmpty() && !strF.equals("null")) {
             String[] str = Utils.chartAnalysis(strF);
             fab = str[0].trim();
             unFab = str[1].trim();
@@ -136,21 +151,29 @@ public class CompassView extends View {
       /*  bitmap = BitmapFactory.decodeResource(getResources(),
                 R.drawable.compass_bg);*/
         setWillNotDraw(false);
-
+}catch (Throwable t){
+    Log.e("CompassView",t.getMessage(),t);
+}
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        try{
         // Compass is a filled as much space circle, to set the measurement by setting the minimum boundary, height or width.
         int measuredWidth = measure(widthMeasureSpec);
         int measuredHeight = measure(heightMeasureSpec);
 
         int d = Math.min(measuredWidth, measuredHeight);
         setMeasuredDimension(d, d);
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     private int measure(int measureSpec) {
         int result = 0;
+        try{
+
         // The decoding of the description of the measurement
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
@@ -162,11 +185,15 @@ public class CompassView extends View {
             // Because you want to fill the space available, so always returns the entire available boundary
             result = specSize;
         }
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
         return result;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+        try{
         // Find the control center, and the minimum edge length as a stored radius compass.
         int mMeasuredWidth = getMeasuredWidth();
         int mMeasuredHeight = getMeasuredHeight();
@@ -289,12 +316,16 @@ public class CompassView extends View {
         }
 
         canvas.restore();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
 
     @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
         super.dispatchPopulateAccessibilityEvent(event);
+        try{
         if (isShown()) {
             String bearingStr = String.valueOf(bearing);
             if (bearingStr.length() > AccessibilityEvent.MAX_TEXT_LENGTH)
@@ -304,21 +335,27 @@ public class CompassView extends View {
             event.getText().add(bearingStr);
             return true;
         }
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
         return false;
     }
 
     public void update(int id) {
-
+try{
         uiThread.post(new Runnable() {
             @Override
             public void run() {
                 invalidate();
             }
         });
-
+}catch (Throwable t){
+    Log.e("CompassView",t.getMessage(),t);
+}
     }
 
     public void doToggle(int flag) {
+        try{
         if (flag == Constants.FAV) {
             this.flag = true;
 
@@ -346,9 +383,13 @@ public class CompassView extends View {
 
 
         this.invalidate();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     public void doUnToggle(int flag) {
+        try{
         if (flag == Constants.FAV) {
             this.flag = false;
         }
@@ -366,5 +407,8 @@ public class CompassView extends View {
         }
 
         this.invalidate();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 }

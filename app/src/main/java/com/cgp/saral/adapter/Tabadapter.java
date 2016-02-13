@@ -3,7 +3,7 @@ package com.cgp.saral.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.SparseArray;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.cgp.saral.fragments.BookNowTabFragment;
@@ -12,6 +12,7 @@ import com.cgp.saral.fragments.HomeTabFragment;
 import com.cgp.saral.fragments.InviteTabFragment;
 import com.cgp.saral.fragments.YouFragment;
 
+import java.util.ArrayList;
 
 
 /**
@@ -20,13 +21,32 @@ import com.cgp.saral.fragments.YouFragment;
 public class Tabadapter extends FragmentStatePagerAdapter {
 String title[];
 
-    SparseArray<Fragment> mPlaceHolderFragmentArray;
+    static ArrayList<Fragment> mPlaceHolderFragmentArray = new ArrayList<Fragment>();
 
 
     public Tabadapter(FragmentManager fm, String tie[]) {
         super(fm);
         this.title=tie;
+        try{
+            if(mPlaceHolderFragmentArray.size()<=0){
+                initFragments();
+            }
+
+        }catch (Throwable t){
+            Log.e("Tabadapter",t.getMessage(),t);
+        }
         // TODO Auto-generated constructor stub
+
+    }
+
+    private void initFragments()
+    {
+        int i= 0;
+        mPlaceHolderFragmentArray.add(HomeTabFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(CompassFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(BookNowTabFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(InviteTabFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(YouFragment.newInstance(i++));
     }
 
     @Override
@@ -38,7 +58,7 @@ String title[];
             mPlaceHolderFragmentArray.put(position, fragment);
         }
         return fragment;*/
-        switch (i) {
+       /* switch (i) {
             case 0:
                 //Fragement for Android Tab
                 return HomeTabFragment.newInstance(0);
@@ -58,7 +78,8 @@ String title[];
                 //Fragment for Windows Tab
                return  YouFragment.newInstance(4);
         }
-        return null;
+        return null;*/
+        return mPlaceHolderFragmentArray.get(i);
 
     }
 
@@ -78,7 +99,7 @@ String title[];
     @Override
     public int getCount() {
 
-        return 5; //No of Tabs
+        return mPlaceHolderFragmentArray.size(); //No of Tabs
     }
 
 

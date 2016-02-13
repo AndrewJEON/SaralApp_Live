@@ -112,12 +112,15 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public HomeHolderView onCreateViewHolder(ViewGroup viewGroup, int i) {
-
+        HomeHolderView holderView = null;
+        try{
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         final View view = inflater.inflate(R.layout.fragment_hometab_adapter, viewGroup, false);
-        final HomeHolderView holderView = new HomeHolderView(view);
+         holderView = new HomeHolderView(view);
         contents = dbController.contentActionList();
-
+        }catch (Throwable t){
+            Log.e("HomeTab_Adapter",t.getMessage(),t);
+        }
         return holderView;
 
     }
@@ -126,17 +129,21 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder hView, int i) {
 
+        try{
         final HomeHolderView holdview = (HomeHolderView) hView;
 
 
         doProcessDataBinding(i, holdview);
-
+        }catch (Throwable t){
+            Log.e("HomeTab_Adapter",t.getMessage(),t);
+        }
 
 
     }
 
 
     private void doProcessDataBinding(int i, final HomeHolderView holdview) {
+        try{
         final Datum d = list.get(i);
         int listSepColor = Color.parseColor(itemSepColors.get(i%4));
         holdview.listItemSeperator.setBackgroundColor(listSepColor);
@@ -312,11 +319,13 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holdview.list_icon.setTag(holdview);
        // doProcessDataBinding(i, holdview);
         doProcessDataBindingClick(d, holdview);
-
+        }catch (Throwable t){
+            Log.e("HomeTab_Adapter",t.getMessage(),t);
+        }
     }
 
     private void doProcessDataBindingClick(final Datum d, final HomeHolderView holdview) {
-
+try{
         String strLiked = d.getYouLiked();
         String strUnLiked = d.getYouDisliked();
         Log.e("StrLiked", "" + strLiked + "  unliked -->" + strUnLiked);
@@ -374,7 +383,9 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             }
         });
-
+}catch (Throwable t){
+    Log.e("HomeTab_Adapter",t.getMessage(),t);
+}
 
 
     }
@@ -383,7 +394,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     private void updateLikesCounter(HomeHolderView holder, Datum d) {
-
+try{
         int currentLikesCount = likesCount.get(holder.getAdapterPosition());
         String strContentId = d.getContentDetails().get(0).getContentId();
 
@@ -405,9 +416,13 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             disLikesCount.put(holder.getAdapterPosition(), currentDisLikesCount);
             unLikedPositions.remove(Integer.getInteger(contentId+""));
         }
+}catch (Throwable t){
+    Log.e("HomeTab_Adapter",t.getMessage(),t);
+}
     }
 
     private void updateDisLikesCounter(HomeHolderView holder, Datum d) {
+        try{
         int currentDisLikesCount = disLikesCount.get(holder.getAdapterPosition());
 
         String strContentId = d.getContentDetails().get(0).getContentId();
@@ -430,12 +445,15 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             likesCount.put(holder.getAdapterPosition(), currentLikesCount);
             likedPositions.remove(Integer.getInteger(contentId+""));
         }
+        }catch (Throwable t){
+            Log.e("HomeTab_Adapter",t.getMessage(),t);
+        }
     }
 
 
 
     public void doPostAction(String strContentId, String strAction) {
-
+try{
         JsonObject data = new JsonObject();
         JsonObject dataFromBean = new JsonObject();
 
@@ -464,6 +482,9 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         Log.e(" Url", " link" + myReq.toString());
+}catch (Throwable t){
+    Log.e("HomeTab_Adapter",t.getMessage(),t);
+}
     }
 
 
@@ -554,6 +575,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public HomeHolderView(View itemView) {
             super(itemView);
+            try{
             title = (TextView) itemView.findViewById(R.id.tv_postheader);
             list_icon = (ImageView) itemView.findViewById(R.id.img_postimage);
             description = (TextView) itemView.findViewById(R.id.tv_postmassege);
@@ -574,6 +596,9 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             shareBtn = (ImageButton) itemView.findViewById(R.id.shareBtn);
             shareBtnRl = (LinearLayout)itemView.findViewById(R.id.shareBtnRl);
             likeGroup = (RadioGroup)itemView.findViewById(R.id.like_container);
+            }catch (Throwable t){
+                Log.e("HomeTab_Adapter",t.getMessage(),t);
+            }
         }
 
 
@@ -581,11 +606,15 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private static String removeChar(String s, char c) {
         StringBuffer buf = new StringBuffer(s.length());
+        try{
         buf.setLength(s.length());
         int current = 0;
         for (int i=0; i<s.length(); i++){
             char cur = s.charAt(i);
             if(cur != c) buf.setCharAt(current++, cur);
+        }
+        }catch (Throwable t){
+            Log.e("HomeTab_Adapter",t.getMessage(),t);
         }
         return buf.toString();
     }
@@ -600,8 +629,10 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private class FeedFilters extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            // Create a FilterResults object
             FilterResults results = new FilterResults();
+            try{
+            // Create a FilterResults object
+
 
             // If the constraint (search string/pattern) is null
             // or its length is 0, i.e., its empty then
@@ -629,15 +660,21 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 results.values = filteredContacts;
                 results.count = filteredContacts.size();
             }
-
+            }catch (Throwable t){
+                Log.e("HomeTab_Adapter",t.getMessage(),t);
+            }
             // Return our FilterResults object
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
+            try{
             list = (ArrayList<Datum>) results.values;
             notifyDataSetChanged();
+            }catch (Throwable t){
+                Log.e("HomeTab_Adapter",t.getMessage(),t);
+            }
         }
     }
 

@@ -144,6 +144,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // typeface = Typeface.createFromAsset(getAssets(), "fonts/roboto/Roboto-Medium.ttf");
@@ -253,12 +254,15 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             }
         });
 
-
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
 
     @Override
     public void onBackPressed() {
+        try{
         FragmentManager fm = getSupportFragmentManager();
 
         Fragment f = fm.findFragmentByTag("viewPager");
@@ -311,11 +315,14 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             }
         }
 
-
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
     // initilize variable
     public void inIt() {
+        try{
         username = (TextView) findViewById(R.id.drawer_userName);
         iv_userpro = (ImageView) findViewById(R.id.iv_userpro);
         //username.setTypeface(typeface);
@@ -337,14 +344,17 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             }
         });
          ((SaralApplication) getApplication()).trackEvent(MainActivity.this, "MainActivity", "App Flow", "fragment Switching ");
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
     // Filling the ArrayLists
     public void selectItemFromDrawer(int position) {
-
+    try {
         tv_title.setText("Home");
 
-        Fragment frag=new TabsFragment();
+        Fragment frag = new TabsFragment();
 
         Log.e("selectItemFromDrawer", " ---->" + position);
         if (position == 0) {
@@ -355,12 +365,12 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             Fragment f = fm.findFragmentById(R.id.tab);
 
 
-              //  Fragment ff= new HomeTabFragment();
+            //  Fragment ff= new HomeTabFragment();
 
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.show(f);
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.show(f);
 
-                transaction.commit();
+            transaction.commit();
 
 
         }
@@ -384,13 +394,13 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         if (position == 3) {
 
             Utils.rateApp(0, MainActivity.this, true);
-           // getSupportActionBar().setTitle("Feeds");
+            // getSupportActionBar().setTitle("Feeds");
             tv_title.setText("");
 
         }
         if (position == 4) {
 
-            Fragment fragment= new Contact_Us();
+            Fragment fragment = new Contact_Us();
             startTransaction(fragment, "contact");
             getSupportActionBar().setTitle("Contact");
             tv_title.setText("Contact Us");
@@ -422,25 +432,31 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
 
         // Close the drawer
         mDrawerlayout.closeDrawer(drawerPane);
+    }catch (Throwable t){
+        Log.e("MainActivity",t.getMessage(),t);
+    }
     }
 
     public void Fill_RightList() {
-        dataArray_right.clear();
-        // add menu item
-        dataArray_right.add(new DrawerItem("HOME", R.drawable.ic_home));
-        dataArray_right.add(new DrawerItem("SARAL MESSAGE", R.drawable.ic_news_letter_white));
-        dataArray_right.add(new DrawerItem("FLOOR PLAN", R.drawable.ic_upload_white));
-        dataArray_right.add(new DrawerItem("RATE APP", R.drawable.ic_apprate));
-        dataArray_right.add(new DrawerItem("CONTACT US", R.drawable.ic_contact_us));
-        dataArray_right.add(new DrawerItem("FEEDBACK", R.drawable.ic_feedback));
-        dataArray_right.add(new DrawerItem("ABOUT US", R.drawable.ic_aboutus));
-        dataArray_right.add(new DrawerItem("SIGN OUT", R.drawable.ic_signout_white));
-
+        try {
+            dataArray_right.clear();
+            // add menu item
+            dataArray_right.add(new DrawerItem("HOME", R.drawable.ic_home));
+            dataArray_right.add(new DrawerItem("SARAL MESSAGE", R.drawable.ic_news_letter_white));
+            dataArray_right.add(new DrawerItem("FLOOR PLAN", R.drawable.ic_upload_white));
+            dataArray_right.add(new DrawerItem("RATE APP", R.drawable.ic_apprate));
+            dataArray_right.add(new DrawerItem("CONTACT US", R.drawable.ic_contact_us));
+            dataArray_right.add(new DrawerItem("FEEDBACK", R.drawable.ic_feedback));
+            dataArray_right.add(new DrawerItem("ABOUT US", R.drawable.ic_aboutus));
+            dataArray_right.add(new DrawerItem("SIGN OUT", R.drawable.ic_signout_white));
+        }catch (Throwable t){
+                Log.e("MainActivity",t.getMessage(),t);
+            }
     }
 
     //fragment transctions
     public void startTransaction(Fragment fragment, String str) {
-
+try{
          ((SaralApplication) getApplication()).trackEvent(MainActivity.this, "MainActivity", "App Flow", "fragment Switching " + str);
         Fragment f= fragmentManager.findFragmentById(R.id.tab);
         if(f.isVisible())
@@ -470,36 +486,48 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             transaction.commit();
         }
 
-
+}catch (Throwable t){
+    Log.e("MainActivity",t.getMessage(),t);
+}
 
     }
 
     public void removeFragmentbyTag(Fragment fragment, String str) {
-
+try{
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content_frame, fragment, str);
         transaction.addToBackStack(null);
         transaction.commit();
-
+}catch (Throwable t){
+    Log.e("MainActivity",t.getMessage(),t);
+}
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
+        try{
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
 
     @Override
     public void onItemClicked(View v, int position) {
+        try{
         mDrawerlayout.closeDrawer(drawerPane);
         Log.e("MainActivity", "Call onItemClicked" + position);
         selectItemFromDrawer(position);
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
     @Override
     public void onClick(View v) {
-
+try{
         if (null != bean) {
             Log.e("Main Activity", "UserData Not Null");
             Intent i = new Intent(MainActivity.this, UserProfile_Activity.class);
@@ -516,12 +544,14 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             Log.e("Main Activity", "UserData Null");
         }
         //getSupportFragmentManager().beginTransaction().replace(R.id.mailactivity_container,new HomeTabFragment()).commit();
-
+}catch (Throwable t){
+    Log.e("MainActivity",t.getMessage(),t);
+}
     }
 
 
     public synchronized void showProgressDialog(Activity ctx, String msg) {
-
+try{
 
         if(progressDialog ==null)
         {
@@ -531,13 +561,22 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         progressDialog.getLayoutInflater();
         progressDialog.setMessage(msg);
         progressDialog.show();
+}catch (Throwable t){
+    Log.e("MainActivity",t.getMessage(),t);
+}
     }
 
     public  synchronized void dismissDialog() {
+        try {
+
         progressDialog.dismiss();
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
     public void setData() {
+        try{
         username.setText(bean.getUserFName());
         Constants.GLOBAL_USER_NAME = bean.getUserFName();
         if (bean.getImgurl() != null) {
@@ -546,9 +585,13 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         } else {
             iv_userpro.setImageResource(R.drawable.ic_dp_grey);
         }
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
     public void checkUserStatus() {
+        try{
         boolean status;
         status = dataController.isUserExist();
 
@@ -559,10 +602,14 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             editor.putBoolean(Constants.PREFS_KEY, false);
             editor.commit();
         }
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
 
     private void updateActionBar(Fragment fragment) {
+        try{
         ActionBar actionBar = getSupportActionBar();
         if (fragment instanceof StackedFragment) {
             StackedFragment tF = (StackedFragment) fragment;
@@ -571,6 +618,9 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         } else {
             actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setTitle(getString(R.string.app_name));
+        }
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
         }
     }
 
@@ -606,7 +656,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
     }
 
     public void logout_validate() {
-
+try{
 
         Intent intent = new Intent(MainActivity.this, UserAuthoriseActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -679,7 +729,9 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         dismissDialog();
         startActivity(intent);
         finish();
-
+}catch (Throwable t){
+    Log.e("MainActivity",t.getMessage(),t);
+}
     }
 
 
@@ -696,12 +748,16 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
 
     @Override
     public void OnGSignSuccess(Person mPerson, String emailAddress) {
+        try{
         googlePlusSignInHelper = new GooglePlusSignInHelper(this, this);
         googlePlusSignInHelper.signOut();
       //  long ides = dataController.updateStatus(0, id);
         Log.e("Google Plus Logout", "Update row on GSign");
         editor.putBoolean(Constants.PREFS_KEY, false);
         editor.commit();
+        }catch (Throwable t){
+            Log.e("MainActivity",t.getMessage(),t);
+        }
     }
 
     @Override

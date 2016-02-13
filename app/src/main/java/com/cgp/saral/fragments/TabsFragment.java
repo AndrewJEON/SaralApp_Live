@@ -31,7 +31,7 @@ public class TabsFragment extends BaseFragment {
     TabLayout tabLayout;
     @Bind(R.id.viewpager)
     ViewPager viewPager;
-
+    static int lastPosition = 0;
 
     Stack<Integer> pageHistory;
     int currentPage;
@@ -86,7 +86,7 @@ public class TabsFragment extends BaseFragment {
         Point size = new Point();
         display.getSize(size);
         int width = size.x;*/
-
+    try {
         view = inflater.inflate(R.layout.fragment_tabs, container, false);
         ButterKnife.bind(this, view);
 
@@ -111,20 +111,29 @@ public class TabsFragment extends BaseFragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 //tabLayout.getTabAt(0).setIcon(tabIcons[0]);
 
-                tabLayout.setTabTextColors(getResources().getColor(R.color.Textcolor_dark), getResources().getColor(R.color.green));
-                int i = tab.getPosition();
+              tabLayout.setTabTextColors(getResources().getColor(R.color.Textcolor_dark), getResources().getColor(R.color.green));
+               int i = tab.getPosition();
                 tab.setIcon(tabselIcons[i]);
-                viewPager.setCurrentItem(tab.getPosition());
-                if (saveToHistory)
-                    pageHistory.push(Integer.valueOf(i));
 
+                 viewPager.setCurrentItem(tab.getPosition());
+                if (saveToHistory) {
+                    pageHistory.push(Integer.valueOf(i));
+                }
+                try {
+                    if(lastPosition == 0) {
+                        Thread.sleep(700);
+                    }
+                   }catch (Exception e){
+                    Log.e("HomeTabFragment", "Sleep failed", e);
+                }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+
                 int i = tab.getPosition();
                 tab.setIcon(tabIcons[i]);
-
+                lastPosition = i;
             }
 
             @Override
@@ -154,6 +163,9 @@ public class TabsFragment extends BaseFragment {
             }
         });*/
         saveToHistory = true;
+    }catch (Throwable t){
+        Log.e("TabsFragment",t.getMessage(),t);
+    }
         return view;
     }
 
@@ -172,38 +184,45 @@ public class TabsFragment extends BaseFragment {
     }
 
     public void onBackPressed() {
-        Log.e("View Pager ", "onBackPressed");
-        if (pageHistory.empty()) {
-            // super.getActivity().onBackPressed();
-            Log.e("View Pager ", "onBackPressed --> pageHistory Empty");
-            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        try {
+            Log.e("View Pager ", "onBackPressed");
+            if (pageHistory.empty()) {
+                // super.getActivity().onBackPressed();
+                Log.e("View Pager ", "onBackPressed --> pageHistory Empty");
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which) {
-                        case DialogInterface.BUTTON_POSITIVE:
-                            //Yes button clicked
-                            getActivity().finish();
-                            break;
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                getActivity().finish();
+                                break;
 
-                        case DialogInterface.BUTTON_NEGATIVE:
-                            //No button clicked
-                            break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
                     }
-                }
-            };
+                };
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
-                    .setMessage("Are you sure to Exit now?")
-                    .setPositiveButton("Yes", dialogClickListener)
-                    .setNegativeButton("No", dialogClickListener)
-                    .setCancelable(false)
-                    .setTitle("Exit Saral Vastu");
-            builder.show();
-        } else {
-            saveToHistory = false;
-            viewPager.setCurrentItem(pageHistory.pop().intValue());
-            saveToHistory = true;
-            Log.e("View Pager ", "onBackPressed --> saveToHistory" + saveToHistory + " " + pageHistory.size());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                        .setMessage("Are you sure to Exit now?")
+                        .setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener)
+                        .setCancelable(false)
+                        .setTitle("Exit Saral Vastu");
+                builder.show();
+            } else {
+                saveToHistory = false;
+                Integer popValue = pageHistory.pop();
+                if(popValue != null) {
+                    viewPager.setCurrentItem(popValue.intValue());
+                }
+                saveToHistory = true;
+                Log.e("View Pager ", "onBackPressed --> saveToHistory" + saveToHistory + " " + pageHistory.size());
+            }
+        }catch (Throwable t){
+            Log.e("TabsFragment",t.getMessage(),t);
         }
     }
 

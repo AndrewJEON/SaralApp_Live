@@ -112,15 +112,28 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
     public static HomeTabFragment newInstance(int page) {
         HomeTabFragment fragment = new HomeTabFragment();
+        try{
+
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE_NUMBER, page);
         fragment.setArguments(args);
+
+        }catch (Throwable t){
+            Log.e("HomeTabFragment",t.getMessage(),t);
+        }
         return fragment;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        try{
+
+            super.onSaveInstanceState(outState);
+
+        }catch (Throwable t){
+            Log.e("HomeTabFragment",t.getMessage(),t);
+        }
+
 
     }
 
@@ -128,6 +141,8 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        try{
         view = inflater.inflate(R.layout.fragment_home_tab, container, false);
 
         Bundle b = getArguments();
@@ -150,6 +165,9 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
         initView();
 
+        }catch (Throwable t){
+            Log.e("HomeTabFragment",t.getMessage(),t);
+        }
 
         return view;
     }
@@ -157,21 +175,35 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        try{
         super.onActivityCreated(savedInstanceState);
+        }catch (Throwable t){
+            Log.e("HomeTabFragment",t.getMessage(),t);
+        }
+
         //  initView();
 
     }
 
     @Override
     public void onResume() {
+        try{
         super.onResume();
 
-       // initView();
+        }catch (Throwable t){
+            Log.e("HomeTabFragment",t.getMessage(),t);
+        }
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
     }
 
     public void initView() {
+        try{
         recyclerView.setHasFixedSize(true);
         //recyclerView.hasStableIds(false);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -289,12 +321,15 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
         marriage.setOnClickListener(this);
         wealth.setOnClickListener(this);
         edu.setOnClickListener(this);
+        }catch (Throwable t){
+            Log.e("HomeTabFragment",t.getMessage(),t);
+        }
 
     }
 
 
     public void getFeed(int page) {
-
+try{
 
         //start Progress bar before network call start
         if (swipeRefreshLayout.isRefreshing()) {
@@ -321,17 +356,24 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(myReq, VOLLEY_TAG);
 
+}catch (Throwable t){
+    Log.e("HomeTabFragment",t.getMessage(),t);
+}
 
     }
 
     @Override
     public void onDestroy() {
+        try{
         super.onDestroy();
 
 
         VolleySingleton.getInstance(getActivity()).getRequestQueue().cancelAll(VOLLEY_TAG);
         if (dbController != null) {
             dbController.closeDB();
+        }
+        }catch (Throwable t){
+            Log.e("HomeTabFragment",t.getMessage(),t);
         }
 
     }
@@ -429,6 +471,7 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
         @Override
         public int compare(Datum e1, Datum e2) {
+            try{
             long refTime1=new Date(e1.getApprovalDate()).getTime();
             long refTime2=new Date(e2.getApprovalDate()).getTime();
 
@@ -437,6 +480,10 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
             } else {
                 return -1;
             }
+            }catch (Throwable t){
+                Log.e("DateSortComp",t.getMessage(),t);
+            }
+        return -1;
         }
     }
 
@@ -453,6 +500,7 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                try{
                 super.onScrolled(recyclerView, dx, dy);
 
                 visibleItemCount = recyclerView.getChildCount();
@@ -478,6 +526,9 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
                     loading = true;
                 }
+                }catch (Throwable t){
+                    Log.e("DateSortComp",t.getMessage(),t);
+                }
             }
         });
     }
@@ -485,6 +536,7 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        try{
         tempList = feedList;
         adapter.resetData();
         adapter.notifyDataSetChanged();
@@ -531,12 +583,14 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
         }
 
-
+        }catch (Throwable t){
+            Log.e("DateSortComp",t.getMessage(),t);
+        }
     }
 
 
     public void showProgressDialog(Activity ctx, String msg) {
-
+try{
 
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(ctx);
@@ -545,10 +599,17 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
         progressDialog.getLayoutInflater();
         progressDialog.setMessage(msg);
         progressDialog.show();
+}catch (Throwable t){
+    Log.e("DateSortComp",t.getMessage(),t);
+}
     }
 
     public void dismissDialog() {
+        try{
         progressDialog.dismiss();
+        }catch (Throwable t){
+            Log.e("DateSortComp",t.getMessage(),t);
+        }
     }
 
     ProgressDialog progressDialog;
