@@ -122,7 +122,7 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
         sliderView.getInAnimation().setAnimationListener(mAnimationListener);
 
 
-        for(int i = 1; i <= 4; i++){
+        for(int i = 1; i <= 5; i++){
             final ImageView imageView = new ImageView(ctx);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             Log.i("SplashScreen:", Utils.getSliderImagePath(i));
