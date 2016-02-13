@@ -129,6 +129,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         Log.e("iv_edit", " iv_edit w4");
         if (null != userdata) {
             bean = userdata.get(0);
+
         } else {
             Log.e("Edit Profile ", "bean null");
         }
@@ -400,7 +401,22 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         strIntrest = intrest.getSelectedItemsAsString();
 
         langAdapter = new UserProfileAdapter(EditProfile.this, 1, langMap);
+
         language.setAdapter(langAdapter);
+        if(userdata != null && userdata.get(0) != null && userdata.get(0).getLanguage() != null) {
+            ;
+            Integer langId = 0;
+            try {
+                langId = Integer.parseInt(userdata.get(0).getLanguage());
+                String strLang = langAdapter.getList().get(langId);
+                langPos = langAdapter.getListData().indexOf(strLang);
+
+            }catch (Exception e){
+
+            }
+
+
+        }
         language.setSelection(langPos + 1);
         Log.e("Adapter Size ", " Adapter pos " + langAdapter.getCount());
         language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

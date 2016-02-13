@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.CursorLoader;
 import android.util.Log;
@@ -153,14 +152,19 @@ public class FloorPUpload extends Fragment {
             //finish();
         }
 
-       // setRetainInstance(true);
-        videoView =(WebView) view.findViewById(R.id.vid_postvideo);
-        videoView.loadUrl(Utils.getFloorPlanVideoUrl());
-        videoView.getSettings().setJavaScriptEnabled(true);
-        videoView.setVisibility(View.VISIBLE);
-        videoView.getSettings().setPluginState(WebSettings.PluginState.ON);; //sets MediaController in the video view
+        try {
+            // setRetainInstance(true);
+            videoView = (WebView) view.findViewById(R.id.vid_postvideo);
+            videoView.loadUrl(Utils.getFloorPlanVideoUrl());
+            videoView.getSettings().setJavaScriptEnabled(true);
+            videoView.setVisibility(View.VISIBLE);
+            videoView.getSettings().setPluginState(WebSettings.PluginState.ON);
+            ; //sets MediaController in the video view
 
-        videoView.requestFocus();//give focus to a specific view
+            videoView.requestFocus();//give focus to a specific view
+        }catch (Exception e){
+
+        }
 
         return view;
     }
@@ -271,6 +275,7 @@ public class FloorPUpload extends Fragment {
     public void onStart() {
         super.onStart();
         ActivityResultBus.getInstance().register(mActivityResultSubscriber);
+
     }
 
     @Override

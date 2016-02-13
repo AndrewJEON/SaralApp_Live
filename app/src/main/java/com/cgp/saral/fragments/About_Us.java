@@ -1,7 +1,6 @@
 package com.cgp.saral.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ public class About_Us extends Fragment{
     @Bind(R.id.tvAbout)
     TextView tvAbout;
     String str;
-
+    WebView videoView;
     private static final String ARG_PAGE_NUMBER = "page_number";
 
     public About_Us() {
@@ -52,7 +51,7 @@ public class About_Us extends Fragment{
 
         /*tvAbout.setText(Html.fromHtml(s));
         tvAbout.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);*/
-        WebView videoView;
+
         videoView =(WebView) view.findViewById(R.id.vid_postvideo);
         videoView.loadUrl(Utils.getAboutVideoUrl());
         videoView.getSettings().setJavaScriptEnabled(true);

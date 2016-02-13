@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -147,6 +146,7 @@ public class BookNowTabFragment extends BaseFragment implements View.OnClickList
         userData = dbController.getAllData();
         if (userData != null && !userData.isEmpty()) {
             name.getEditText().setText(userData.get(0).getUserFName());
+            preferredMobile.getEditText().setText(userData.get(0).getContact1());
         }
             return view;
     }
@@ -210,13 +210,19 @@ public class BookNowTabFragment extends BaseFragment implements View.OnClickList
         @Override
         public void onTimeSet(TimePicker timePicker, int i, int i1) {
             int mHour = i;
-            String AM_PM ;
+            String AM_PM ="";
             if(i < 12) {
                 AM_PM = "AM";
 
-            } else {
+            } else if(i > 12) {
                 AM_PM = "PM";
                 mHour=mHour-12;
+            }
+            if(i==12){
+                AM_PM = "PM";
+            }else if(i==0){
+                AM_PM = "AM";
+                mHour = 12;
             }
             String strD = mHour+":"+i1 + " "+ AM_PM;
             preferredTime.getEditText().setText(strD);
@@ -248,6 +254,13 @@ public class BookNowTabFragment extends BaseFragment implements View.OnClickList
             Toast.makeText(getActivity(), "Please enter your pincode", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation strName" + strName);
             return;
+        }else if (!strPincode.isEmpty()) {
+            if(strPincode.length()!= 6) {
+                Toast.makeText(getActivity(), "Please enter your 6 digits pincode ", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            //Log.e("NewBean", "Validation strName" + strName);
+
         }else if (strPreferredDate.isEmpty()) {
             Toast.makeText(getActivity(), "Please enter your preferred date", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation strName" + strName);
@@ -262,7 +275,7 @@ public class BookNowTabFragment extends BaseFragment implements View.OnClickList
 
                 DateFormat format = new SimpleDateFormat("mm/dd/yyyy hh:mm a", Locale.ENGLISH);
                 Date date = format.parse(dateTime);
-                if(date.getTime() < System.currentTimeMillis()){
+                if(date.getTime() < System.currentTimeMillis()/1000){
                     Toast.makeText(getActivity(), "Please enter future time", Toast.LENGTH_SHORT).show();
                     return;
                 }

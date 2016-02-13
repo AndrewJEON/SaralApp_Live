@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public class UserProfileAdapter extends ArrayAdapter<String> {
    HashMap<Integer ,String>  list;
-   ArrayList<String> listData;
+   private ArrayList<String> listData;
        Context context;
 
     public UserProfileAdapter(Context ctx, int resource, HashMap<Integer ,String>  textViewResourceId) {
@@ -29,6 +29,10 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
         this.context=ctx;
         listData=new ArrayList<>(list.values());
 
+    }
+
+    public Map<Integer, String> getList(){
+        return this.list;
     }
 
 
@@ -45,13 +49,13 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
 
     @Override
     public int getCount() {
-        if(listData.size()<0)
+        if(getListData().size()<0)
         {
            return 0;
         }else
         {
 
-            return listData.size();
+            return getListData().size();
         }
 
     }
@@ -64,7 +68,7 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
         //map=list.get(position);
 
 
-            main_text.setText(listData.get(position).toString());
+            main_text.setText(getListData().get(position).toString());
 
 
             return mySpinner;
@@ -83,6 +87,10 @@ public class UserProfileAdapter extends ArrayAdapter<String> {
 
         }
         return s;
+    }
+
+    public ArrayList<String> getListData() {
+        return listData;
     }
 }
 

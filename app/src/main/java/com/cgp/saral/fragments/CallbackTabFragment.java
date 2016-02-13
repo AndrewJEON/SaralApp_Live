@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -60,7 +59,7 @@ import butterknife.ButterKnife;
  */
 public class CallbackTabFragment extends BaseFragment implements View.OnClickListener {
     View view;
-    TextInputLayout preferredDate, preferredTime, name, preferredMobile;
+    TextInputLayout preferredDate, preferredTime, name, preferredMobile, reason;
     CheckBox termondition;
     TextView term;
     private static final String ARG_PAGE_NUMBER = "page_number";
@@ -94,15 +93,17 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
         preferredTime = (TextInputLayout) view.findViewById(R.id.tv_time);
         preferredMobile = (TextInputLayout) view.findViewById(R.id.tv_regsecMobileE);
         name = (TextInputLayout)view.findViewById(R.id.tv_usernameE);
+        reason = (TextInputLayout)view.findViewById(R.id.tv_reason);
         term = (TextView) view.findViewById(R.id.term);
         submit = (AppCompatButton) view.findViewById(R.id.btn_submit);
         serviceIdMessage = (TextView)view.findViewById(R.id.serviceIdMessage);
         termondition = (CheckBox) view.findViewById(R.id.tv_termcondition);
+
         submit.setOnClickListener(this);
         preferredDate.getEditText().addTextChangedListener(new CustomTextWatcher(preferredDate, submit, getActivity()));
         preferredTime.getEditText().addTextChangedListener(new CustomTextWatcher(preferredTime, submit, getActivity()));
         preferredMobile.getEditText().addTextChangedListener(new CustomTextWatcher(preferredMobile, submit, getActivity()));
-
+        reason.getEditText().addTextChangedListener(new CustomTextWatcher(reason, submit, getActivity()));
         preferredDate.getEditText().setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -138,6 +139,7 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
         userData = dbController.getAllData();
         if (userData != null && !userData.isEmpty()) {
             name.getEditText().setText(userData.get(0).getUserFName());
+            preferredMobile.getEditText().setText(userData.get(0).getContact1());
         }
             return view;
     }
@@ -201,13 +203,19 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
         @Override
         public void onTimeSet(TimePicker timePicker, int i, int i1) {
             int mHour = i;
-            String AM_PM ;
+            String AM_PM ="";
             if(i < 12) {
                 AM_PM = "AM";
 
-            } else {
+            } else if(i > 12) {
                 AM_PM = "PM";
                 mHour=mHour-12;
+            }
+            if(i==12){
+                AM_PM = "PM";
+            }else if(i==0){
+                AM_PM = "AM";
+                mHour = 12;
             }
             String strD = mHour+":"+i1 + " "+ AM_PM;
             preferredTime.getEditText().setText(strD);
@@ -230,8 +238,13 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
         String strMobile = preferredMobile.getEditText().getText().toString();
         String strPreferredDate = preferredDate.getEditText().getText().toString();
         String strPreferredTime = preferredTime.getEditText().getText().toString();
+        String strReason = reason.getEditText().getText().toString();
         if (strMobile.isEmpty()) {
             Toast.makeText(getActivity(), "Please enter your preferred mobile number", Toast.LENGTH_SHORT).show();
+            //Log.e("NewBean", "Validation strName" + strName);
+            return;
+        }else if (strReason.isEmpty()) {
+            Toast.makeText(getActivity(), "Please enter your reason", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation strName" + strName);
             return;
         }else if (strPreferredDate.isEmpty()) {
@@ -248,7 +261,7 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
 
                 DateFormat format = new SimpleDateFormat("mm/dd/yyyy hh:mm a", Locale.ENGLISH);
                 Date date = format.parse(dateTime);
-                if(date.getTime() < System.currentTimeMillis()){
+                if(date.getTime() < System.currentTimeMillis()/1000){
                     Toast.makeText(getActivity(), "Please enter future time", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -304,7 +317,7 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
             dataFromBean.addProperty("preferredTime",strPreferredTime);
             serviceId = "CB"+System.currentTimeMillis();
             dataFromBean.addProperty("serviceId",serviceId);
-
+            dataFromBean.addProperty("reason",strReason);
 
             GsonRequestPost<JsonObject> myReq = new GsonRequestPost<>(
                     Request.Method.POST, Constants.BOOKNOW_URL +"?apikey="+Constants.LUCKY_CHAT_APIKEY, JsonObject.class, null,

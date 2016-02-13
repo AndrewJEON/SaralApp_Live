@@ -9,7 +9,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -194,6 +193,8 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     private Sensor mGyroSensor;
     boolean favDirectionState = false;
 
+    MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayerHindi;
     public CompassFragment() {
         // Required empty public constructor
     }
@@ -210,7 +211,7 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+try{
         view = inflater.inflate(R.layout.fragment_campass, container, false);
         ButterKnife.bind(this, view);
         DirectionTextview.add(wealthdir);
@@ -386,10 +387,11 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
         edu.setOnClickListener(this);
 
 
+        //preparePlayers();
 
-        final MediaPlayer mediaPlayer = new MediaPlayer();
+        mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        final MediaPlayer mediaPlayerHindi = new MediaPlayer();
+        mediaPlayerHindi = new MediaPlayer();
         mediaPlayerHindi.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         try {
@@ -416,18 +418,20 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                 if(on)
                 {
                     try {
-                        if(mediaPlayerHindi.isPlaying()) {
+                        if(mediaPlayerHindi != null && mediaPlayerHindi.isPlaying()) {
                             mediaPlayerHindi.pause();
                             audioHindiHelp.setChecked(false);
                         }
-                        mediaPlayer.start();
+                        if(mediaPlayer != null) {
+                            mediaPlayer.start();
+                        }
                     }catch (Exception e){
                         Log.e("Audio play",e.getMessage());
                     }
                 }
                 else
                 {
-                 if(mediaPlayer.isPlaying()) {
+                 if(mediaPlayer!= null && mediaPlayer.isPlaying()) {
                      mediaPlayer.pause();
                  }
 
@@ -443,18 +447,20 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
                 if(on)
                 {
                     try {
-                        if(mediaPlayer.isPlaying()) {
+                        if(mediaPlayer != null && mediaPlayer.isPlaying()) {
                             mediaPlayer.pause();
                             audioHelp.setChecked(false);
                         }
-                        mediaPlayerHindi.start();
+                        if(mediaPlayerHindi != null) {
+                            mediaPlayerHindi.start();
+                        }
                     }catch (Exception e){
                         Log.e("Audio play",e.getMessage());
                     }
                 }
                 else
                 {
-                    if(mediaPlayerHindi.isPlaying()) {
+                    if(mediaPlayerHindi!= null && mediaPlayerHindi.isPlaying()) {
                         mediaPlayerHindi.pause();
                     }
 
@@ -462,15 +468,19 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
             }
         });
         loadLuckyChart();
+}catch (Throwable t){
+    Log.e("CompassView",t.getMessage(),t);
+}
         return view;
     }
+
 
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //initilization(view);
-
+        //preparePlayers();
 
     }
 
@@ -478,6 +488,7 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
 
     private void setfabFixDirection()
     {
+        try{
         //String strF = luckyChart;
         if (luckyChart != null && !luckyChart.equals("null")) {
             String[] str = Utils.chartAnalysis(luckyChart);
@@ -514,12 +525,15 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
 
             }
         }
-
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     @Override
     public void setUserVisibleHint(boolean visible) {
         super.setUserVisibleHint(visible);
+        try{
         if (visible && isResumed()) {   // only at fragment screen is resumed
             fragmentResume = true;
             fragmentVisible = false;
@@ -540,10 +554,13 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
             //fabInit(view);
             //collapseFab();
         }
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     private void favUnfav_Direction() {
-
+try{
         //String strF = Constants.GLOBAL_U_LUCK_CHART;
         Log.e("initCompass", luckyChart);
         if (luckyChart != null && !luckyChart.equals("null")) {
@@ -702,9 +719,13 @@ int j=0;
 
 
         }
+}catch (Throwable t){
+    Log.e("CompassView",t.getMessage(),t);
+}
     }
 
     public void fabFilter(String tag) {
+        try{
         FavDir_parent.setVisibility(View.VISIBLE);
         UnfavDir_parent.setVisibility(View.GONE);
         favDir_lay.invalidate();
@@ -760,12 +781,14 @@ int j=0;
 
 
         }
-
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
 
     public void initilization(final View view) {
-
+try{
         usr_name = (TextView) view.findViewById(R.id.tv_usrname);
         favor = (SwitchCompat) view.findViewById(R.id.switch_fav);
         unfavor = (SwitchCompat) view.findViewById(R.id.switch_unfav);
@@ -818,12 +841,15 @@ int j=0;
             }
         }
         }
-
+}catch (Throwable t){
+    Log.e("CompassView",t.getMessage(),t);
+}
     }
 
     public boolean isNameValid() {
-        boolean status = false;
 
+        boolean status = false;
+try{
 
         if (!Constants.GLOBAL_USER_NAME.equals("Guest")) {
             usr_name.setText("Welcome, " + Constants.GLOBAL_USER_NAME);
@@ -833,7 +859,9 @@ int j=0;
             usr_name.setText("Guest");
             status = false;
         }
-
+}catch (Throwable t){
+    Log.e("CompassView",t.getMessage(),t);
+}
         return status;
     }
 
@@ -842,34 +870,65 @@ int j=0;
     public void onStart() {
         super.onStart();
         Log.d(TAG, "start compass");
+        try{
         compass.start();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
         Log.d(TAG, "onStop compass");
+        try{
         compass.stop();
+            stopPlayers();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         Log.d(TAG, "onPause compass");
+        try{
         compass.stop();
+            //stopPlayers();
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
+    void stopPlayers(){
+        try{
+            if(mediaPlayerHindi != null){
+                mediaPlayerHindi.pause();
+            }
+            if(mediaPlayer != null){
+                mediaPlayer.pause();
+            }
+        }catch(Exception e){
+
+        }
+    }
     @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume compass");
+        try{
         compass.start();
         //initilization(view);
         //fabInit(view);
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        try{
         int id = buttonView.getId();
         if (id == R.id.switch_fav && isChecked) {
 
@@ -903,12 +962,14 @@ int j=0;
 
         }
 
-
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     @Override
     public void onClick(View v) {
-
+try{
         if (v == health) {
 
             menu1.close(true);
@@ -955,12 +1016,15 @@ int j=0;
 
 
         }
-
+}catch (Throwable t){
+    Log.e("CompassView",t.getMessage(),t);
+}
 
     }
 
 
     private void loadLuckyChart(){
+        try{
         String luckyChat =  SharedPreferenceManager.getSharedInstance().getStringFromPreferances("LUCKY_CHAT");
         if(luckyChat == null || luckyChat.isEmpty()){
 
@@ -992,6 +1056,9 @@ int j=0;
             this.luckyChart = luckyChat;
             initilization(view);
         }
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }
     }
 
     private Response.Listener<LuckyChartResponse>  successListener(){
@@ -999,6 +1066,7 @@ int j=0;
             @Override
             public void onResponse(LuckyChartResponse response) {
                 Log.e(TAG, "Lucky Response");
+                try{
                String luckyNumber =  response.getLuckyNumber();
                 luckyChart =  response.getLuckyChart();
                 SharedPreferenceManager.getSharedInstance().setStringInPreferences("LUCKY_CHAT",luckyChart);
@@ -1011,7 +1079,9 @@ int j=0;
 
                     }
                 });
-
+            }catch (Throwable t){
+                Log.e("CompassView",t.getMessage(),t);
+            }
             }
 
 
