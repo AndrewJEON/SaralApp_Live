@@ -37,6 +37,7 @@ import com.cgp.saral.model.LocationItems;
 import com.cgp.saral.model.UserData;
 import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.Constants;
+import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
@@ -490,8 +491,9 @@ Log.e("FB"," fb dat"+response.getIsRegisteredBySocialResult());
                            // Log.e("User id", "" + Constants.GLOBAL_USER_ID);
 
 
-                            if (d.getLuckyChart() != null && !d.getLuckyChart().equalsIgnoreCase("null")) {
+                            if (d.getLuckyChart() != null && !d.getLuckyChart().equalsIgnoreCase("null") && !d.getLuckyChart().isEmpty()) {
                                 Constants.GLOBAL_U_LUCK_CHART = d.getLuckyChart();
+                                SharedPreferenceManager.getSharedInstance().setStringInPreferences("LUCKY_CHAT",d.getLuckyChart());
                             }
                             //Log.e("User chart data1", "" + d.getLuckyChart());
                             //Log.e("User chart data2", "" + Constants.GLOBAL_U_LUCK_CHART);

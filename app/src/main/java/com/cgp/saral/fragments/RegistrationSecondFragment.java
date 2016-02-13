@@ -49,6 +49,7 @@ import com.cgp.saral.model.LocationItems;
 import com.cgp.saral.model.UserData;
 import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.Constants;
+import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
@@ -767,9 +768,10 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
                     bean.setAddress(d.getAddress());
                     bean.setDistrictName(d.getDistrictId());
                     bean.setLucky_No("" + d.getLuckyNumber());
-                    if(!"".equalsIgnoreCase(d.getLuckyChart())&&null !=d.getLuckyChart()) {
+                    if (d.getLuckyChart() != null && !d.getLuckyChart().equalsIgnoreCase("null") && !d.getLuckyChart().isEmpty()) {
                         bean.setLucky_Chart("" + d.getLuckyChart());
                         Constants.GLOBAL_U_LUCK_CHART = ""+d.getLuckyChart();
+                        SharedPreferenceManager.getSharedInstance().setStringInPreferences("LUCKY_CHAT",d.getLuckyChart());
                     }else
                     {
                         bean.setLucky_Chart("");

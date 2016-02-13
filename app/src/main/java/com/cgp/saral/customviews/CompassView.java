@@ -95,9 +95,10 @@ try{
         Log.e("initCompass", strF);
         if (strF!= null && !strF.isEmpty() && !strF.equals("null")) {
             String[] str = Utils.chartAnalysis(strF);
-            fab = str[0].trim();
-            unFab = str[1].trim();
-
+            if(str!= null && str.length>1) {
+                fab = str[0].trim();
+                unFab = str[1].trim();
+            }
 
             char crW = fab.charAt(0);
             char crC = fab.charAt(0);

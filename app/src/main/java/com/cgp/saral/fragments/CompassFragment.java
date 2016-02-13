@@ -50,7 +50,7 @@ import butterknife.ButterKnife;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link android.support.v4.app.Fragment} subclass.
  */
 public class CompassFragment extends BaseFragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     View view;

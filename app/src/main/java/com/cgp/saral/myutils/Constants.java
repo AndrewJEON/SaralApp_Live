@@ -57,7 +57,7 @@ public class Constants {
     public static String GLOBAL_USER_NAME = "name";
     public static String GLOBAL_USER_ID = "''";
     public static String GLOBAL_U_LUCK_NO = "";
-    public static String GLOBAL_U_LUCK_CHART = "1234-5678-RWBGX-DPOYX-SKNXX";
+    public static String GLOBAL_U_LUCK_CHART = "";
    //  public static String GLOBAL_U_LUCK_CHART ="";
    // public static String GLOBAL_USER_FIRST_NAME = "";
 
