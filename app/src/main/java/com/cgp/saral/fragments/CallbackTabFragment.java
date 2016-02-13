@@ -46,6 +46,7 @@ import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
 import com.google.gson.JsonObject;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -107,9 +108,11 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(getActivity(), date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                //Set yesterday time milliseconds as date pickers minimum date
+                Calendar calendar = Calendar.getInstance();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
         preferredTime.getEditText().setOnClickListener(new View.OnClickListener() {
@@ -239,6 +242,19 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
             Toast.makeText(getActivity(), "Please enter your preferred time", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation strName" + strName);
             return;
+        }else if(!strPreferredDate.isEmpty() && !strPreferredTime.isEmpty()){
+            String dateTime = strPreferredDate+ " " + strPreferredTime;
+            try {
+
+                DateFormat format = new SimpleDateFormat("mm/dd/yyyy hh:mm a", Locale.ENGLISH);
+                Date date = format.parse(dateTime);
+                if(date.getTime() < System.currentTimeMillis()){
+                    Toast.makeText(getActivity(), "Please enter future time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }catch (Exception e){
+
+            }
         }
 
         if (!Utils.isConnectedToInternet(getActivity())) {
