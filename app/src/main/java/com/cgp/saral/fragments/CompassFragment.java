@@ -214,15 +214,22 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
 try{
         view = inflater.inflate(R.layout.fragment_campass, container, false);
         ButterKnife.bind(this, view);
-        DirectionTextview.add(wealthdir);
-        DirectionTextview.add(healthdir);
-        DirectionTextview.add(marriagedir);
-        DirectionTextview.add(edudir);
-        DirectionTextview.add(jobdir);
+
 
         ctx = getActivity();
         try {
 
+            arrColors = new ArrayList<>();
+            arrUColors = new ArrayList<>();
+            arrNColors = new ArrayList<>();
+
+             DirectionTextview = new ArrayList<>();
+            directionList = new ArrayList<>();
+            DirectionTextview.add(wealthdir);
+            DirectionTextview.add(healthdir);
+            DirectionTextview.add(marriagedir);
+            DirectionTextview.add(edudir);
+            DirectionTextview.add(jobdir);
 
             arrColors.add(color1);
             arrColors.add(color2);
@@ -242,9 +249,12 @@ try{
             arrNColors.add(ncolor3);
             arrNColors.add(ncolor4);
             arrNColors.add(ncolor5);
+
             Constants.initColorMap();
             Constants.initDirectionMap();
+
             loadLuckyChart();
+
             mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
             mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             mMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -606,7 +616,7 @@ try{
                 textView1.setLayoutParams(params1);
 
 
-   int j=0;
+                int j=0;
                 if (String.valueOf(fab.charAt(i)).equals("1")) {
                     textView.setText("N");
                     j=i+1;
@@ -822,6 +832,7 @@ try{
             if (String.valueOf(strFavColor.charAt(i)).equals("X")) {
                 arrColors.get(i).setVisibility(View.INVISIBLE);
             } else {
+                arrColors.get(i).setVisibility(View.VISIBLE);
                 arrColors.get(i).setText(Constants.containKeyColor(String.valueOf(strFavColor.charAt(i)), Constants.colorMap));
                 arrColors.get(i).setBackgroundColor(getResources().getColor(R.color.green));
             }
@@ -831,6 +842,7 @@ try{
             if (String.valueOf(strUnFavColor.charAt(i)).equals("X")) {
                 arrUColors.get(i).setVisibility(View.INVISIBLE);
             } else {
+                arrUColors.get(i).setVisibility(View.VISIBLE);
                 arrUColors.get(i).setText(Constants.containKeyColor(String.valueOf(strUnFavColor.charAt(i)), Constants.colorMap));
                 arrUColors.get(i).setBackgroundColor(getResources().getColor(R.color.red));
             }
@@ -840,6 +852,7 @@ try{
             if (String.valueOf(strNeutralColor.charAt(i)).equals("X")) {
                 arrNColors.get(i).setVisibility(View.INVISIBLE);
             } else {
+                arrNColors.get(i).setVisibility(View.VISIBLE);
                 arrNColors.get(i).setText(Constants.containKeyColor(String.valueOf(strNeutralColor.charAt(i)), Constants.colorMap));
                 arrNColors.get(i).setBackgroundColor(getResources().getColor(R.color.brown));
             }
@@ -1073,16 +1086,22 @@ try{
                 try{
                String luckyNumber =  response.getLuckyNumber();
                 luckyChart =  response.getLuckyChart();
-                SharedPreferenceManager.getSharedInstance().setStringInPreferences("LUCKY_CHAT",luckyChart);
-                Constants.GLOBAL_U_LUCK_CHART = luckyChart;
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                if(luckyNumber==null || luckyNumber.isEmpty() || luckyChart == null || luckyChart.isEmpty()) {
+                    return;
+                }
+                String luckyChat =  SharedPreferenceManager.getSharedInstance().getStringFromPreferances("LUCKY_CHAT");
+                    if(luckyChat==null || luckyChat.isEmpty()) {
+                        SharedPreferenceManager.getSharedInstance().setStringInPreferences("LUCKY_CHAT", luckyChart);
+                        Constants.GLOBAL_U_LUCK_CHART = luckyChart;
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
-                        initilization(view);
+                                initilization(view);
 
+                            }
+                        });
                     }
-                });
             }catch (Throwable t){
                 Log.e("CompassView",t.getMessage(),t);
             }

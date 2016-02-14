@@ -158,9 +158,13 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_SUBJECT,d.getSummary());
-                sendIntent.putExtra(Intent.EXTRA_TEXT, d.getDescription() +" -> for more details follow us at https://saralvaastu.com ");
+                String url = d.getUrl();
+                if(url == null || url.isEmpty()){
+                    url = Constants.SARALVAASTU_WEB_URL;
+                }
+                sendIntent.putExtra(Intent.EXTRA_TEXT, d.getDescription() +" -> for more details follow us at "+ url);
                 sendIntent.setType("text/plain");
-                v.getContext().startActivity(Intent.createChooser(sendIntent, "Share via"));
+                v.getContext().startActivity(Intent.createChooser(sendIntent, "Share post via"));
 
             }
         });

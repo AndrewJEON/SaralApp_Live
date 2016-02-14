@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.cgp.saral.R;
+import com.cgp.saral.myutils.Constants;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,7 +36,7 @@ public class InviteTabFragment extends BaseFragment {
     @Bind(R.id.progress_bar)
     ProgressBar progressBar;
 
-    String strMessage = "It's wonderful to use Vaastu for better life ! Please use Saral Vaastu App !!!";
+    String strMessage = "It's wonderful to use Vaastu for better life ! Please use Saral Vaastu App located at "+ Constants.APP_PLAY_STORE_URL;
 
     private static final String ARG_PAGE_NUMBER = "page_number";
 

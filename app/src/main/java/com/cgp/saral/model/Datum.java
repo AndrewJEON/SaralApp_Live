@@ -27,6 +27,8 @@ public class Datum implements Serializable{
     private String YouDisliked;
     private String YouLiked;
 
+    private String Url;
+
     public String getYouDisliked() {
         return YouDisliked;
     }
@@ -325,4 +327,11 @@ public class Datum implements Serializable{
         this.additionalProperties.put(name, value);
     }
 
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String url) {
+        Url = url;
+    }
 }

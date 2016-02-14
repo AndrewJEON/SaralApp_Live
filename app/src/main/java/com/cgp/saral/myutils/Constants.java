@@ -173,7 +173,8 @@ public class Constants {
     public static String SLIDER_IMG_PATH = "http://appapi.saralvaastu.com/sliderimages/";
     public static String LUCKY_CHAT_URL = "http://luckychartapi.cgparivar.com/api.php";
     public static String BOOKNOW_URL = "http://api.cgparivar.com/service_request.php";
-
+    public static String SARALVAASTU_WEB_URL = "https://saralvaastu.com/";
+    public static String APP_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.cgp.saral";
     public static String LUCKY_CHAT_APIKEY = "saralvaastu";
     public static JsonObject getDeviceInfo() {
         JsonObject data = new JsonObject();
