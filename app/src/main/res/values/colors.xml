@@ -23,7 +23,7 @@
 
 <!--Text color code-->
     <color name="text_white">#FFF</color>
-    <color name="edittext">#505050</color>
+    <color name="edittext">#FFFFFF</color>
     <color name="Textcolor_dark">#353535</color>
     <color name="Textcolor_lightblue">#296EC2</color>
     <color name="Textcolor_light">#939393</color>

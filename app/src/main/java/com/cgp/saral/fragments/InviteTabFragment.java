@@ -64,12 +64,16 @@ public class InviteTabFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
+                try{
                 final ComponentName name = new ComponentName("com.whatsapp", "com.whatsapp.ContactPicker");
                 Intent oShareIntent = new Intent();
                 oShareIntent.setComponent(name);
                 oShareIntent.setType("text/plain");
                 oShareIntent.putExtra(android.content.Intent.EXTRA_TEXT, strMessage);
                 startActivityForResult(oShareIntent, 5000);
+                }catch (Exception e) {
+                    Toast.makeText(getActivity(), "WhatsApp not Installed", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -9,12 +9,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
+    android:paddingLeft="15dp"
     android:paddingBottom="20dp"
     android:layout_above="@+id/child_inner13"
     android:layout_marginTop="20dp"
-    android:weightSum="1"
-    android:gravity="bottom">
+    android:weightSum="1">
     <ListView
         android:id="@+id/contactList"
         android:layout_width="match_parent"
@@ -33,29 +32,29 @@
         android:id="@+id/child_inner13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true">
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/iv13"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_email_blue" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_email_blue"/>
 
         <TextView
             android:id="@+id/tvCorpEmail"
-            android:layout_width="180dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/iv13"
             android:text="@string/app_email"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColorLink="#000"
+            android:textSize="19sp"
+            android:textColorLink="@color/white"
             android:textStyle="bold"
-            android:autoLink="all"/>
+            android:autoLink="all"
+            android:textColor="@color/white"/>
 
 
     </RelativeLayout>

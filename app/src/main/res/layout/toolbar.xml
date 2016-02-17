@@ -42,7 +42,8 @@
         android:layout_toStartOf="@+id/settingLayout"
         android:background="@color/transparent"
         android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"/>
 
         <RelativeLayout
             android:id="@+id/settingLayout"

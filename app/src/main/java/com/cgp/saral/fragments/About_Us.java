@@ -65,5 +65,30 @@ public class About_Us extends Fragment{
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+
+        if(videoView != null){
+            videoView.destroy();
+            videoView = null;
+        }
+        super.onDestroy();
+    }
+    @Override
+    public void onPause() {
+        if(videoView != null){
+            videoView.onPause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        if(videoView != null){
+            videoView.onResume();
+        }
+        super.onResume();
+    }
+
 
 }

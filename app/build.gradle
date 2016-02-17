@@ -16,10 +16,10 @@ android {
         applicationId "com.cgp.saral"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 19
-        versionName "1.0.19"
+        versionCode 21
+        versionName "1.0.21"
         renderscriptSupportModeEnabled true
-        multiDexEnabled true
+        multiDexEnabled false
 
 
     }
@@ -32,8 +32,8 @@ android {
         }
     }
     dexOptions {
-        incremental = true;
-        preDexLibraries = false
+        incremental true
+        preDexLibraries false
         javaMaxHeapSize "4g"
         dexInProcess false
     }
@@ -60,9 +60,12 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22+'
     compile 'com.android.support:cardview-v7:22+'
     compile 'com.facebook.android:facebook-android-sdk:4.3.0'
-    compile 'com.google.android.gms:play-services:7.8.+'
+    compile 'com.google.android.gms:play-services-location:7.8.0'
+    compile 'com.google.android.gms:play-services-analytics:7.8.0'
     compile 'com.google.android.gms:play-services-base:7.8.0'
     compile 'com.google.android.gms:play-services-appinvite:7.8.0'
+    compile 'com.google.android.gms:play-services-plus:7.8.0'
+
     //Alternate way to is to add the project source code as a library module, which is cumbersome
     compile 'com.mcxiaoke.volley:library:1.0.18'
     // compile 'com.squareup.okhttp:okhttp:2.2.0'
@@ -75,7 +78,7 @@ dependencies {
     //Gson for JSON to model mapping
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.facebook.stetho:stetho:1.2.0'
-    compile 'com.android.support:multidex:'
+    compile 'com.android.support:multidex:1.0.0'
     // compile 'com.squareup.okio:okio:1.6.0'
     compile 'com.github.curioustechizen.android-ago:library:1.3.0'
     // Leak Carnarry Commented
@@ -85,19 +88,9 @@ dependencies {
         exclude module: 'material-dialogs'
     }
     //compile 'com.android.support:support-v4:22.2.1'
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:design:22.2.1'
-    compile 'com.android.support:support-v4:22.2.1'
+    compile 'com.android.support:appcompat-v7:22+'
+    compile 'com.android.support:design:22+'
+    compile 'com.android.support:support-v4:22+'
 
-    // Quickblox chat
-    compile "com.quickblox:quickblox-android-sdk-core:2.5@aar"
-    compile("com.quickblox:quickblox-android-sdk-chat:2.5@aar") {
-        transitive=true
-    }
-    compile "com.quickblox:quickblox-android-sdk-messages:2.5@aar"
 
-    compile 'com.navercorp.pulltorefresh:library:3.2.3@aar'
-    compile('vc908.stickers:stickerfactory:0.2.2@aar') {
-        transitive = true;
-    }
 }

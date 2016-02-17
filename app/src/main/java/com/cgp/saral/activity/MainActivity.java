@@ -40,6 +40,7 @@ import com.cgp.saral.fragments.FloorPUpload;
 import com.cgp.saral.fragments.HomeTabFragment;
 import com.cgp.saral.fragments.MessageNotiFragment;
 import com.cgp.saral.fragments.TabsFragment;
+import com.cgp.saral.fragments.YouFragment;
 import com.cgp.saral.interfc.StackedFragment;
 import com.cgp.saral.model.DrawerItem;
 import com.cgp.saral.model.Userdata_Bean;
@@ -377,9 +378,9 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
 
         if (position == 1) {
             Log.e("selectItemFromDrawer", " ---->" + position);
-            Fragment fragment = new MessageNotiFragment();
+            Fragment fragment = new YouFragment();
             startTransaction(fragment, "message");
-            tv_title.setText("Saral Message");
+            tv_title.setText("Chat");
 
 
         }
@@ -442,7 +443,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             dataArray_right.clear();
             // add menu item
             dataArray_right.add(new DrawerItem("HOME", R.drawable.ic_home));
-            dataArray_right.add(new DrawerItem("SARAL MESSAGE", R.drawable.ic_news_letter_white));
+            dataArray_right.add(new DrawerItem("CHAT", R.drawable.ic_chat));
             dataArray_right.add(new DrawerItem("FLOOR PLAN", R.drawable.ic_upload_white));
             dataArray_right.add(new DrawerItem("RATE APP", R.drawable.ic_apprate));
             dataArray_right.add(new DrawerItem("CONTACT US", R.drawable.ic_contact_us));

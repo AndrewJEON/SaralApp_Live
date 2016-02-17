@@ -570,7 +570,7 @@ try{
 
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
-            category.setText("Career");
+            category.setText("Job/Business");
             adapter.getFilter().filter("" + 600002);
             adapter.notifyDataSetChanged();
 

@@ -38,26 +38,28 @@ public class TabsFragment extends BaseFragment {
     boolean saveToHistory;
     private int[] tabIcons = {
             R.drawable.home,
+            R.drawable.ic_news_letter_grey,
             R.drawable.you,
             R.drawable.ic_action_hand61,
             R.drawable.ic_invite,
-            R.drawable.chat
+           // R.drawable.chat
             //,
             //R.drawable.ic_house_plan
     };
     private int[] tabselIcons = {
             R.drawable.home_green,
+            R.drawable.ic_news_letter_green,
             R.drawable.you_green,
             R.drawable.ic_action_hand61_1,
             R.drawable.ic_invite_g,
-            R.drawable.chat_green
+           // R.drawable.chat_green
             //,
             //  R.drawable.ic_house_plan_green
 
     };
 
     //, " House Plan"
-    String title[] = {" Discover", " You", "Book Now" , " Invite"," Chat"};
+    String title[] = {" Discover"," News & Articles", " You", "Book Now" , " Invite"};
 
     public TabsFragment() {
 

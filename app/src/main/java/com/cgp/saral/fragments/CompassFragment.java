@@ -54,7 +54,7 @@ import butterknife.ButterKnife;
  */
 public class CompassFragment extends BaseFragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     View view;
-    TextView usr_name;
+    //TextView usr_name;
     SwitchCompat favor, unfavor;
     private static final String ARG_PAGE_NUMBER = "page_number";
     private static final String TAG = "CompassFragment";
@@ -803,7 +803,7 @@ int j=0;
 
     public void initilization(final View view) {
 try{
-        usr_name = (TextView) view.findViewById(R.id.tv_usrname);
+        /*usr_name = (TextView) view.findViewById(R.id.tv_usrname);*/
         favor = (SwitchCompat) view.findViewById(R.id.switch_fav);
         unfavor = (SwitchCompat) view.findViewById(R.id.switch_unfav);
         favor.setOnCheckedChangeListener(this);
@@ -865,20 +865,20 @@ try{
 
     public boolean isNameValid() {
 
-        boolean status = false;
-try{
+        boolean status = true;
+        /*try{
 
-        if (!Constants.GLOBAL_USER_NAME.equals("Guest")) {
-            usr_name.setText("Welcome, " + Constants.GLOBAL_USER_NAME);
-            usr_name.setTextColor(getResources().getColor(R.color.green));
-            status = true;
-        } else {
-            usr_name.setText("Guest");
-            status = false;
-        }
-}catch (Throwable t){
-    Log.e("CompassView",t.getMessage(),t);
-}
+                if (!Constants.GLOBAL_USER_NAME.equals("Guest")) {
+                    usr_name.setText("Welcome, " + Constants.GLOBAL_USER_NAME);
+                    usr_name.setTextColor(getResources().getColor(R.color.green));
+                    status = true;
+                } else {
+                    usr_name.setText("Guest");
+                    status = false;
+                }
+        }catch (Throwable t){
+            Log.e("CompassView",t.getMessage(),t);
+        }*/
         return status;
     }
 

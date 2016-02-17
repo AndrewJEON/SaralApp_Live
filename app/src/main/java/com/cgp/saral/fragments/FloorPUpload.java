@@ -200,12 +200,6 @@ public class FloorPUpload extends Fragment {
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-
     /**
      * Start the camera by dispatching a camera intent.
      */
@@ -537,40 +531,29 @@ public class FloorPUpload extends Fragment {
 
     }
 
-  /*  @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        Log.v(TAG, "onAttach");
 
-        // Check if parent activity implements our callback interface
-        if (activity != null) {
-            try {
+    @Override
+    public void onDestroy() {
 
-                Log.v(TAG, "onAttach");
-              //  mParentCallback = (CameraActivity) activity;
-            }
-            catch (ClassCastException e) {
-            }
-        }else
-        {
-            Log.v(TAG, "Activity null");
+        if(videoView != null){
+            videoView.destroy();
+            videoView = null;
         }
-    }*/
-
-
-   /* @Override
-    public void onDetach() {
-        super.onDetach();
-
-        try {
-            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-            childFragmentManager.setAccessible(true);
-            childFragmentManager.set(this, null);
-
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+        super.onDestroy();
+    }
+    @Override
+    public void onPause() {
+        if(videoView != null){
+            videoView.onPause();
         }
-    }*/
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        if(videoView != null){
+            videoView.onResume();
+        }
+        super.onResume();
+    }
 }

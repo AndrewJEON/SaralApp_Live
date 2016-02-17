@@ -10,6 +10,7 @@ import com.cgp.saral.fragments.BookNowTabFragment;
 import com.cgp.saral.fragments.CompassFragment;
 import com.cgp.saral.fragments.HomeTabFragment;
 import com.cgp.saral.fragments.InviteTabFragment;
+import com.cgp.saral.fragments.MessageNotiFragment;
 import com.cgp.saral.fragments.YouFragment;
 
 import java.util.ArrayList;
@@ -43,10 +44,11 @@ String title[];
     {
         int i= 0;
         mPlaceHolderFragmentArray.add(HomeTabFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(MessageNotiFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(CompassFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(BookNowTabFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(InviteTabFragment.newInstance(i++));
-        mPlaceHolderFragmentArray.add(YouFragment.newInstance(i++));
+        //mPlaceHolderFragmentArray.add(YouFragment.newInstance(i++));
     }
 
     @Override
