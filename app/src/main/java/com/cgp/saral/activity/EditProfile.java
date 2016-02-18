@@ -228,21 +228,22 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             }
             Log.e("iv_edit", " iv_edit 7");
             String faver = bean.getIntrest();
-
+            intrest.setItems(Constants.intrestData);
             Log.e("Intrested Tag", "" + faver);
-            strspl = new int[faver.length()];
-            for (int i = 0; i < faver.length(); i++) {
-                if(Character.getNumericValue(faver.charAt(i))>0) {
-                    strspl[i] = Character.getNumericValue(faver.charAt(i)) - 1;
-                }else{
-                    strspl[i] = 0;
+            if(faver != null && !faver.equalsIgnoreCase("null")) {
+                strspl = new int[faver.length()];
+                for (int i = 0; i < faver.length(); i++) {
+                    if (Character.getNumericValue(faver.charAt(i)) > 0) {
+                        strspl[i] = Character.getNumericValue(faver.charAt(i)) - 1;
+                    } else {
+                        strspl[i] = 0;
+                    }
                 }
-            }
 
 //    strspl = Arrays.copyOfRange(strspl, 0, strspl.length);
-            intrest.setItems(Constants.intrestData);
-            intrest.setSelection(strspl);
 
+            intrest.setSelection(strspl);
+            }
 
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -396,14 +397,13 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
     public void setAdapter() {
 
-
+    try{
         // spinner.setItems(Constants.intrestData);
-        strIntrest = intrest.getSelectedItemsAsString();
 
         langAdapter = new UserProfileAdapter(EditProfile.this, 1, langMap);
 
         language.setAdapter(langAdapter);
-        if(userdata != null && userdata.get(0) != null && userdata.get(0).getLanguage() != null) {
+        if (userdata != null && userdata.get(0) != null && userdata.get(0).getLanguage() != null) {
             ;
             Integer langId = 0;
             try {
@@ -411,7 +411,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                 String strLang = langAdapter.getList().get(langId);
                 langPos = langAdapter.getListData().indexOf(strLang);
 
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
 
@@ -481,7 +481,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                           // distPos=0;
+                            // distPos=0;
                             updateDist(strState);
                         }
                     });
@@ -525,7 +525,9 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
             }
         });*/
-
+    }catch(Exception e){
+        Log.e("EditProfile", "Unable to fill adaptors",e);
+    }
     }
 
     List<Integer> ids=new ArrayList<>();

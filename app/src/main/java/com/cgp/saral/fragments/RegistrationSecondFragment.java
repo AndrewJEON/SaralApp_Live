@@ -79,23 +79,23 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
     Userdata_Bean bean;
     Userdata_Bean newbean;
     /*All spinner Adapter */
-    UserProfileAdapter langAdapter=null, genderAdapter=null, stateAdapter=null, cityAdapter=null ;
-    StateDistAdapter distAdapter=null;
+    UserProfileAdapter genderAdapter=null, stateAdapter=null;//, langAdapter=null, cityAdapter=null ;
+    //StateDistAdapter distAdapter=null;
     /*Components*/
-    TextInputLayout name, mobile, email, dob, address, district;
+    TextInputLayout name, mobile, email, dob;//, address, district;
     CheckBox termondition;
     ImageView back;
     TextView title,term;
     AppCompatButton submit;
     ProgressDialog progressDialog ;
-    MaterialSpinner gender, state, language, spinnercity, spinnerdist;
-    String strContact, strName, strEmail, strDOB, strGender = "", strLanguage = "", strIntrest = "", strState = "", strDist = "", strAddress = "";
+    MaterialSpinner gender, state;//, language, spinnercity, spinnerdist;
+    String strContact, strName, strEmail, strDOB, strGender = "", strState = "";//, strLanguage = "", strIntrest = "", strState = "", strDist = "", strAddress = "";
     /*set spinner data in hashmap with Arraylist*/
-    public static HashMap<Integer, String> langMap = new HashMap<>();
+  //  public static HashMap<Integer, String> langMap = new HashMap<>();
     public static HashMap<Integer, String> gendremap = new HashMap<>();
     public static HashMap<Integer, String> statemap = new HashMap<>();
-    public static HashMap<Integer, String> cityMap = new HashMap<>();
-    public static HashMap<Integer, String> distMap = new HashMap<>();
+   // public static HashMap<Integer, String> cityMap = new HashMap<>();
+   // public static HashMap<Integer, String> distMap = new HashMap<>();
     ArrayList<String> langData;
     ArrayList<String> gendreData;
     ArrayList<String> stateData;
@@ -109,7 +109,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
     DataController controller;
     String strintrest = "";
     Calendar myCalendar = Calendar.getInstance();
-    private MultiSpinner spinner;
+   // private MultiSpinner spinner;
 
     /*Shareprefrences */
     SharedPreferences preferences;
@@ -157,15 +157,15 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
 
     public void variableInit() {
 
-        ArrayList<Language> langs= controller.languageList();
+       /* ArrayList<Language> langs= controller.languageList();
 
         Collections.sort(langs, new Comparator<Language>() {
             public int compare(Language v1, Language v2) {
                 return v1.getName().compareTo(v2.getName());
             }
         });
-
-        for(Language l:langs)
+*/
+        /*for(Language l:langs)
         {
             langMap.put(Integer.valueOf(l.getId()),l.getName());
         }
@@ -174,7 +174,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
 
         langMap.clear();
         langMap=langMapL;
-        langData = new ArrayList<>(langMap.values());
+        langData = new ArrayList<>(langMap.values());*/
        // langData = new ArrayList<>(langMap.values());
 
         gendremap.put(200001, "Male");
@@ -219,14 +219,14 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
         mobile = (TextInputLayout) view.findViewById(R.id.tv_regsecMobile);
         email = (TextInputLayout) view.findViewById(R.id.tv_regsecMail);
         dob = (TextInputLayout) view.findViewById(R.id.tv_dob);
-        language = (MaterialSpinner) view.findViewById(R.id.spinnerlanguage);
+       // language = (MaterialSpinner) view.findViewById(R.id.spinnerlanguage);
         state = (MaterialSpinner) view.findViewById(R.id.spinnerstate);
-        spinner = (MultiSpinner) view.findViewById(R.id.spinnerintrest);
+       // spinner = (MultiSpinner) view.findViewById(R.id.spinnerintrest);
         gender = (MaterialSpinner) view.findViewById(R.id.spinnergender);
-        spinnercity = (MaterialSpinner) view.findViewById(R.id.spinnercity);
+      /*  spinnercity = (MaterialSpinner) view.findViewById(R.id.spinnercity);
 
         spinnerdist = (MaterialSpinner) view.findViewById(R.id.spinnerdist);
-        address = (TextInputLayout) view.findViewById(R.id.tv_address);
+       // address = (TextInputLayout) view.findViewById(R.id.tv_address);*/
 
         name.getEditText().setKeyListener(TextKeyListener.getInstance());
 
@@ -287,7 +287,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
     public void setAdapter() {
 
 
-        cityAdapter = new UserProfileAdapter(getActivity(), 1, cityMap);
+        /*cityAdapter = new UserProfileAdapter(getActivity(), 1, cityMap);
         spinnercity.setAdapter(cityAdapter);
         spinnercity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -334,7 +334,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
         genderAdapter = new UserProfileAdapter(getActivity(), 1, gendremap);
         gender.setAdapter(genderAdapter);
@@ -394,9 +394,9 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
             }
         });
 
-        // intrestAdapter=new UserProfileAdapter(getActivity(), 1,intrestData);
+       /* // intrestAdapter=new UserProfileAdapter(getActivity(), 1,intrestData);
         spinner.setItems(Constants.intrestData);
-        strIntrest = spinner.getSelectedItemsAsString();
+        strIntrest = spinner.getSelectedItemsAsString();*/
 
         //spinner.setAdapter(intrestAdapter);
         //spinner.setOnItemSelectedListener(this);
@@ -426,16 +426,16 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
 
     private void updateDist(String strState)
     {
-        Log.e("State for district",""+strState +"   --> "+stateL.size());
+        /*Log.e("State for district",""+strState +"   --> "+stateL.size());
 
         ArrayList<LocationItems> distFiltered=controller.locationListFiltered(Constants.LOCATION_DIST,strState);
 
        // stateL =controller.locationList(Constants.LOCATION_STATE);
-       /* Collections.sort(distFiltered, new Comparator<LocationItems>() {
+       *//* Collections.sort(distFiltered, new Comparator<LocationItems>() {
             public int compare(LocationItems v1, LocationItems v2) {
                 return v1.getName().compareTo(v2.getName());
             }
-        });*/
+        });*//*
 
         if(distFiltered.size()<=0)
         {
@@ -495,14 +495,14 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
     }
 
     @Override
     public void onClick(View v) {
 
-        List<Integer> id = spinner.getSelectedIndices();
+       /* List<Integer> id = spinner.getSelectedIndices();
         intrestides = Utils.intrestValue(id);
         Log.e("Intrest data", " Selected Data intrest" + strIntrest);
         Log.e("Intrest data", " Selected Data intrest id length " + id.size() + " and data " + intrestides);
@@ -510,7 +510,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
 
         strIntrest = spinner.getSelectedItemsAsString();
         Log.e("Intrest data", " Selected Data intrest" + strIntrest);
-        //  Log.e("Intrest data", " Selected Data" + strIntrest);
+        //  Log.e("Intrest data", " Selected Data" + strIntrest);*/
 
         // strIntrest=tv_intrestlist.getText().toString().trim();
         strName = name.getEditText().getText().toString().trim();
@@ -518,7 +518,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
         strDOB = dob.getEditText().getText().toString().trim();
         strEmail = email.getEditText().getText().toString().trim();
 
-        strAddress = address.getEditText().getText().toString().trim();
+       // strAddress = address.getEditText().getText().toString().trim();
         /*if (strContact.length() != 10 && strContact.length() < 10) {
             Toast.makeText(getActivity(), "Please enter mobile no.", Toast.LENGTH_SHORT).show();
         }*/
@@ -530,7 +530,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
         newbean.setDob(strDOB);
         newbean.setGender(strGender);
         newbean.setPassword(bean.getPassword());
-        newbean.setLanguage(strLanguage);
+       // newbean.setLanguage(strLanguage);
         newbean.setSocial_id(bean.getSocial_id());
         if (bean.getSocialtype() != null) {
             newbean.setSocialtype(bean.getSocialtype());
@@ -539,7 +539,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
         }
 
         newbean.setState(strState);
-        newbean.setIntrest(strIntrest);
+       // newbean.setIntrest(strIntrest);
         newbean.setImgurl(bean.getImgurl());
         Log.e("NewBean", "bean " + newbean.getSocialtype());
 
@@ -580,7 +580,11 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
             Toast.makeText(getActivity(), "Please select gender", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation " + 7);
             return;
-        } else if (!strName.isEmpty() && !strDOB.isEmpty() && !strContact.isEmpty() && !strEmail.isEmpty() && !strGender.isEmpty() && strLanguage.isEmpty()) {
+        }else if (!strName.isEmpty() && !strDOB.isEmpty() && !strContact.isEmpty() && !strEmail.isEmpty() && !strGender.isEmpty() && strState.isEmpty()) {
+            Toast.makeText(getActivity(), "Please select your state", Toast.LENGTH_SHORT).show();
+            //Log.e("NewBean", "Validation " + 9);
+            return;
+        } /* else if (!strName.isEmpty() && !strDOB.isEmpty() && !strContact.isEmpty() && !strEmail.isEmpty() && !strGender.isEmpty() && strLanguage.isEmpty()) {
             Toast.makeText(getActivity(), "Please select preferred language", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation " + 8);
             return;
@@ -600,7 +604,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
             Toast.makeText(getActivity(), "Please select your Interest", Toast.LENGTH_SHORT).show();
             Log.e("NewBean", "Validation " + 10);
             return;
-        } else {
+        } */else {
 
             processData();
         }
@@ -634,15 +638,15 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
             dataFromBean.addProperty("DOB", Constants.getFormattedDate(newbean.getDob()));
 
             dataFromBean.addProperty("MobileNumber", "" + newbean.getContact1());
-            dataFromBean.addProperty("Language", "" + newbean.getLanguage());
+            //dataFromBean.addProperty("Language", "" + newbean.getLanguage());
 
             dataFromBean.addProperty("Gender", "" + newbean.getGender());
             dataFromBean.addProperty("State", "" + newbean.getState());
              dataFromBean.addProperty("PhotoPath", newbean.getImgurl());
 
-            dataFromBean.addProperty("City", strDist);
+           /* dataFromBean.addProperty("City", strDist);
             dataFromBean.addProperty("Address", strAddress);
-            dataFromBean.addProperty("DistrictId", strDist);
+            dataFromBean.addProperty("DistrictId", strDist);*/
             dataFromBean.addProperty("Email", "" + newbean.getMail());
 
             dataFromBean.addProperty("Password", "" + newbean.getPassword());
@@ -662,7 +666,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
             dataFromBean.addProperty("RoleId", "3");
 
 
-            dataFromBean.addProperty("InterestsTag", "" + intrestides);
+           // dataFromBean.addProperty("InterestsTag", "" + intrestides);
 
             data.add("userInfo", dataFromBean);
             data.add("sourceInfo", Constants.getDeviceInfo());
@@ -742,7 +746,7 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
                     bean.setContact1(d.getMobileNumber());
                     bean.setDob(d.getDOB());
                     bean.setGender(d.getGender());
-                    bean.setLanguage(d.getLanguage());
+                   // bean.setLanguage(d.getLanguage());
                     bean.setMail(d.getEmail());
                     if (d.getPassword() != null) {
                         bean.setPassword(d.getPassword());
@@ -761,12 +765,12 @@ public class RegistrationSecondFragment extends Fragment implements View.OnClick
                         bean.setSocialtype("normal");
                     }
                     // bean.setImgurl();
-                    bean.setIntrest(d.getInterestsTag());
-                    bean.setState(d.getState());
+                   // bean.setIntrest(d.getInterestsTag());
+                   // bean.setState(d.getState());
 
                     //bean.setCity(d.getCity());
-                    bean.setAddress(d.getAddress());
-                    bean.setDistrictName(d.getDistrictId());
+                   // bean.setAddress(d.getAddress());
+                   // bean.setDistrictName(d.getDistrictId());
                     bean.setLucky_No("" + d.getLuckyNumber());
                     if (d.getLuckyChart() != null && !d.getLuckyChart().equalsIgnoreCase("null") && !d.getLuckyChart().isEmpty()) {
                         bean.setLucky_Chart("" + d.getLuckyChart());

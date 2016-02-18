@@ -316,16 +316,21 @@ public class Constants {
 
     // get value from hashmap through hash key
     public static String containKey(String key, HashMap<Integer, String> map) {
-        String value = "";
-        int k = Integer.parseInt(key);
-        Log.e("Key", " key is " + key);
 
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            if (entry.getKey().equals(k)) {
-                System.out.println(entry.getValue());
-                Log.e("Key", " key is ff" + entry.getValue());
-                value = entry.getValue();
+        String value = "";
+        try {
+            int k = Integer.parseInt(key);
+            Log.e("Key", " key is " + key);
+
+            for (Map.Entry<Integer, String> entry : map.entrySet()) {
+                if (entry.getKey().equals(k)) {
+                    System.out.println(entry.getValue());
+                    Log.e("Key", " key is ff" + entry.getValue());
+                    value = entry.getValue();
+                }
             }
+        }catch (Exception e){
+            Log.e("Key", " Unable to fetch " + key);
         }
         return value;
     }

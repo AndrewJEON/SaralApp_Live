@@ -19,7 +19,8 @@
             android:layout_toLeftOf="@+id/chatSendButton"
             android:theme="@style/TextLabel"
             android:autoText="true"
-            android:hint="Type Message" />
+            android:hint="Type Message"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/chatSendButton"

@@ -3,6 +3,7 @@ package com.cgp.saral.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +52,7 @@ public class About_Us extends Fragment{
         ButterKnife.bind(this,view);
         String s=getResources().getString(R.string.about_us);
 
-        /*tvAbout.setText(Html.fromHtml(s));
-        tvAbout.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);*/
-
+        tvAbout.setText(Html.fromHtml(s));
         videoView =(WebView) view.findViewById(R.id.vid_postvideo);
         videoView.loadUrl(Utils.getAboutVideoUrl());
         videoView.getSettings().setJavaScriptEnabled(true);

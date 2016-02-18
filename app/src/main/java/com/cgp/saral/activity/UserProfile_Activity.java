@@ -177,49 +177,53 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
         back.setVisibility(View.VISIBLE);
         if(userdata !=null ) {
 
-                String gend = userdata.getGender();
-                isProfilePic();
-                usr_name.setText(userdata.getUserFName());
-                usr_mail.setText(userdata.getMail());
+            String gend = userdata.getGender();
+            isProfilePic();
+            usr_name.setText(userdata.getUserFName());
+            usr_mail.setText(userdata.getMail());
 
-                if (gend.equalsIgnoreCase("200001")) {
-                    usr_gender.setText("Male");
-                } else {
+            if (gend.equalsIgnoreCase("200001")) {
+                usr_gender.setText("Male");
+            } else {
 
-                    usr_gender.setText("Female");
-                }
+                usr_gender.setText("Female");
+            }
 
-                usr_birth.setText(userdata.getDob().substring(0, 10));
+            usr_birth.setText(userdata.getDob().substring(0, 10));
             String lang = Constants.containKey(bean.getLanguage(), langMap);
-                usr_language.setText(lang);
+            usr_language.setText(lang);
             String state = Constants.containKey(bean.getState(), statemap);
 
             String strTemp = bean.getDistrictName();
             Log.e("Location dist", "" + strTemp);
-            String dist = dataController.locationName(strTemp).getName();
-               // String dist=//Constants.containKey(userdata.getDistrictId(),distmap);
-            String strProfileData = bean.getAddress() + "," + dist + "," + state;
+            if (strTemp != null && !strTemp.equalsIgnoreCase("null")){
+                LocationItems locationItems = dataController.locationName(strTemp);
+                if (locationItems != null) {
+                    String dist = dataController.locationName(strTemp).getName();
+                    // String dist=//Constants.containKey(userdata.getDistrictId(),distmap);
+                    String strProfileData = bean.getAddress() + "," + dist + "," + state;
 
-                usr_address.setText(strProfileData);
+                    usr_address.setText(strProfileData);
+                }
+            }else{
+                usr_address.setText(state);
+            }
                 usr_contact.setText(userdata.getContact1());
             // Log.e("Edit Profile ", "intrest " + userdata.getIntrest());
             //int[] strspl = new int[bean.getIntrest().length()];
-            StringBuffer buffer= new StringBuffer();
-            for (int i = 0; i < bean.getIntrest().length(); i++) {
-                //strspl[i] = Character.getNumericValue(bean.getIntrest().charAt(i) - 1);
-                buffer.append(Character.getNumericValue(bean.getIntrest().charAt(i) - 1));
-            }
+            if(bean.getIntrest()!= null) {
+                StringBuffer buffer = new StringBuffer();
+                for (int i = 0; i < bean.getIntrest().length(); i++) {
+                    //strspl[i] = Character.getNumericValue(bean.getIntrest().charAt(i) - 1);
+                    buffer.append(Character.getNumericValue(bean.getIntrest().charAt(i) - 1));
+                }
 
-
-
-
-
-            String strBuff= buffer.toString();
+                String strBuff = buffer.toString();
                 String strIntrest = Utils.getSelectedItemsAsString(strBuff, Constants.intrestData);
-            Log.e("Edit Profile ", "after method " + strIntrest);
+                Log.e("Edit Profile ", "after method " + strIntrest);
 
                 usr_intrest.setText(strIntrest);
-
+            }
         }
 
 

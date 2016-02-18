@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.SwitchCompat;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -113,7 +114,8 @@ public class CompassFragment extends BaseFragment implements CompoundButton.OnCh
     RelativeLayout fabLayout;
     @Bind(R.id.msg2)
     TextView msg;
-
+    @Bind(R.id.msg3)
+    TextView compassMessage;
     @Bind(R.id.wealthdir)
     TextView wealthdir;
     @Bind(R.id.healthdir)
@@ -267,7 +269,7 @@ try{
             Log.e("Compass ",""+" Accel "+accel+"  Compass "+comp+" Gyro "+gyro);
             //Toast.makeText(getActivity()," Accel "+accel+"  Compass "+comp+" Gyro "+gyro,Toast.LENGTH_LONG).show();
             compass = new Compass(getActivity());
-
+            compassMessage.setText(Html.fromHtml(getResources().getString(R.string.compass_message)));
             if (comp) {
                 isCompassVisible =true;
                 favDirectionState = false;

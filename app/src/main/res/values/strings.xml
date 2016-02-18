@@ -85,13 +85,19 @@
     <string name="marriage1">Marriage/\nRelationship</string>
 
     <string name="feedback_title">Please share your feedback to serve you better.</string>
-<string name="about_us">Saral Vaastu is a part of CG Parivar Group of Companies and is headed by Guruji and has more than 1300+ professionals who are relentlessly striving with the objective of bringing happiness to the people at large across the world and are staying true to the philosophy <b>“Vasudaiva Kutumbakam”</b>, meaning that the whole universe is one family.
-\n\nSaral Vaastu is relevant and has been successfully implemented for all types of buildings irrespective of their use like residences, industries, business establishments, lodges, hotels, educational institutes and others.
-\n\nSaral Vaastu is currently operational across 11 states and is expanding to have a pan – India footprint.
-\n\n<b>Till date, Saral Vaastu has over lakhs of happy beneficiaries all over the world who have taken the solutions and are leading a happy and prosperous life.</b>
-    </string>
+<string name="about_us"><![CDATA[<html><body style=\"text-align:justify;\"><p align=\"justify\">Saral Vaastu is a part of CG Parivar Group of Companies and is headed by Guruji and has more than 1300+ professionals who are relentlessly striving with the objective of bringing happiness to the people at large across the world and are staying true to the philosophy <b>“Vasudaiva Kutumbakam”</b>, meaning that the whole universe is one family.
+<br/>Saral Vaastu is relevant and has been successfully implemented for all types of buildings irrespective of their use like residences, industries, business establishments, lodges, hotels, educational institutes and others.
+<br/>Saral Vaastu is currently operational across 11 states and is expanding to have a pan – India footprint.
+<br/><b>Till date, Saral Vaastu has over lakhs of happy beneficiaries all over the world who have taken the solutions and are leading a happy and prosperous life.</b>
+<\\p><\\body><\\html>]]></string>
 
 
     <string name="note2">Note:- Please press the orange button and select the respective theme to know your favorable direction related to different aspects of life.</string>
     <string name="note1">Note:- Your mobile phone does not support gyroscope hence compass feature can not be enabled. Kindly download this app in any other mobile phone which has the gyroscope to enable the compass feature.</string>
+    <string name="compass_message"><![CDATA[<html><body style=\"text-align:justify;\">Follow favourable directions to attract prosperity in all aspects of your life
+        <br/>1st direction: Best for all aspects of life including health, wealth, education, job / business and marriage and relationship
+        <br/>2nd direction: Attract good Health
+        <br/>3rd direction: Enhance Marriage prospects and enjoy a happy Relationship
+        <br/>4th direction: Memory gain, improved concentration in studies and excel in matters concerning education
+        <br/>Avoid unfavourable directions as it will lead to adversity in all aspects of life.<\\body><\\html>]]></string>
 </resources>

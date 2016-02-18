@@ -77,7 +77,13 @@
                         />
                 </RelativeLayout>
 
-
+            <LinearLayout
+                android:id="@+id/ll_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/camp_cp"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
                 <CheckBox
                     android:id="@+id/audio_help"
                     android:text="Help"
@@ -85,8 +91,7 @@
                     android:button="@xml/audio_help_checkbox_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/camp_cp"/>
+                    android:layout_marginRight="5dp" />
                 <CheckBox
                     android:id="@+id/audio_help_hindi"
                     android:text="मदद"
@@ -94,13 +99,13 @@
                     android:button="@xml/audio_help_checkbox_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/audio_help"/>
+                    android:layout_marginRight="5dp"/>
+            </LinearLayout>
                 <RelativeLayout
                     android:id="@+id/camp_center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/audio_help_hindi"
+                    android:layout_below="@+id/ll_help"
                     >
 
                     <RelativeLayout
@@ -397,20 +402,28 @@
 
                 </RelativeLayout>
                 <!--8***************************************Help msg**************************************************-->
-
                 <TextView
-                    android:id="@+id/msg2"
+                    android:id="@+id/msg3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/camp_center"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    android:padding="5dp"
+                    android:text="@string/compass_message"/>
+                <TextView
+                    android:id="@+id/msg2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
                     android:visibility="gone"
                     android:gravity="center_horizontal"
                     android:padding="5dp"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/textColor_black" />
+                    android:textColor="@color/textColor_black"
+                    android:layout_below="@+id/msg3"/>
 
 
                 <TextView

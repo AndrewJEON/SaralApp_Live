@@ -24,7 +24,7 @@
             android:id="@+id/tvAbout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="fill_horizontal"
+            android:gravity="fill|right"
             android:textColor="@color/white"
             android:padding="20dp"
             android:text="@string/about_us"

@@ -135,7 +135,7 @@
                     app:ms_alignLabels="false"
                     android:layout_below="@+id/tv_regsecMobile"
                     app:ms_hint="Gender*"
-                    android:layout_toRightOf="@+id/ic6"
+                    android:layout_toRightOf="@+id/ic4"
                     android:background="@null"
                     app:ms_baseColor="@color/spinner_base_color"
                     app:ms_multiline="false" />
@@ -192,13 +192,13 @@
                     android:layout_height="wrap_content"
                     app:ms_alignLabels="false"
                     android:layout_below="@+id/tv_regsecMail"
-                    android:layout_toRightOf="@+id/ic6"
+                    android:layout_toRightOf="@+id/ic5"
                     android:background="@null"
                     app:ms_hint="State*"
                     app:ms_baseColor="@color/spinner_base_color"
                     app:ms_multiline="false" />
                 <!--city -->
-                <ImageView android:id="@+id/iccity"
+              <!--  <ImageView android:id="@+id/iccity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -220,7 +220,7 @@
                     app:ms_hint="City*"
                     app:ms_baseColor="@color/spinner_base_color"
                     app:ms_multiline="false" android:visibility="gone"/>
-                <!--district-->
+                &lt;!&ndash;district&ndash;&gt;
 
                 <ImageView android:id="@+id/icdis"
                     android:layout_width="wrap_content"
@@ -243,7 +243,7 @@
                     app:ms_multiline="false" />
 
 
-                <!--Address -->
+                &lt;!&ndash;Address &ndash;&gt;
                 <ImageView android:id="@+id/tv_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -261,7 +261,7 @@
                     android:drawableLeft="@drawable/home_selctor"
                     android:theme="@style/TextLabel"
                     >
-                    <!--android:theme="@style/TextLabel"-->
+                    &lt;!&ndash;android:theme="@style/TextLabel"&ndash;&gt;
                     <EditText android:id="@+id/et_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -272,7 +272,7 @@
                         android:hint="Address*"/>
 
                 </android.support.design.widget.TextInputLayout>
-                <!--Language-->
+                &lt;!&ndash;Language&ndash;&gt;
                 <ImageView android:id="@+id/ic6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -292,7 +292,7 @@
                     app:ms_hint="Language*"
                     app:ms_baseColor="@color/spinner_base_color"
                     app:ms_multiline="false" />
-                 <!--Interest Lable-->
+                 &lt;!&ndash;Interest Lable&ndash;&gt;
 
                 <ImageView android:id="@+id/ic7"
                     android:layout_width="wrap_content"
@@ -302,7 +302,7 @@
                     android:layout_below="@+id/spinnerlanguage"
                     android:src="@drawable/ic_interest"/>
 
-                <!--<fr.ganfra.materialspinner.MaterialSpinner
+                &lt;!&ndash;<fr.ganfra.materialspinner.MaterialSpinner
                      android:id="@+id/spinnerintrest"
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
@@ -312,7 +312,7 @@
                      android:layout_toRightOf="@+id/ic6"
                      android:background="@null"
                      app:ms_baseColor="@color/spinner_base_color"
-                     app:ms_multiline="false" />-->
+                     app:ms_multiline="false" />&ndash;&gt;
                 <com.cgp.saral.customviews.MultiSpinner
                     android:id="@+id/spinnerintrest"
                     android:layout_width="fill_parent"
@@ -322,7 +322,7 @@
 
                     android:padding="5dp"
                     />
-
+-->
 
 
                 <RelativeLayout
@@ -330,7 +330,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:layout_below="@+id/spinnerintrest"
+                    android:layout_below="@+id/spinnerstate"
                     >
                     <CheckBox
                         android:layout_width="wrap_content"
