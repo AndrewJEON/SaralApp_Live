@@ -2,6 +2,7 @@ package com.cgp.saral.adapter;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,11 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,6 +44,7 @@ import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.PicassoSingleton;
 import com.cgp.saral.network.VolleySingleton;
 import com.github.curioustechizen.ago.RelativeTimeTextView;
+import com.google.android.youtube.player.YouTubeIntents;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -99,6 +99,8 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     ArrayList<String> itemSepColors = new ArrayList<String>();
 
+    String TAG = "HomeTab_Adapter";
+
     public HomeTab_Adapter(Activity ctx, ArrayList<Datum> data, DataController dbController) {
         this.list = data;
         this.context = ctx;
@@ -116,7 +118,7 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         try{
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         final View view = inflater.inflate(R.layout.fragment_hometab_adapter, viewGroup, false);
-         holderView = new HomeHolderView(view);
+         holderView = new HomeHolderView(view.getContext(),view);
         contents = dbController.contentActionList();
         }catch (Throwable t){
             Log.e("HomeTab_Adapter",t.getMessage(),t);
@@ -277,35 +279,30 @@ public class HomeTab_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (strMediaType.equals("700002")) {
             holdview.mediaLayout.setVisibility(View.VISIBLE);
             if (!strImageThumbNail.isEmpty()) {
-                //String strVideoThumbnail = d.getContentDetails().get(0).getThumbnailPath();
+                String strVideoThumbnail = d.getContentDetails().get(0).getThumbnailPath();
                 holdview.list_icon.setVisibility(View.VISIBLE);
                 holdview.list_icon.setImageBitmap(null);
                 PicassoSingleton
                         .getPicassoInstance(context).cancelRequest(holdview.list_icon);
 
-               // if (!strVideoThumbnail.isEmpty()) {
+               if (!strVideoThumbnail.isEmpty()) {
                     PicassoSingleton
                             .getPicassoInstance(context)
-                            .load(R.drawable.list_item).placeholder(R.drawable.list_item).error(R.drawable.list_item)
+                            .load(strVideoThumbnail).placeholder(R.drawable.list_item).error(R.drawable.list_item)
                             .into(holdview.list_icon);
-               // }
+                }
 
                 strURL = d.getContentDetails().get(0).getMediaPath();
 
-                holdview.videoView.loadUrl("http://www.youtube.com/embed/" + strURL + "?autoplay=1&vq=small&showinfo=0");
-                holdview.videoView.getSettings().setJavaScriptEnabled(true);
-                holdview.videoView.setVisibility(View.VISIBLE);
-                holdview.videoView.getSettings().setPluginState(WebSettings.PluginState.ON);; //sets MediaController in the video view
 
-                holdview.videoView.requestFocus();//give focus to a specific view
-                holdview.videoView.setWebViewClient(new WebViewClient() {
-                    public void onPageFinished(WebView view, String url) {
-                        holdview.list_icon.setVisibility(View.GONE);
+                holdview.buttonPreview.setVisibility(View.VISIBLE);
+                holdview.buttonPreview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       Intent intent = YouTubeIntents.createPlayVideoIntentWithOptions(holdview.activityContext, strURL, true, true);
+                        holdview.activityContext.startActivity(intent);
                     }
                 });
-
-
-
 
 
             } else {
@@ -568,17 +565,20 @@ try{
         TextView dislikeTv;
         ImageView list_icon;
         RadioButton like, unlike;
-        WebView videoView;
+        //YouTubePlayerSupportFragment videoView;
         View listItemSeperator;
-        LinearLayout mediaLayout;
+        FrameLayout mediaLayout;
         ProgressBar progressBar;
         ImageButton shareBtn;
         LinearLayout shareBtnRl;
         RadioGroup likeGroup;
+        ImageView buttonPreview;
+        Context activityContext;
         // YouTubePlayerView youtube_player;
 
-        public HomeHolderView(View itemView) {
+        public HomeHolderView(Context activityContext, View itemView) {
             super(itemView);
+            this.activityContext = activityContext;
             try{
             title = (TextView) itemView.findViewById(R.id.tv_postheader);
             list_icon = (ImageView) itemView.findViewById(R.id.img_postimage);
@@ -593,13 +593,14 @@ try{
             //like.setTag(this);
             unlike = (RadioButton) itemView.findViewById(R.id.iv_dislike);
             //unlike.setTag(this);
-            mediaLayout = (LinearLayout) itemView.findViewById(R.id.mediaLayout);
+            mediaLayout = (FrameLayout) itemView.findViewById(R.id.mediaLayout);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progress_bar);
-            videoView = (WebView) itemView.findViewById(R.id.vid_postvideo);
+            //videoView = (YouTubePlayerSupportFragment) ((FragmentActivity)activityContext).getSupportFragmentManager().findFragmentById(R.id.youtube_holder);
             listItemSeperator = itemView.findViewById(R.id.list_item_seperator);
             shareBtn = (ImageButton) itemView.findViewById(R.id.shareBtn);
             shareBtnRl = (LinearLayout)itemView.findViewById(R.id.shareBtnRl);
             likeGroup = (RadioGroup)itemView.findViewById(R.id.like_container);
+                buttonPreview = (ImageView) itemView.findViewById(R.id.button_preview);
             }catch (Throwable t){
                 Log.e("HomeTab_Adapter",t.getMessage(),t);
             }

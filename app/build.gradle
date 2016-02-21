@@ -16,8 +16,8 @@ android {
         applicationId "com.cgp.saral"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 21
-        versionName "1.0.21"
+        versionCode 22
+        versionName "1.0.22"
         renderscriptSupportModeEnabled true
         multiDexEnabled false
 
@@ -91,6 +91,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22+'
     compile 'com.android.support:design:22+'
     compile 'com.android.support:support-v4:22+'
-
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
 
 }

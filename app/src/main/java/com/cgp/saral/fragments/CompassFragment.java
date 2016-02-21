@@ -42,6 +42,7 @@ import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
 import com.google.gson.JsonObject;
+import com.google.gson.internal.Excluder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -411,7 +412,13 @@ try{
 
         try {
             mediaPlayerHindi.setDataSource(Utils.getAudioHelpHindiUrl());
-            mediaPlayerHindi.prepareAsync();// might take long! (for buffering, etc)
+            mediaPlayerHindi.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mediaPlayerHindi.start();
+                }
+            });
 
         }catch (Exception e){
             Log.e("Audio play",e.getMessage());
@@ -419,7 +426,13 @@ try{
 
         try {
             mediaPlayer.setDataSource(Utils.getAudioHelpEnglishUrl());
-            mediaPlayer.prepareAsync();// might take long! (for buffering, etc)
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mediaPlayer.start();
+                }
+            });
 
         }catch (Exception e){
             Log.e("Audio play",e.getMessage());
@@ -437,7 +450,11 @@ try{
                             mediaPlayerHindi.pause();
                             audioHindiHelp.setChecked(false);
                         }
-                        if(mediaPlayer != null) {
+                        try {
+                            if (mediaPlayer != null) {
+                                mediaPlayer.prepare();
+                            }
+                        }catch (Exception e){
                             mediaPlayer.start();
                         }
                     }catch (Exception e){
@@ -466,7 +483,11 @@ try{
                             mediaPlayer.pause();
                             audioHelp.setChecked(false);
                         }
-                        if(mediaPlayerHindi != null) {
+                        try {
+                            if (mediaPlayerHindi != null) {
+                                mediaPlayerHindi.prepare();
+                            }
+                        }catch (Exception e){
                             mediaPlayerHindi.start();
                         }
                     }catch (Exception e){

@@ -37,7 +37,7 @@
             android:layout_marginTop="0dp" >
 
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/mediaLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="250dp"
@@ -52,27 +52,28 @@
                     android:layout_marginRight="0dp"
                     android:adjustViewBounds="true"
                     android:padding="0dp"
-                    android:src="@drawable/form_background"
-                    android:scaleType="fitXY"
-                    android:visibility="gone" />
-                <WebView
-                    android:id="@+id/vid_postvideo"
+                    android:src="@drawable/list_item"
+                    android:scaleType="fitXY"/>
+                <ImageView
+                    android:id="@+id/button_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_video_play"
+                    android:visibility="gone"
+                    android:layout_gravity="center"/>
+                <!--<FrameLayout
+                    android:id="@+id/youtube_holder"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp"
-                    android:adjustViewBounds="true"
-                    android:padding="0dp"
-                    android:scaleType="fitXY"
-                    android:visibility="gone" />
-
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />-->
                 <ProgressBar
                     android:id="@+id/progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:visibility="gone"/>
-            </LinearLayout>
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_postmassege"
