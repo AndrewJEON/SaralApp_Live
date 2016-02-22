@@ -793,7 +793,7 @@ int j=0;
 
                 textView.setBackgroundColor(getResources().getColor(R.color.green));
             } else if (String.valueOf(tag.charAt(i)).equals("4")) {
-                textView.setText("ES");
+                textView.setText("SE");
 
                 textView.setBackgroundColor(getResources().getColor(R.color.green));
             } else if (String.valueOf(tag.charAt(i)).equals("5")) {
@@ -809,7 +809,7 @@ int j=0;
 
                 textView.setBackgroundColor(getResources().getColor(R.color.green));
             } else if (String.valueOf(tag.charAt(i)).equals("8")) {
-                textView.setText("WN");
+                textView.setText("NW");
 
                 textView.setBackgroundColor(getResources().getColor(R.color.green));
             }
