@@ -176,7 +176,7 @@ public class Constants {
     public static String SARALVAASTU_WEB_URL = "https://saralvaastu.com/";
     public static String APP_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.cgp.saral";
     public static String LUCKY_CHAT_APIKEY = "saralvaastu";
-    public static String YOUTUBE_KEY = "AIzaSyA4SBo2m7VFy3MPJZkdd-G4Ghpirl9dusY";
+    public static String YOUTUBE_KEY = "AIzaSyBPfdk8dI_Inc3lXiRb0GQEKL1-RIYSgmA";
 
     public static JsonObject getDeviceInfo() {
         JsonObject data = new JsonObject();
