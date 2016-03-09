@@ -45,8 +45,9 @@ String title[];
         int i= 0;
         mPlaceHolderFragmentArray.add(HomeTabFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(MessageNotiFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(MessageNotiFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(MessageNotiFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(CompassFragment.newInstance(i++));
-        mPlaceHolderFragmentArray.add(BookNowTabFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(InviteTabFragment.newInstance(i++));
         //mPlaceHolderFragmentArray.add(YouFragment.newInstance(i++));
     }

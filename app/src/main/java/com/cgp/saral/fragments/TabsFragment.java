@@ -39,8 +39,9 @@ public class TabsFragment extends BaseFragment {
     private int[] tabIcons = {
             R.drawable.home,
             R.drawable.ic_news_letter_grey,
+            R.drawable.ic_news_letter_grey,
+            R.drawable.ic_news_letter_grey,
             R.drawable.you,
-            R.drawable.ic_action_hand61,
             R.drawable.ic_invite,
            // R.drawable.chat
             //,
@@ -49,8 +50,9 @@ public class TabsFragment extends BaseFragment {
     private int[] tabselIcons = {
             R.drawable.home_green,
             R.drawable.ic_news_letter_green,
+            R.drawable.ic_news_letter_green,
+            R.drawable.ic_news_letter_green,
             R.drawable.you_green,
-            R.drawable.ic_action_hand61_1,
             R.drawable.ic_invite_g,
            // R.drawable.chat_green
             //,
@@ -59,7 +61,7 @@ public class TabsFragment extends BaseFragment {
     };
 
     //, " House Plan"
-    String title[] = {" Discover"," News & Articles", " You", "Book Now" , " Invite"};
+    String title[] = {"Discover","Vaastu Tips","Articles","Testimonials" ,"You", "Invite"};
 
     public TabsFragment() {
 
@@ -177,12 +179,12 @@ public class TabsFragment extends BaseFragment {
     }
 
     private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        Log.i("TabsFragment ", "setupTabIcons");
+        int tabs = tabLayout.getTabCount();
+        for(int i=0; i< tabs; i++) {
+            tabLayout.getTabAt(i).setIcon(tabIcons[i]);
+        }
 
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
     }
 
     public void onBackPressed() {

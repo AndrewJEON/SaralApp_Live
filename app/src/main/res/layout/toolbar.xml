@@ -26,12 +26,31 @@
             android:layout_height="40dp"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:text="Home"
+            android:text=""
             android:padding="5dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/iv_logo"
             android:layout_toEndOf="@+id/iv_logo" />
-    <Button
+        <!--<TextView android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="Guest"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_welcome_user"/>
+        <TextView android:id="@+id/tv_welcome_user"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="Welcome "
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/settingLayout"
+            android:layout_toStartOf="@+id/settingLayout"/>-->
+    <!--<Button
         android:id="@+id/callback"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -44,7 +63,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginRight="10dp"/>
-
+       -->
         <RelativeLayout
             android:id="@+id/settingLayout"
             android:layout_width="wrap_content"

@@ -33,6 +33,7 @@ import com.cgp.saral.customviews.OnItemClickListener;
 import com.cgp.saral.databaseHelper.DataController;
 import com.cgp.saral.fragments.About_Us;
 import com.cgp.saral.fragments.BaseFragment;
+import com.cgp.saral.fragments.BookNowTabFragment;
 import com.cgp.saral.fragments.CallbackTabFragment;
 import com.cgp.saral.fragments.Contact_Us;
 import com.cgp.saral.fragments.FeedBack;
@@ -219,8 +220,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         tv_title = (TextView)findViewById(R.id.tv_title_page);
-
-
+            tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
         if(toolbar != null) {
             setSupportActionBar(toolbar);
            // getSupportActionBar().setTitle("SaralApp");
@@ -268,7 +268,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
 
         Fragment f = fm.findFragmentByTag("viewPager");
 
-        tv_title.setText("Home");
+        tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
         Log.i("MainActivity", "popping backstack");
         if (f != null) {
 
@@ -280,7 +280,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             if (fm.getBackStackEntryCount() > 0) {
                 Log.i("MainActivity", "popping backstack");
                 fm.popBackStack();
-                tv_title.setText("Home");
+                tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
             } else {
                 Log.i("MainActivity", "nothing on backstack, finish");
 
@@ -334,7 +334,8 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         iv_setting.setVisibility(View.VISIBLE);
         iv_userpro.setOnClickListener(this);
         username.setOnClickListener(this);
-        callBack = (Button) findViewById(R.id.callback);
+            tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+        /*callBack = (Button) findViewById(R.id.callback);
         callBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -343,7 +344,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
                 tv_title.setText("Call Back");
 
             }
-        });
+        });*/
          ((SaralApplication) getApplication()).trackEvent(MainActivity.this, "MainActivity", "App Flow", "fragment Switching ");
         }catch (Throwable t){
             Log.e("MainActivity",t.getMessage(),t);
@@ -353,81 +354,58 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
     // Filling the ArrayLists
     public void selectItemFromDrawer(int position) {
     try {
-        tv_title.setText("Home");
+        tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
 
         Fragment frag = new TabsFragment();
 
         Log.e("selectItemFromDrawer", " ---->" + position);
-        if (position == 0) {
-            tv_title.setText("Home");
-            Log.e("selectItemFromDrawer", " ---->" + position);
-            FragmentManager fm = getSupportFragmentManager();
-
-            Fragment f = fm.findFragmentById(R.id.tab);
-
-
-            //  Fragment ff= new HomeTabFragment();
-
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.show(f);
-
-            transaction.commit();
-
-
+        switch (position){
+            case 0:
+                tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+                FragmentManager fm = getSupportFragmentManager();
+                Fragment f = fm.findFragmentById(R.id.tab);
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.show(f);
+                transaction.commit();
+                break;
+            case 1:
+                startTransaction(new BookNowTabFragment(), "booknow");
+                tv_title.setText("Book Now");
+                break;
+            case 2:
+                startTransaction(new CallbackTabFragment(), "callback");
+                tv_title.setText("Call Back");
+                break;
+            case 3:
+                startTransaction(new YouFragment(), "message");
+                tv_title.setText("Chat");
+                break;
+            case 4:
+                startTransaction(new FloorPUpload(), "plan_upload");
+                tv_title.setText("Floor Plan");
+                break;
+            case 5:
+                Utils.rateApp(0, MainActivity.this, true);
+                tv_title.setText("");
+                break;
+            case 6:
+                startTransaction(new Contact_Us(), "contact");
+                tv_title.setText("Contact Us");
+                break;
+            case 7:
+                startTransaction(new FeedBack(), "feedback");
+                tv_title.setText("Feedback");
+                break;
+            case 8:
+                startTransaction(new About_Us(), "about_us");
+                tv_title.setText("About Us");
+                break;
+            case 9:
+                showProgressDialog(MainActivity.this, "Please Wait, Signing out !!!");
+                logout_validate();
+                break;
         }
 
-        if (position == 1) {
-            Log.e("selectItemFromDrawer", " ---->" + position);
-            Fragment fragment = new YouFragment();
-            startTransaction(fragment, "message");
-            tv_title.setText("Chat");
-
-
-        }
-        if (position == 2) {
-
-            Fragment fragment = new FloorPUpload();
-            startTransaction(fragment, "plan_upload");
-            tv_title.setText("Floor Plan");
-            //getSupportActionBar().setTitle("Floor Plan Upload");
-        }
-
-        if (position == 3) {
-
-            Utils.rateApp(0, MainActivity.this, true);
-            // getSupportActionBar().setTitle("Feeds");
-            tv_title.setText("");
-
-        }
-        if (position == 4) {
-
-            Fragment fragment = new Contact_Us();
-            startTransaction(fragment, "contact");
-            getSupportActionBar().setTitle("Contact");
-            tv_title.setText("Contact Us");
-            // Toast.makeText(MainActivity.this, "Contact Us ..In Development", Toast.LENGTH_LONG).show();
-        }
-        if (position == 5) {
-            Fragment fragment = new FeedBack();
-
-            startTransaction(fragment, "feedback");
-            tv_title.setText("Feedback");
-            //getSupportActionBar().setTitle("Feedback");
-        }
-        if (position == 6) {
-            Fragment fragment = new About_Us();
-            startTransaction(fragment, "about_us");
-            tv_title.setText("About Us");
-            //getSupportActionBar().setTitle("About Us");
-
-        }
-
-        if (position == 7) {
-
-            showProgressDialog(MainActivity.this, "Please Wait, Signing out !!!");
-
-            logout_validate();
-        }
         list.setItemChecked(position, true);
         setTitle(dataArray_right.get(position).getTitle());
 
@@ -443,6 +421,8 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             dataArray_right.clear();
             // add menu item
             dataArray_right.add(new DrawerItem("HOME", R.drawable.ic_home));
+            dataArray_right.add(new DrawerItem("BOOK NOW", R.drawable.ic_action_hand_white));
+            dataArray_right.add(new DrawerItem("CALL BACK", R.drawable.ic_contact_us));
             dataArray_right.add(new DrawerItem("CHAT", R.drawable.ic_chat));
             dataArray_right.add(new DrawerItem("FLOOR PLAN", R.drawable.ic_upload_white));
             dataArray_right.add(new DrawerItem("RATE APP", R.drawable.ic_apprate));
