@@ -177,6 +177,7 @@ public class Constants {
     public static String APP_PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.cgp.saral";
     public static String LUCKY_CHAT_APIKEY = "saralvaastu";
     public static String YOUTUBE_KEY = "AIzaSyBPfdk8dI_Inc3lXiRb0GQEKL1-RIYSgmA";
+    public static long REFRESH_TIME_IN_MILLISECONDS = 60000; /*One min*/
 
     public static JsonObject getDeviceInfo() {
         JsonObject data = new JsonObject();

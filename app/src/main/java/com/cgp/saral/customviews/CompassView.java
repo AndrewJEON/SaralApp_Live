@@ -13,6 +13,7 @@ import android.view.accessibility.AccessibilityEvent;
 
 import com.cgp.saral.R;
 import com.cgp.saral.myutils.Constants;
+import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.cgp.saral.myutils.Utils;
 
 public class CompassView extends View {
@@ -91,7 +92,8 @@ public class CompassView extends View {
 
     private void initCompassView() {
 try{
-        String strF = Constants.GLOBAL_U_LUCK_CHART;
+    String strF =  SharedPreferenceManager.getSharedInstance().getStringFromPreferances("LUCKY_CHAT");
+       // String strF = Constants.GLOBAL_U_LUCK_CHART;
         Log.e("initCompass", strF);
         if (strF!= null && !strF.isEmpty() && !strF.equals("null")) {
             String[] str = Utils.chartAnalysis(strF);

@@ -29,6 +29,8 @@ import com.cgp.saral.model.Datum;
 import com.cgp.saral.model.FeedData;
 import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.Constants;
+import com.cgp.saral.myutils.ObjectSerializerHelper;
+import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
@@ -105,7 +107,8 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
     HomeTab_Adapter adapter;
 
     DataController dbController;
-
+    private final String DISCOVER_FEED = "DISCOVER_FEED";
+    private static Long lastFeedTime;
     public HomeTabFragment() {
 
     }
@@ -216,13 +219,6 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
        /* TextView tv_title = (TextView)view.findViewById(R.id.tv_title_page);
         tv_title.setText("Home");*/
 
-        //check Internet connection
-        if (!Utils.isConnectedToInternet(getActivity())) {
-            Toast.makeText(getActivity(), "Please connect to Internet", Toast.LENGTH_LONG).show();
-            return;
-
-        }
-
 
         //
         // feedPage++;
@@ -329,36 +325,57 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
 
     public void getFeed(int page) {
-try{
+        try {
 
-        //start Progress bar before network call start
-        if (swipeRefreshLayout.isRefreshing()) {
-            progBar.setVisibility(View.GONE);
-            isPullRefresh = true;
-        } else {
-            progBar.setVisibility(View.VISIBLE);
+            //start Progress bar before network call start
+            if (swipeRefreshLayout.isRefreshing()) {
+                progBar.setVisibility(View.GONE);
+                isPullRefresh = true;
+            } else {
+                progBar.setVisibility(View.VISIBLE);
+            }
+            String strDiscoverFeedPref = SharedPreferenceManager.getSharedInstance().getStringFromPreferances(DISCOVER_FEED);
+            if (strDiscoverFeedPref != null && !strDiscoverFeedPref.isEmpty()) {
+                feedList = (ArrayList<Datum>) ObjectSerializerHelper.stringToObject(strDiscoverFeedPref);
+
+            }
+            //check Internet connection
+            if (!Utils.isConnectedToInternet(getActivity())) {
+                Toast.makeText(getActivity(), "Please connect to Internet", Toast.LENGTH_LONG).show();
+                progBar.setVisibility(View.GONE);
+                if (isPullRefresh) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                return;
+
+            }
+            if ((lastFeedTime != null && (System.currentTimeMillis()-lastFeedTime)< Constants.REFRESH_TIME_IN_MILLISECONDS) || (lastFeedTime != null &&  strDiscoverFeedPref != null && !strDiscoverFeedPref.isEmpty())) {
+                progBar.setVisibility(View.GONE);
+                if (isPullRefresh) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            } else {
+
+                JsonObject data = new JsonObject();
+
+                Log.e("Page Counter", " -->" + page);
+                data.addProperty("userId", "" + Constants.GLOBAL_USER_ID);
+                data.addProperty("startindex", "" + 0);
+                data.addProperty("count", "" + 200);
+                data.add("source", Constants.getDeviceInfo());
+                Log.e(" JSON for Feed", "" + data.toString());
+
+
+                GsonRequestPost<FeedData> myReq = new GsonRequestPost<>(
+                        Request.Method.POST, Constants.userFeeds, FeedData.class, null,
+                        successListener(), errorListener(), data);
+
+                VolleySingleton.getInstance(getActivity()).addToRequestQueue(myReq, VOLLEY_TAG);
+            }
+
+        } catch (Throwable t) {
+            Log.e("HomeTabFragment", t.getMessage(), t);
         }
-
-
-        JsonObject data = new JsonObject();
-
-        Log.e("Page Counter", " -->" + page);
-        data.addProperty("userId", "" + Constants.GLOBAL_USER_ID);
-        data.addProperty("startindex", "" + 0);
-        data.addProperty("count", "" + 200);
-        data.add("source", Constants.getDeviceInfo());
-        Log.e(" JSON for Feed", "" + data.toString());
-
-
-        GsonRequestPost<FeedData> myReq = new GsonRequestPost<>(
-                Request.Method.POST, Constants.userFeeds, FeedData.class, null,
-                successListener(), errorListener(), data);
-
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(myReq, VOLLEY_TAG);
-
-}catch (Throwable t){
-    Log.e("HomeTabFragment",t.getMessage(),t);
-}
 
     }
 
@@ -418,7 +435,10 @@ try{
 
 
                     } else {
-                        Toast.makeText(getActivity(), "No Data available", Toast.LENGTH_LONG).show();
+                        if (isPullRefresh) {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                        Toast.makeText(getActivity(), response.getGetAllContentsResult().getMessage(), Toast.LENGTH_LONG).show();
                         return;
                     }
 
@@ -444,11 +464,12 @@ try{
                         feedList.add(d);
                     }
                 }
-
+               SharedPreferenceManager.getSharedInstance().setStringInPreferences(DISCOVER_FEED, ObjectSerializerHelper.objectToString(feedList));
                 adapter.notifyDataSetChanged();
                 if (isPullRefresh) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
+                lastFeedTime = System.currentTimeMillis();
             }
 
 

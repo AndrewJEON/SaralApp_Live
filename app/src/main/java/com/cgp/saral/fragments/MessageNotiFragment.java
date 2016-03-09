@@ -24,6 +24,8 @@ import com.cgp.saral.fab.FloatingActionMenu;
 import com.cgp.saral.model.Datum;
 import com.cgp.saral.model.FilteredFeedData;
 import com.cgp.saral.myutils.Constants;
+import com.cgp.saral.myutils.ObjectSerializerHelper;
+import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
 import com.cgp.saral.network.VolleySingleton;
@@ -98,7 +100,8 @@ public class MessageNotiFragment extends BaseFragment {
     HomeTab_Adapter adapter;
 
     DataController dbController;
-
+    private final String NEWS_FEED = "NEWS_FEED";
+    private static Long lastFeedTime;
     public MessageNotiFragment() {
         // Required empty public constructor
     }
@@ -186,12 +189,7 @@ public class MessageNotiFragment extends BaseFragment {
         progBar = (ProgressBar) view.findViewById(R.id.progressBar);
         menu.setVisibility(View.GONE);
 
-        //check Internet connection
-        if (!Utils.isConnectedToInternet(getActivity())) {
-            Toast.makeText(getActivity(), "Please connect to Internet", Toast.LENGTH_LONG).show();
-            return;
 
-        }
 
         if (!fragmentResume && fragmentVisible) {   //only when first time fragment is created
             //initilization(view);
@@ -254,25 +252,51 @@ public class MessageNotiFragment extends BaseFragment {
             progBar.setVisibility(View.VISIBLE);
         }
 
+        String strDiscoverFeedPref = SharedPreferenceManager.getSharedInstance().getStringFromPreferances(NEWS_FEED);
 
-        JsonObject data = new JsonObject();
-        data.addProperty("currentUserId", Constants.GLOBAL_USER_ID);
-        data.addProperty("startindex", "" + 0);
-        data.addProperty("count", "200");
-        data.addProperty("searchString", "");
-        data.addProperty("contentType", "600001");
-        data.addProperty("mediaType", "-1");
+        if (strDiscoverFeedPref != null && !strDiscoverFeedPref.isEmpty()) {
+            feedList = (ArrayList<Datum>) ObjectSerializerHelper.stringToObject(strDiscoverFeedPref);
 
-        data.add("source", Constants.getDeviceInfo());
-        Log.e(" JSON for Feed", "" + data.toString());
+        }
+
+        //check Internet connection
+        if (!Utils.isConnectedToInternet(getActivity())) {
+            Toast.makeText(getActivity(), "Please connect to Internet", Toast.LENGTH_LONG).show();
+            progBar.setVisibility(View.GONE);
+            if (isPullRefresh) {
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+            return;
+
+        }
+
+        if ((lastFeedTime != null && (System.currentTimeMillis()-lastFeedTime)< Constants.REFRESH_TIME_IN_MILLISECONDS)) {
+            progBar.setVisibility(View.GONE);
+            if (isPullRefresh) {
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        } else {
+
+            JsonObject data = new JsonObject();
+            data.addProperty("currentUserId", Constants.GLOBAL_USER_ID);
+            data.addProperty("startindex", "" + 0);
+            data.addProperty("count", "200");
+            data.addProperty("searchString", "");
+            data.addProperty("contentType", "600001");
+            data.addProperty("mediaType", "-1");
+
+            data.add("source", Constants.getDeviceInfo());
+            Log.e(" JSON for Feed", "" + data.toString());
 
 
-        GsonRequestPost<FilteredFeedData> myReq = new GsonRequestPost<>(
-                Request.Method.POST, Constants.messageBoardFeeds, FilteredFeedData.class, null,
-                successListener(), errorListener(), data);
+            GsonRequestPost<FilteredFeedData> myReq = new GsonRequestPost<>(
+                    Request.Method.POST, Constants.messageBoardFeeds, FilteredFeedData.class, null,
+                    successListener(), errorListener(), data);
 
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(myReq, VOLLEY_TAG);
-
+            VolleySingleton.getInstance(getActivity()).addToRequestQueue(myReq, VOLLEY_TAG);
+        }
 
     }
 
@@ -362,6 +386,7 @@ public class MessageNotiFragment extends BaseFragment {
 
                     Log.e("Size of AList", "" + feedList.size() + "  Counter " + i);
                 }*/
+                SharedPreferenceManager.getSharedInstance().setStringInPreferences(NEWS_FEED, ObjectSerializerHelper.objectToString(feedList));
                 adapter.notifyDataSetChanged();
                 // feedPage++;
                 //notify the adapter that the data set has changed
@@ -369,6 +394,7 @@ public class MessageNotiFragment extends BaseFragment {
                 if (isPullRefresh) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
+                lastFeedTime = System.currentTimeMillis();
             }
 
 

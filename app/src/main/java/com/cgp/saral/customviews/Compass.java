@@ -1,26 +1,19 @@
 package com.cgp.saral.customviews;
 
 import android.content.Context;
-import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
-import com.cgp.saral.myutils.AverageAngle;
 
-
-public class Compass implements SensorEventListener ,LocationListener {
+public class Compass implements SensorEventListener {
 	private static final String TAG = "Compass";
 
-	private LocationManager mLocationManager;
 	private SensorManager sensorManager;
 	private Sensor gsensor;
 	private Sensor msensor;
@@ -29,95 +22,41 @@ public class Compass implements SensorEventListener ,LocationListener {
 	private float azimuth = 0f;
 	private float currectAzimuth = 0;
 
-	private float[] mValuesAccelerometer;
-	private float[] mValuesMagneticField;
-	private float[] mMatrixR;
-	private float[] mMatrixI;
-	private float[] mMatrixValues;
-
-
-	/**
-	 * minimum change of bearing (degrees) to notify the change listener
-	 */
-	private final double mMinDiffForEvent;
-
-	/**
-	 * minimum delay (millis) between notifications for the change listener
-	 */
-	private final double mThrottleTime;
-
-	/**
-	 * the change event listener
-	 */
-	/**
-	 * angle to magnetic north
-	 */
-	private AverageAngle mAzimuthRadians;
-
-
 	// compass arrow to rotate
-	public ImageView arrowView = null;
-
-	/**
-	 * Current GPS/WiFi location
-	 */
-	private Location mLocation;
+	public View arrowView = null;
 
 	public Compass(Context context) {
 		sensorManager = (SensorManager) context
 				.getSystemService(Context.SENSOR_SERVICE);
 		gsensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		msensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-		mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-
-		mMatrixR = new float[9];
-		mMatrixI = new float[9];
-		mMatrixValues = new float[3];
-
-		mMinDiffForEvent = .5;
-		mThrottleTime = 50;
-
-		mAzimuthRadians = new AverageAngle(10);
 	}
 
 	public void start() {
 		sensorManager.registerListener(this, gsensor,
-				SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
+				SensorManager.SENSOR_DELAY_GAME);
 		sensorManager.registerListener(this, msensor,
-				SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
-
-		for (final String provider : mLocationManager.getProviders(true)) {
-			if (LocationManager.GPS_PROVIDER.equals(provider)
-					|| LocationManager.PASSIVE_PROVIDER.equals(provider)
-					|| LocationManager.NETWORK_PROVIDER.equals(provider)) {
-				if (mLocation == null) {
-					mLocation = mLocationManager.getLastKnownLocation(provider);
-				}
-				mLocationManager.requestLocationUpdates(provider, 0, 100.0f, this);
-			}
-		}
+				SensorManager.SENSOR_DELAY_GAME);
 	}
 
 	public void stop() {
 		sensorManager.unregisterListener(this);
-		mLocationManager.removeUpdates(this);
 	}
 
 	private void adjustArrow() {
 		if (arrowView == null) {
-		//	Log.i(TAG, "arrow view is not set");
+			//Log.i(TAG, "arrow view is not set");
 			return;
 		}
 
-		//Log.i(TAG, "will set rotation from " + currectAzimuth + " to "
-		//		+ azimuth);
+		//Log.i(TAG, "will set rotation from " + currectAzimuth + " to "+ azimuth);
 
 		Animation an = new RotateAnimation(-currectAzimuth, -azimuth,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
 		currectAzimuth = azimuth;
 
-		an.setDuration(50);
+		an.setDuration(1);
 		an.setRepeatCount(0);
 		an.setFillAfter(true);
 
@@ -170,51 +109,9 @@ public class Compass implements SensorEventListener ,LocationListener {
 				adjustArrow();
 			}
 		}
-
-
-
 	}
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-	}
-
-
-	@Override
-	public void onLocationChanged(Location location) {
-
-		// set the new location
-		//this.mLocation = location;
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-
-	}
-
-
-	public double getBearingForLocation(Location location)
-	{
-		return azimuth + getGeomagneticField(location).getDeclination();
-	}
-
-	private GeomagneticField getGeomagneticField(Location location)
-	{
-		GeomagneticField geomagneticField = new GeomagneticField(
-				(float)location.getLatitude(),
-				(float)location.getLongitude(),
-				(float)location.getAltitude(),
-				System.currentTimeMillis());
-		return geomagneticField;
 	}
 }

@@ -1,9 +1,11 @@
 package com.cgp.saral.model;
 
+import java.io.Serializable;
+
 /**
  * Created by WeeSync on 17/10/15.
  */
-public class ContentStats {
+public class ContentStats implements Serializable{
 
     public String getDisLikes() {
         return DisLikes;

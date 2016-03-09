@@ -287,7 +287,7 @@ try{
                     @Override
                     public void run() {
 
-                        compass.arrowView = (ImageView) view.findViewById(R.id.cmp_image);
+                        compass.arrowView =  view.findViewById(R.id.compass_layout);
 
 
 
