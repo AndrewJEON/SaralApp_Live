@@ -6,12 +6,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 import android.view.ViewGroup;
 
-import com.cgp.saral.fragments.BookNowTabFragment;
 import com.cgp.saral.fragments.CompassFragment;
 import com.cgp.saral.fragments.HomeTabFragment;
 import com.cgp.saral.fragments.InviteTabFragment;
 import com.cgp.saral.fragments.MessageNotiFragment;
-import com.cgp.saral.fragments.YouFragment;
+import com.cgp.saral.fragments.TestimonialsFragment;
+import com.cgp.saral.fragments.VaastuTipsFragment;
 
 import java.util.ArrayList;
 
@@ -44,9 +44,9 @@ String title[];
     {
         int i= 0;
         mPlaceHolderFragmentArray.add(HomeTabFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(VaastuTipsFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(MessageNotiFragment.newInstance(i++));
-        mPlaceHolderFragmentArray.add(MessageNotiFragment.newInstance(i++));
-        mPlaceHolderFragmentArray.add(MessageNotiFragment.newInstance(i++));
+        mPlaceHolderFragmentArray.add(TestimonialsFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(CompassFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(InviteTabFragment.newInstance(i++));
         //mPlaceHolderFragmentArray.add(YouFragment.newInstance(i++));
@@ -54,48 +54,13 @@ String title[];
 
     @Override
     public Fragment getItem(int i) {
-
-       /* Fragment fragment = mPlaceHolderFragmentArray.get(i);
-        if(fragment == null){
-            fragment = PlaceholderFragment.newInstance(position);
-            mPlaceHolderFragmentArray.put(position, fragment);
-        }
-        return fragment;*/
-       /* switch (i) {
-            case 0:
-                //Fragement for Android Tab
-                return HomeTabFragment.newInstance(0);
-            case 1:
-                //Fragment for Ios Tab
-                // YouFragment.newInstance(2);
-
-                // CompassFragment.newInstance(1);
-                return  CompassFragment.newInstance(1);
-            case 2:
-                //Fragment for Windows Tab
-                return  BookNowTabFragment.newInstance(2);
-            case 3:
-                //Fragment for Windows Tab
-                return  InviteTabFragment.newInstance(3);
-           case 4:
-                //Fragment for Windows Tab
-               return  YouFragment.newInstance(4);
-        }
-        return null;*/
         return mPlaceHolderFragmentArray.get(i);
 
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-       // CharSequence title = null;
-        /*if (position == 0) {
-            title = "One";
-        } else if (position == 1) {
-            title = "Two";
-        } else if (position == 2) {
-            title = "Three";
-        }*/
+
         return  title[position];
     }
 

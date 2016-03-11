@@ -129,7 +129,12 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
-
+    <style name="directionTextView">
+        <item name="android:padding">3dip</item>
+        <item name="android:layout_width">wrap_content</item>
+         <item name="android:inputType">textMultiLine</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 
 
 

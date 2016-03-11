@@ -349,7 +349,7 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
                 return;
 
             }
-            if ((lastFeedTime != null && (System.currentTimeMillis()-lastFeedTime)< Constants.REFRESH_TIME_IN_MILLISECONDS) || (lastFeedTime != null &&  strDiscoverFeedPref != null && !strDiscoverFeedPref.isEmpty())) {
+            if ((lastFeedTime != null && (System.currentTimeMillis()-lastFeedTime)< Constants.REFRESH_TIME_IN_MILLISECONDS)) {
                 progBar.setVisibility(View.GONE);
                 if (isPullRefresh) {
                     swipeRefreshLayout.setRefreshing(false);

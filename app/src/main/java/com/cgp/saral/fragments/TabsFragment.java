@@ -38,26 +38,19 @@ public class TabsFragment extends BaseFragment {
     boolean saveToHistory;
     private int[] tabIcons = {
             R.drawable.home,
+            R.drawable.ic_action_vaastu_tips_grey,
             R.drawable.ic_news_letter_grey,
-            R.drawable.ic_news_letter_grey,
-            R.drawable.ic_news_letter_grey,
+            R.drawable.ic_action_testimonials_grey,
             R.drawable.you,
-            R.drawable.ic_invite,
-           // R.drawable.chat
-            //,
-            //R.drawable.ic_house_plan
+            R.drawable.ic_invite
     };
     private int[] tabselIcons = {
             R.drawable.home_green,
+            R.drawable.ic_action_vaastu_tips_green,
             R.drawable.ic_news_letter_green,
-            R.drawable.ic_news_letter_green,
-            R.drawable.ic_news_letter_green,
+            R.drawable.ic_action_testimonials_green,
             R.drawable.you_green,
-            R.drawable.ic_invite_g,
-           // R.drawable.chat_green
-            //,
-            //  R.drawable.ic_house_plan_green
-
+            R.drawable.ic_invite_g
     };
 
     //, " House Plan"

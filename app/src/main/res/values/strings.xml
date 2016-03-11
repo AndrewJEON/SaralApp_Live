@@ -95,9 +95,10 @@
     <string name="note2">Note:- Please press the orange button and select the respective theme to know your favorable direction related to different aspects of life.</string>
     <string name="note1">Note:- Your mobile phone does not support gyroscope hence compass feature can not be enabled. Kindly download this app in any other mobile phone which has the gyroscope to enable the compass feature.</string>
     <string name="compass_message"><![CDATA[<html><body style=\"text-align:justify;\">Follow favourable directions to attract prosperity in all aspects of your life
-        <br/>1st direction: Best for all aspects of life including health, wealth, education, job / business and marriage and relationship
-        <br/>2nd direction: Attract good Health
-        <br/>3rd direction: Enhance Marriage prospects and enjoy a happy Relationship
-        <br/>4th direction: Memory gain, improved concentration in studies and excel in matters concerning education
-        <br/>Avoid unfavourable directions as it will lead to adversity in all aspects of life.<\\body><\\html>]]></string>
+        <br/>Avoid unfavourable directions as it will lead to adversity in all aspects of life.<\\body><\\html>]]>
+    </string>
+    <string name="direction1">Best for all aspects of life including health, wealth, education, job / business and marriage and relationship.</string>
+    <string name="direction2">Attract good Health.</string>
+    <string name="direction3">Enhance Marriage prospects and enjoy a happy Relationship.</string>
+    <string name="direction4">Memory gain, improved concentration in studies and excel in matters concerning education.</string>
 </resources>

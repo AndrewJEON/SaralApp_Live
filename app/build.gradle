@@ -35,7 +35,6 @@ android {
         incremental true
         preDexLibraries false
         javaMaxHeapSize "4g"
-        dexInProcess false
     }
     //  useLibrary 'org.apache.http.legacy'
     packagingOptions {

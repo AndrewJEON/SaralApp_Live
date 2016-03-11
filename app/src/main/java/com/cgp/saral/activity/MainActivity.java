@@ -220,7 +220,8 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         tv_title = (TextView)findViewById(R.id.tv_title_page);
-            tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+            //tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+            tv_title.setText("Home");
         if(toolbar != null) {
             setSupportActionBar(toolbar);
            // getSupportActionBar().setTitle("SaralApp");
@@ -268,7 +269,8 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
 
         Fragment f = fm.findFragmentByTag("viewPager");
 
-        tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+        //tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+            tv_title.setText("Home");
         Log.i("MainActivity", "popping backstack");
         if (f != null) {
 
@@ -280,7 +282,8 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
             if (fm.getBackStackEntryCount() > 0) {
                 Log.i("MainActivity", "popping backstack");
                 fm.popBackStack();
-                tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+                //tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+                tv_title.setText("Home");
             } else {
                 Log.i("MainActivity", "nothing on backstack, finish");
 
@@ -334,7 +337,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
         iv_setting.setVisibility(View.VISIBLE);
         iv_userpro.setOnClickListener(this);
         username.setOnClickListener(this);
-            tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+           // tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
         /*callBack = (Button) findViewById(R.id.callback);
         callBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -354,14 +357,15 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
     // Filling the ArrayLists
     public void selectItemFromDrawer(int position) {
     try {
-        tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
-
+        //tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+        tv_title.setText("Home");
         Fragment frag = new TabsFragment();
 
         Log.e("selectItemFromDrawer", " ---->" + position);
         switch (position){
             case 0:
-                tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+                //tv_title.setText("Welcome " + Constants.GLOBAL_USER_NAME);
+                tv_title.setText("Home");
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment f = fm.findFragmentById(R.id.tab);
                 FragmentTransaction transaction = fragmentManager.beginTransaction();

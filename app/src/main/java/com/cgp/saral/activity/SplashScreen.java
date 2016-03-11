@@ -66,8 +66,8 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
     private Sensor mGyroSensor;
     boolean userExist;
 
-    private ViewFlipper sliderView;
-
+    /*private ViewFlipper sliderView;*/
+    private ImageView splashImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -83,7 +83,7 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
         bar = (ProgressBar) findViewById(R.id.progress_bar_splash);
 
         ctx = getApplicationContext();
-
+        splashImg = (ImageView) findViewById(R.id.splashImg);
         String strId = preferences.getString(Constants.PREFS_USER_ID, "");
 
         if (!strId.equals("")) {
@@ -96,7 +96,7 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
        // splashScreen();
 
         /* Slider images*/
-        sliderView = (ViewFlipper) findViewById(R.id.view_flipper);
+        /*sliderView = (ViewFlipper) findViewById(R.id.view_flipper);
         Animation animationFlipIn  = AnimationUtils.loadAnimation(this, R.anim.slide_in);
         Animation animationFlipOut = AnimationUtils.loadAnimation(this, R.anim.slide_out);
         sliderView.setInAnimation(animationFlipIn);
@@ -141,9 +141,12 @@ public class SplashScreen extends AppCompatActivity implements SensorEventListen
 
         }
         sliderView.startFlipping();
-
+        */
 
         /* End Slider images*/
+
+        PicassoSingleton.getPicassoInstance(ctx).load(Utils.getSliderImagePath(1)).into(splashImg);
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mGyroSensor=mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 

@@ -43,7 +43,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MessageNotiFragment extends BaseFragment {
+public class TestimonialsFragment extends BaseFragment {
     View view;
     @Bind(R.id.tv_category)
     TextView category;
@@ -55,16 +55,6 @@ public class MessageNotiFragment extends BaseFragment {
     FloatingActionMenu menu;
 
     private static final String ARG_PAGE_NUMBER = "page_number";
-
-
-    //  private static final String TRANSLATION_Y = "translationY";
-   /* private ImageButton fab;
-    private boolean expanded = false;
-    private View fab_marriage_h;
-    private View fab_career_h;
-    private View fab_education_h;
-    private View fab_wealth_h;
-    private View fab_health_h;*/
 
     private boolean fragmentResume = false;
     private boolean fragmentVisible = false;
@@ -100,14 +90,14 @@ public class MessageNotiFragment extends BaseFragment {
     HomeTab_Adapter adapter;
 
     DataController dbController;
-    private final String NEWS_FEED = "NEWS_FEED";
+    private final String NEWS_FEED = "TESTIMONIALS_FEED";
     private static Long lastFeedTime;
-    public MessageNotiFragment() {
+    public TestimonialsFragment() {
         // Required empty public constructor
     }
 
-    public static MessageNotiFragment newInstance(int page) {
-        MessageNotiFragment fragment = new MessageNotiFragment();
+    public static TestimonialsFragment newInstance(int page) {
+        TestimonialsFragment fragment = new TestimonialsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE_NUMBER, page);
         fragment.setArguments(args);
@@ -120,39 +110,7 @@ public class MessageNotiFragment extends BaseFragment {
         //  setUserVisibleHint(true);
     }
 
-    /* @Override
-     public void setUserVisibleHint(boolean visible) {
-         super.setUserVisibleHint(visible);
-         if (visible && isResumed()) {   // only at fragment screen is resumed
-             fragmentResume = true;
-             fragmentVisible = false;
-             fragmentOnCreated = true;
-             // initView();
 
-            getActivity().runOnUiThread(new Runnable() {
-                 @Override
-                 public void run() {
-                     fabInit(view);
-                     collapseFab();
-                 }
-             });
-
-
-         } else if (visible) {        // only at fragment onCreated
-             fragmentResume = false;
-             fragmentVisible = true;
-             fragmentOnCreated = true;
-             //fabInit(view);
-             //collapseFab();
-         } else if (!visible && fragmentOnCreated) {// only when you go out of fragment screen
-             fragmentVisible = false;
-             fragmentResume = false;
-             //fabInit(view);
-             //collapseFab();
-         }
-     }
-
- */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -171,7 +129,7 @@ public class MessageNotiFragment extends BaseFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       // initView();
+        //initView();
     }
 
     @Override
@@ -197,17 +155,6 @@ public class MessageNotiFragment extends BaseFragment {
 
 
         }
-
-      /*  getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                fabInit(view);
-
-            }
-        });*/
-
-        //
-      //  feedPage++;
 
         //fetch initial Content feed
         getFeed(feedPage);
@@ -236,9 +183,6 @@ public class MessageNotiFragment extends BaseFragment {
         adapter = new HomeTab_Adapter(getActivity(), feedList, dbController);
         recyclerView.setAdapter(adapter);
 
-
-        //adding a scroll listener to fetch further feed on user scroll
-        // addRecyclerViewScrollListener();
 
     }
 
@@ -285,7 +229,7 @@ public class MessageNotiFragment extends BaseFragment {
             data.addProperty("startindex", "" + 0);
             data.addProperty("count", "200");
             data.addProperty("searchString", "");
-            data.addProperty("contentType", "600001");
+            data.addProperty("contentType", "600011");
             data.addProperty("mediaType", "-1");
 
             data.add("source", Constants.getDeviceInfo());
@@ -381,12 +325,7 @@ public class MessageNotiFragment extends BaseFragment {
                 }
 
                 Collections.sort(feedList, new DateSortComp());
-                //add fetched feed to the FeedList bound to the adapter
-               /* for (int i = 0; i < listData.size(); i++) {
-                    feedList.add(listData.get(i));
 
-                    Log.e("Size of AList", "" + feedList.size() + "  Counter " + i);
-                }*/
                 SharedPreferenceManager.getSharedInstance().setStringInPreferences(NEWS_FEED, ObjectSerializerHelper.objectToString(feedList));
                 adapter.notifyDataSetChanged();
                 // feedPage++;
@@ -461,219 +400,11 @@ public class MessageNotiFragment extends BaseFragment {
                 }
                 if (!loading && (totalItemCount - visibleItemCount)
                         <= (firstVisibleItem + visibleThreshold)) {
-                    //nearing the end of the total items
-                    //need to fetch the next page
 
-                    //increment the page count
-                    // feedPage++;
-
-                    //fetch the next page
-                    //  getFeed(feedPage);
-
-                    //   loading = true;
                 }
             }
         });
     }
 
-   /* public void fabInit(View view1) {
 
-        Log.e("Fab Init", ""+expanded);
-
-        final ViewGroup fabContainer = (ViewGroup) view1.findViewById(R.id.fab_container);
-        fab = (ImageButton) view1.findViewById(R.id.fabmain);
-        fab_health_h = view1.findViewById(R.id.fab_action_1);
-        fab_wealth_h = view1.findViewById(R.id.fab_action_2);
-        fab_education_h = view1.findViewById(R.id.fab_action_3);
-        fab_career_h = view1.findViewById(R.id.fab_action_4);
-        fab_marriage_h = view1.findViewById(R.id.fab_action_5);
-        fab_health_h.setOnClickListener(this);
-        fab_wealth_h.setOnClickListener(this);
-        fab_education_h.setOnClickListener(this);
-        fab_career_h.setOnClickListener(this);
-        fab_marriage_h.setOnClickListener(this);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expanded = !expanded;
-
-                category.setVisibility(View.GONE);
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-                if (expanded) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            expandFab();
-                        }
-                    });
-
-
-                } else {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-
-                            collapseFab();
-
-                        }
-                    });
-
-                }
-            }
-        });
-
-        fabContainer.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                fabContainer.getViewTreeObserver().removeOnPreDrawListener(this);
-                offset1 = fab.getY() - fab_health_h.getY();
-                fab_health_h.setTranslationY(offset1);
-                offset2 = fab.getY() - fab_wealth_h.getY();
-                fab_wealth_h.setTranslationY(offset2);
-                offset3 = fab.getY() - fab_education_h.getY();
-                fab_education_h.setTranslationY(offset3);
-                offset4 = fab.getY() - fab_career_h.getY();
-                fab_career_h.setTranslationY(offset4);
-                offset5 = fab.getY() - fab_marriage_h.getY();
-                fab_marriage_h.setTranslationY(offset5);
-                return true;
-            }
-        });
-    }
-
-    /*//****************
-     private void collapseFab() {
-     fab.setImageResource(R.drawable.fab_add);
-     AnimatorSet animatorSet = new AnimatorSet();
-     animatorSet.playTogether(createCollapseAnimator(fab_health_h, offset1),
-     createCollapseAnimator(fab_wealth_h, offset2),
-     createCollapseAnimator(fab_education_h, offset3),
-     createCollapseAnimator(fab_career_h, offset4),
-     createCollapseAnimator(fab_marriage_h, offset5));
-     animatorSet.start();
-     animateFab();
-     }
-
-     private void expandFab() {
-     fab.setImageResource(R.drawable.ic_close);
-     AnimatorSet animatorSet = new AnimatorSet();
-     animatorSet.playTogether(createExpandAnimator(fab_health_h, offset1),
-     createExpandAnimator(fab_wealth_h, offset2),
-     createExpandAnimator(fab_education_h, offset3),
-     createExpandAnimator(fab_career_h, offset4),
-     createExpandAnimator(fab_marriage_h, offset5)
-     );
-     animatorSet.start();
-     animateFab();
-     }
-
-     private Animator createCollapseAnimator(View view, float offset) {
-     return ObjectAnimator.ofFloat(view, TRANSLATION_Y, 0, offset)
-     .setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime));
-     }
-
-     private Animator createExpandAnimator(View view, float offset) {
-     return ObjectAnimator.ofFloat(view, TRANSLATION_Y, offset, 0)
-     .setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime));
-     }
-
-     private void animateFab() {
-     Drawable drawable = fab.getDrawable();
-     if (drawable instanceof Animatable) {
-     ((Animatable) drawable).start();
-     }
-     }
-     */
-/*
-
-    @Override
-    public void onClick(View v) {
-        tempList = feedList;
-        adapter.resetData();
-        adapter.notifyDataSetChanged();
-        if (v == fab_health_h) {
-
-            expanded = !expanded;
-            if (expanded) {
-
-                expandFab();
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-
-            } else {
-                collapseFab();
-                category.setVisibility(View.VISIBLE);
-                category.setText("Health");
-                adapter.getFilter().filter("" + 600004);
-                adapter.notifyDataSetChanged();
-
-            }
-        } else if (v == fab_wealth_h) {
-            expanded = !expanded;
-            if (expanded) {
-                expandFab();
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-
-            } else {
-                collapseFab();
-                category.setVisibility(View.VISIBLE);
-                category.setText("Wealth");
-                adapter.getFilter().filter("" + 600007);
-                adapter.notifyDataSetChanged();
-
-            }
-        } else if (v == fab_education_h) {
-            expanded = !expanded;
-            if (expanded) {
-                expandFab();
-
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-
-            } else {
-                collapseFab();
-                category.setVisibility(View.VISIBLE);
-                category.setText("Education");
-                adapter.getFilter().filter("" + 600003);
-                adapter.notifyDataSetChanged();
-
-            }
-        } else if (v == fab_career_h) {
-            expanded = !expanded;
-            if (expanded) {
-                expandFab();
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-
-            } else {
-                collapseFab();
-                category.setVisibility(View.VISIBLE);
-                category.setText("Career");
-                adapter.getFilter().filter("" + 600002);
-                adapter.notifyDataSetChanged();
-
-            }
-        } else if (v == fab_marriage_h) {
-            expanded = !expanded;
-            if (expanded) {
-                expandFab();
-                adapter.resetData();
-                adapter.notifyDataSetChanged();
-
-            } else {
-                collapseFab();
-                category.setVisibility(View.VISIBLE);
-                category.setText("Marriage & Relationship");
-                adapter.getFilter().filter("" + 600006);
-                adapter.notifyDataSetChanged();
-
-            }
-        }
-
-
-
-    }*/
 }
