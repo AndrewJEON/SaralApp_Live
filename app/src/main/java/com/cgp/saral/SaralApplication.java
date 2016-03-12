@@ -21,6 +21,7 @@ import com.google.android.gms.analytics.Logger;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.zopim.android.sdk.api.ZopimChat;
 //import com.squareup.leakcanary.LeakCanary;
 //import com.squareup.leakcanary.RefWatcher;
 
@@ -152,6 +153,10 @@ public class SaralApplication extends Application {
 
         //7840097696
 
+        /**
+         * Minimum chat configuration. Chat must be initialization before starting the chat.
+         */
+        ZopimChat.init(Constants.ZOPIM_ACCOUNT_KEY);
     }
 
 

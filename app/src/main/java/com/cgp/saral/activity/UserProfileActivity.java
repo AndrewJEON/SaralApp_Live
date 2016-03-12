@@ -22,6 +22,7 @@ import com.cgp.saral.databaseHelper.DataController;
 import com.cgp.saral.model.Language;
 import com.cgp.saral.model.LocationItems;
 import com.cgp.saral.model.Userdata_Bean;
+import com.cgp.saral.myutils.CircleTransform;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.social.helper.GooglePlusSignInHelper;
@@ -37,7 +38,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class UserProfile_Activity extends AppCompatActivity implements View.OnClickListener, GooglePlusSignInHelper.OnGoogleSignInListener{
+public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener, GooglePlusSignInHelper.OnGoogleSignInListener{
 
     //
     Context ctx;
@@ -266,7 +267,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
         if (bean.getImgurl()!=null)
         {
 
-            Picasso.with(ctx).load(bean.getImgurl())
+            Picasso.with(ctx).load(bean.getImgurl()).transform(new CircleTransform())
                     .placeholder(R.drawable.ic_dp_grey).error(R.drawable.ic_dp_grey).into(usr_pic);
             //usr_pic.setImageBitmap(thePic);
             isHave=true;
@@ -293,7 +294,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
         Log.e("iv_edit"," iv_edit ");
         Bundle b= new Bundle();
         b.putSerializable("user", userdata);
-        startActivity(new Intent(UserProfile_Activity.this, EditProfile.class).putExtras(b));
+        startActivity(new Intent(UserProfileActivity.this, EditProfileActivity.class).putExtras(b));
         Log.e("iv_edit", " iv_edit 1");
     }
         else if (v==back)
@@ -307,10 +308,10 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
     public  void logout_validate()
     {
 
-        showProgressDialog(UserProfile_Activity.this, "Please Wait, Signing out !!!");
+        showProgressDialog(UserProfileActivity.this, "Please Wait, Signing out !!!");
         preferences = getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE);
         editor = preferences.edit();
-        Intent intent=new Intent(UserProfile_Activity.this,UserAuthoriseActivity.class);
+        Intent intent=new Intent(UserProfileActivity.this,UserAuthoriseActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -328,7 +329,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
                 editor.putBoolean(Constants.PREFS_KEY, false);
 
                 editor.commit();
-                showProgressDialog(UserProfile_Activity.this, "Please Wait, Signing out !!!");
+                showProgressDialog(UserProfileActivity.this, "Please Wait, Signing out !!!");
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -346,7 +347,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
                // Toast.makeText(ctx," g+ Logout in Dev Process ",Toast.LENGTH_LONG).show();
 
 
-                showProgressDialog(UserProfile_Activity.this, "Please Wait, Signing out !!!");
+                showProgressDialog(UserProfileActivity.this, "Please Wait, Signing out !!!");
 
                 long ides = dataController.updateStatus(0, id);
                 Log.e("Google Plus Logout", "Update row " + ides);
@@ -369,7 +370,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
 
 
             } else if (type.equalsIgnoreCase("normal")) {
-                showProgressDialog(UserProfile_Activity.this, "Please Wait, Signing out !!!");
+                showProgressDialog(UserProfileActivity.this, "Please Wait, Signing out !!!");
                 long ides = dataController.updateStatus(0, id);
                 Log.e("Normal Signout", "Update row " + ides);
                 dataController.deleteUsers();
@@ -381,7 +382,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
             }
         }else
         {
-            showProgressDialog(UserProfile_Activity.this, "Please Wait, Signing out !!!");
+            showProgressDialog(UserProfileActivity.this, "Please Wait, Signing out !!!");
             long ides = dataController.updateStatus(0, id);
 
             Log.e("userprofile_activity", "Update row " + ides);
@@ -398,7 +399,7 @@ public class UserProfile_Activity extends AppCompatActivity implements View.OnCl
     public void startTransaction(Fragment fragment, String str) {
 
         fragmentManager=getSupportFragmentManager();
-                ((SaralApplication) getApplication()).trackEvent(UserProfile_Activity.this, "MainActivity", "App Flow", "fragment Switching " + str);
+                ((SaralApplication) getApplication()).trackEvent(UserProfileActivity.this, "MainActivity", "App Flow", "fragment Switching " + str);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.pro, fragment, str);
         transaction.addToBackStack(null);

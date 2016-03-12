@@ -49,7 +49,7 @@ String title[];
         mPlaceHolderFragmentArray.add(TestimonialsFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(CompassFragment.newInstance(i++));
         mPlaceHolderFragmentArray.add(InviteTabFragment.newInstance(i++));
-        //mPlaceHolderFragmentArray.add(YouFragment.newInstance(i++));
+        //mPlaceHolderFragmentArray.add(ChatActivity.newInstance(i++));
     }
 
     @Override

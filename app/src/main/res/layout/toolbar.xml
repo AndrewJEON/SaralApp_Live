@@ -31,39 +31,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/iv_logo"
             android:layout_toEndOf="@+id/iv_logo" />
-        <!--<TextView android:id="@+id/tv_welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Guest"
-            android:padding="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/tv_welcome_user"/>
-        <TextView android:id="@+id/tv_welcome_user"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="Welcome "
-            android:padding="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/settingLayout"
-            android:layout_toStartOf="@+id/settingLayout"/>-->
-    <!--<Button
-        android:id="@+id/callback"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:drawableLeft="@drawable/ic_contact_us"
-        android:text="Call Back"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/settingLayout"
-        android:layout_toStartOf="@+id/settingLayout"
-        android:background="@color/transparent"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginRight="10dp"/>
-       -->
+
         <RelativeLayout
             android:id="@+id/settingLayout"
             android:layout_width="wrap_content"
@@ -73,33 +41,10 @@
             android:background="@drawable/ic_drawer"
             android:visibility="gone">
 
-            <!--<ImageButton
-                android:id="@+id/setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-
-                android:background="@drawable/ic_drawer" />-->
         </RelativeLayout>
 
-        <!-- <TextView
-             android:id="@+id/txt_title"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerVertical="true"
-             android:layout_toRightOf="@+id/iv_logo"
-             android:text="Title"
-             android:textColor="#FFF" />
- -->
-        <!--<TextView
-            android:id="@+id/txt_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/txt_title"
-            android:layout_alignBottom="@+id/txt_title"
-            android:layout_toLeftOf="@+id/setting"
-            android:text="Right Menu"
-            android:textColor="#FFF"  />-->
+
 
     </RelativeLayout>
 

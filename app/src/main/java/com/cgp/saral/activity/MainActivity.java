@@ -31,20 +31,19 @@ import com.cgp.saral.SaralApplication;
 import com.cgp.saral.adapter.RightSideAdapter;
 import com.cgp.saral.customviews.OnItemClickListener;
 import com.cgp.saral.databaseHelper.DataController;
-import com.cgp.saral.fragments.About_Us;
+import com.cgp.saral.fragments.AboutUsFragment;
 import com.cgp.saral.fragments.BaseFragment;
 import com.cgp.saral.fragments.BookNowTabFragment;
 import com.cgp.saral.fragments.CallbackTabFragment;
-import com.cgp.saral.fragments.Contact_Us;
+import com.cgp.saral.fragments.ContactUsFragment;
 import com.cgp.saral.fragments.FeedBack;
 import com.cgp.saral.fragments.FloorPUpload;
 import com.cgp.saral.fragments.HomeTabFragment;
-import com.cgp.saral.fragments.MessageNotiFragment;
 import com.cgp.saral.fragments.TabsFragment;
-import com.cgp.saral.fragments.YouFragment;
 import com.cgp.saral.interfc.StackedFragment;
 import com.cgp.saral.model.DrawerItem;
 import com.cgp.saral.model.Userdata_Bean;
+import com.cgp.saral.myutils.CircleTransform;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.social.helper.FbConnectHelper;
@@ -381,8 +380,8 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
                 tv_title.setText("Call Back");
                 break;
             case 3:
-                startTransaction(new YouFragment(), "message");
-                tv_title.setText("Chat");
+                startActivity(new Intent(this, ChatActivity.class));
+                //tv_title.setText("Chat");
                 break;
             case 4:
                 startTransaction(new FloorPUpload(), "plan_upload");
@@ -393,7 +392,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
                 tv_title.setText("");
                 break;
             case 6:
-                startTransaction(new Contact_Us(), "contact");
+                startTransaction(new ContactUsFragment(), "contact");
                 tv_title.setText("Contact Us");
                 break;
             case 7:
@@ -401,7 +400,7 @@ public class MainActivity extends CameraActivity implements OnItemClickListener,
                 tv_title.setText("Feedback");
                 break;
             case 8:
-                startTransaction(new About_Us(), "about_us");
+                startTransaction(new AboutUsFragment(), "about_us");
                 tv_title.setText("About Us");
                 break;
             case 9:
@@ -515,7 +514,7 @@ try{
 try{
         if (null != bean) {
             Log.e("Main Activity", "UserData Not Null");
-            Intent i = new Intent(MainActivity.this, UserProfile_Activity.class);
+            Intent i = new Intent(MainActivity.this, UserProfileActivity.class);
             //i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             Bundle b = new Bundle();
             b.putSerializable("dbuserdata", bean);
@@ -523,7 +522,7 @@ try{
             startActivity(i);
 
 
-            //startActivity(new Intent(MainActivity.this, UserProfile_Activity.class).putExtra("dbuserdata", (Serializable) dbUserData));
+            //startActivity(new Intent(MainActivity.this, UserProfileActivity.class).putExtra("dbuserdata", (Serializable) dbUserData));
             mDrawerlayout.closeDrawer(drawerPane);
         } else {
             Log.e("Main Activity", "UserData Null");
@@ -565,7 +564,7 @@ try{
         username.setText(bean.getUserFName());
         Constants.GLOBAL_USER_NAME = bean.getUserFName();
         if (bean.getImgurl() != null) {
-            Picasso.with(this).load(bean.getImgurl())
+            Picasso.with(this).load(bean.getImgurl()).transform(new CircleTransform())
                     .placeholder(R.color.colorAccent).error(R.drawable.ic_dp_grey).into(iv_userpro);
         } else {
             iv_userpro.setImageResource(R.drawable.ic_dp_grey);

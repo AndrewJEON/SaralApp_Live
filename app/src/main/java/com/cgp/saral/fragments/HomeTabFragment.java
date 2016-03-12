@@ -160,6 +160,7 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
             Constants.GLOBAL_USER_ID = data.get(0).getUserId();
             Constants.GLOBAL_USER_CONT_NO = data.get(0).getContact1();
             Constants.GLOBAL_U_LUCK_CHART = data.get(0).getLucky_Chart();
+            Constants.GLOBAL_USER_EMAIL = data.get(0).getMail();
             dbController.closeDB();
             view.findViewById(R.id.llWelcome).setVisibility(View.VISIBLE);
             TextView tvUser = (TextView)view.findViewById(R.id.tvUser);

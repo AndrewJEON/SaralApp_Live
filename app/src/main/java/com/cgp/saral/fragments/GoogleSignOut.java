@@ -36,7 +36,7 @@ public class GoogleSignOut extends BaseFragment implements GoogleApiClient.Conne
         public void onDataPass(String data);
     }
 
-  //  UserProfile_Activity appCompatActivity;
+  //  UserProfileActivity appCompatActivity;
 
 
     @Override

@@ -8,8 +8,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by WeeSync on 17/10/15.
  */
-public class About_Us extends Fragment{
+public class AboutUsFragment extends Fragment{
 
     View view;
 
@@ -34,14 +32,14 @@ public class About_Us extends Fragment{
     ImageView buttonPreview;
     private static final String ARG_PAGE_NUMBER = "page_number";
 
-    public About_Us() {
+    public AboutUsFragment() {
 
     }
 
    // String currentURL="http://saralvaastu.com/";
 
-    public static About_Us newInstance(int page) {
-        About_Us fragment = new About_Us();
+    public static AboutUsFragment newInstance(int page) {
+        AboutUsFragment fragment = new AboutUsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE_NUMBER, page);
         fragment.setArguments(args);

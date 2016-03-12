@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -101,14 +102,14 @@ public class TabsFragment extends BaseFragment {
         viewPager.setCurrentItem(0);
         TabLayout.Tab tab = tabLayout.getTabAt(0);
         tab.setIcon(tabselIcons[0]);
-
+        tabLayout.setTabTextColors(ContextCompat.getColor(getContext(),R.color.Textcolor_dark), ContextCompat.getColor(getContext(),R.color.green));
         pageHistory = new Stack<Integer>();
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //tabLayout.getTabAt(0).setIcon(tabIcons[0]);
 
-              tabLayout.setTabTextColors(getResources().getColor(R.color.Textcolor_dark), getResources().getColor(R.color.green));
+              tabLayout.setTabTextColors(ContextCompat.getColor(getContext(),R.color.Textcolor_dark), ContextCompat.getColor(getContext(),R.color.green));
                int i = tab.getPosition();
                 tab.setIcon(tabselIcons[i]);
 

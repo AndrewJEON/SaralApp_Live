@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * Created by WeeSync on 17/10/15.
  */
-public class Contact_Us extends Fragment {
+public class ContactUsFragment extends Fragment {
 
     View view;
 
@@ -38,12 +38,12 @@ public class Contact_Us extends Fragment {
     @Bind(R.id.tvCorpEmail)
     TextView tvCorpEmail;
 
-    public Contact_Us() {
+    public ContactUsFragment() {
 
     }
 
-    public static Contact_Us newInstance(int page) {
-        Contact_Us fragment = new Contact_Us();
+    public static ContactUsFragment newInstance(int page) {
+        ContactUsFragment fragment = new ContactUsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE_NUMBER, page);
         fragment.setArguments(args);

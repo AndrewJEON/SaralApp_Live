@@ -39,6 +39,7 @@ import com.cgp.saral.model.UpdateResponse;
 import com.cgp.saral.model.UpdateUserResult;
 import com.cgp.saral.model.UserData;
 import com.cgp.saral.model.Userdata_Bean;
+import com.cgp.saral.myutils.CircleTransform;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.network.GsonRequestPost;
@@ -56,7 +57,7 @@ import java.util.Locale;
 
 import fr.ganfra.materialspinner.MaterialSpinner;
 
-public class EditProfile extends AppCompatActivity implements View.OnClickListener {
+public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
     UserProfileAdapter langAdapter = null, genderAdapter = null, stateAdapter = null, cityAdapter = null;
     StateDistAdapter distAdapter = null;
     TextInputLayout name, mobile, email, dob, address,genderTI;
@@ -184,7 +185,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         if (bean != null) {
 
             if (bean.getImgurl()!=null){
-                Picasso.with(ctx).load(bean.getImgurl())
+                Picasso.with(ctx).load(bean.getImgurl()).transform(new CircleTransform())
                         .placeholder(R.drawable.ic_dp_grey).error(R.drawable.ic_dp_grey).into(usrPic);
             }else{
                 usrPic.setImageResource(R.drawable.ic_dp_grey);
@@ -400,7 +401,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     try{
         // spinner.setItems(Constants.intrestData);
 
-        langAdapter = new UserProfileAdapter(EditProfile.this, 1, langMap);
+        langAdapter = new UserProfileAdapter(EditProfileActivity.this, 1, langMap);
 
         language.setAdapter(langAdapter);
         if (userdata != null && userdata.get(0) != null && userdata.get(0).getLanguage() != null) {
@@ -442,7 +443,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             }
         });
 
-      /*  genderAdapter = new UserProfileAdapter(EditProfile.this, 1, gendremap);
+      /*  genderAdapter = new UserProfileAdapter(EditProfileActivity.this, 1, gendremap);
         gender.setAdapter(genderAdapter);
         gender.setSelection(genPos);
         gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -468,7 +469,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             }
         });
 */
-        stateAdapter = new UserProfileAdapter(EditProfile.this, 1, statemap);
+        stateAdapter = new UserProfileAdapter(EditProfileActivity.this, 1, statemap);
         state.setAdapter(stateAdapter);
         state.setSelection(statePos + 1);
         state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -501,7 +502,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         });
 
 
-     /*   distAdapter = new StateDistAdapter(EditProfile.this, distMap);
+     /*   distAdapter = new StateDistAdapter(EditProfileActivity.this, distMap);
         spinnerdist.setAdapter(distAdapter);
         spinnerdist.setSelection(distPos + 1);
         spinnerdist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -526,7 +527,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             }
         });*/
     }catch(Exception e){
-        Log.e("EditProfile", "Unable to fill adaptors",e);
+        Log.e("EditProfileActivity", "Unable to fill adaptors",e);
     }
     }
 
@@ -570,26 +571,26 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
 
         if (strState.isEmpty()) {
-            Toast.makeText(EditProfile.this, "Please select your state", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileActivity.this, "Please select your state", Toast.LENGTH_SHORT).show();
             return;
         } else if (!strState.isEmpty() && strDist.isEmpty()) {
-            Toast.makeText(EditProfile.this, "Please select your district", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileActivity.this, "Please select your district", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation " + 9);
             return;
         }else if (!strState.isEmpty() && !strDist.isEmpty()&& !isSateDist(strState,strDist)) {
 
-            Toast.makeText(EditProfile.this, "Selected district is not in Selected State", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfileActivity.this, "Selected district is not in Selected State", Toast.LENGTH_LONG).show();
             return;
 
         } else if (!strState.isEmpty() && !strDist.isEmpty() && strAddress.isEmpty()) {
-            Toast.makeText(EditProfile.this, "Please enter your Address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileActivity.this, "Please enter your Address", Toast.LENGTH_SHORT).show();
             //Log.e("NewBean", "Validation " + 9);
             return;
         } else if (!strState.isEmpty() && !strDist.isEmpty() && !strAddress.isEmpty() && strLanguage.isEmpty()) {
-            Toast.makeText(EditProfile.this, "Please select preffered language", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileActivity.this, "Please select preffered language", Toast.LENGTH_SHORT).show();
             return;
         } else if (!strLanguage.isEmpty() && !strState.isEmpty() && !strDist.isEmpty() && !strAddress.isEmpty() && intrestides.isEmpty()) {
-            Toast.makeText(EditProfile.this, "Please select your Interest", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileActivity.this, "Please select your Interest", Toast.LENGTH_SHORT).show();
             Log.e("NewBean", "Validation " + 10);
             return;
         } else {
@@ -611,7 +612,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                     {
                         if(!l.getParentId().equals(strState))
                         {
-                            Toast.makeText(EditProfile.this, "Selected district is not in Selected State", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, "Selected district is not in Selected State", Toast.LENGTH_SHORT).show();
                             //Log.e("NewBean", "Validation " + 9);
                             statusStateDist =false;
                         }else {
@@ -620,7 +621,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                     }
                 }else
                 {
-                    Toast.makeText(EditProfile.this, "Selected district is not in Selected State", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Selected district is not in Selected State", Toast.LENGTH_SHORT).show();
                     //Log.e("NewBean", "Validation " + 9);
                     statusStateDist=false;
                 }
@@ -805,16 +806,16 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                             }
 
                             dismissDialog();
-                           // startActivity(new Intent(EditProfile.this, UserProfile_Activity.class));
+                           // startActivity(new Intent(EditProfileActivity.this, UserProfileActivity.class));
                             finish();
 
                         } else {
                             dismissDialog();
-                            Toast.makeText(EditProfile.this, "Opps !!! " + result.getMessage() + " Please contact the Administrator", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, "Opps !!! " + result.getMessage() + " Please contact the Administrator", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         dismissDialog();
-                        Toast.makeText(EditProfile.this, "Opps !!! " + result.getMessage() + " Please contact the Administrator", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileActivity.this, "Opps !!! " + result.getMessage() + " Please contact the Administrator", Toast.LENGTH_SHORT).show();
 
                     }
 

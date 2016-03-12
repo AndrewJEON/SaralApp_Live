@@ -15,6 +15,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 public class ImageViewRounded extends ImageView {
 
     public ImageViewRounded(Context context) {
@@ -31,6 +33,7 @@ public class ImageViewRounded extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
+
         BitmapDrawable drawable = (BitmapDrawable) getDrawable();
 
         if (drawable == null) {

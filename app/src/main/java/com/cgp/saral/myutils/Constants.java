@@ -60,7 +60,7 @@ public class Constants {
     public static String GLOBAL_U_LUCK_CHART = "";
    //  public static String GLOBAL_U_LUCK_CHART ="";
    // public static String GLOBAL_USER_FIRST_NAME = "";
-
+   public static String  GLOBAL_USER_EMAIL ="";
     public static String USER_PROFILE_PIC = "p_picture";
 
 
@@ -178,6 +178,7 @@ public class Constants {
     public static String LUCKY_CHAT_APIKEY = "saralvaastu";
     public static String YOUTUBE_KEY = "AIzaSyBPfdk8dI_Inc3lXiRb0GQEKL1-RIYSgmA";
     public static long REFRESH_TIME_IN_MILLISECONDS = 60000; /*One min*/
+    public static String ZOPIM_ACCOUNT_KEY = "3hvAoGJC4TcMwSsqTIF3gfnQEsiFvWFM";
 
     public static JsonObject getDeviceInfo() {
         JsonObject data = new JsonObject();
