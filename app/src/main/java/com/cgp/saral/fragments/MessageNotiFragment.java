@@ -120,39 +120,7 @@ public class MessageNotiFragment extends BaseFragment {
         //  setUserVisibleHint(true);
     }
 
-    /* @Override
-     public void setUserVisibleHint(boolean visible) {
-         super.setUserVisibleHint(visible);
-         if (visible && isResumed()) {   // only at fragment screen is resumed
-             fragmentResume = true;
-             fragmentVisible = false;
-             fragmentOnCreated = true;
-             // initView();
 
-            getActivity().runOnUiThread(new Runnable() {
-                 @Override
-                 public void run() {
-                     fabInit(view);
-                     collapseFab();
-                 }
-             });
-
-
-         } else if (visible) {        // only at fragment onCreated
-             fragmentResume = false;
-             fragmentVisible = true;
-             fragmentOnCreated = true;
-             //fabInit(view);
-             //collapseFab();
-         } else if (!visible && fragmentOnCreated) {// only when you go out of fragment screen
-             fragmentVisible = false;
-             fragmentResume = false;
-             //fabInit(view);
-             //collapseFab();
-         }
-     }
-
- */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -160,6 +128,7 @@ public class MessageNotiFragment extends BaseFragment {
 
         ButterKnife.bind(this, view);
         dbController = DataController.getsInstance(getActivity());
+
         initView();
         //  setRetainInstance(true);
 
@@ -197,17 +166,6 @@ public class MessageNotiFragment extends BaseFragment {
 
 
         }
-
-      /*  getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                fabInit(view);
-
-            }
-        });*/
-
-        //
-      //  feedPage++;
 
         //fetch initial Content feed
         getFeed(feedPage);

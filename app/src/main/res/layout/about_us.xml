@@ -9,7 +9,13 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <WebView
+        <FrameLayout
+            android:id="@+id/mediaLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:visibility="visible"
+            android:orientation="vertical">
+        <ImageView
             android:id="@+id/vid_postvideo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -17,9 +23,15 @@
             android:layout_marginRight="0dp"
             android:adjustViewBounds="true"
             android:padding="0dp"
+            android:src="@drawable/list_item"
             android:scaleType="fitXY" />
-
-
+        <ImageView
+            android:id="@+id/button_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_video_play"
+            android:layout_gravity="center"/>
+        </FrameLayout>
         <TextView
             android:id="@+id/tvAbout"
             android:layout_width="match_parent"
@@ -28,7 +40,7 @@
             android:textColor="@color/white"
             android:padding="20dp"
             android:text="@string/about_us"
-            android:layout_below="@+id/vid_postvideo"/>
+            android:layout_below="@+id/mediaLayout"/>
 
     </RelativeLayout>
 </ScrollView>

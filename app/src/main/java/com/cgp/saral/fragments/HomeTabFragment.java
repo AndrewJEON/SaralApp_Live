@@ -161,8 +161,12 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
             Constants.GLOBAL_USER_CONT_NO = data.get(0).getContact1();
             Constants.GLOBAL_U_LUCK_CHART = data.get(0).getLucky_Chart();
             dbController.closeDB();
+            view.findViewById(R.id.llWelcome).setVisibility(View.VISIBLE);
+            TextView tvUser = (TextView)view.findViewById(R.id.tvUser);
+            tvUser.setText("Hi " + data.get(0).getUserFName().trim() + "!");
         }
         ButterKnife.bind(this, view);
+
 
 
 

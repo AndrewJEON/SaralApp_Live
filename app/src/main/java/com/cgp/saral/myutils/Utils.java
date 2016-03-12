@@ -15,6 +15,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.cgp.saral.R;
 import com.cgp.saral.activity.MainActivity;
@@ -260,7 +262,7 @@ public class Utils {
     }
 
 
-    public static String GLOBAL_SETTINGS = "{ urls: { audioHelpEnglish : \"http://appapi.saralvaastu.com/mp3/help_english.mp3\", audioHelpHindi: \"http://appapi.saralvaastu.com/mp3/help_hindi.mp3\", about: \"https://www.youtube.com/embed/fe3WPhsH4Gg?autoplay=1&vq=small&showinfo=0\", floorPlan: \"https://www.youtube.com/embed/ftxqKYpEgIg?autoplay=1&vq=small&showinfo=0\" }, slider: { count : \"5\", url: \"http://appapi.saralvaastu.com/sliderimages/\" }, corporate: { phone: \"+9122 61092732\", email: \"support@saralvaastu.com\" }, branches: [ { name: \"Maharashtra\", phone: \"+91 9321333022\" }, { name: \"Karnataka\", phone: \"+91 9448286758\" }, { name: \"Gujarat\", phone: \"+91 9662015070\" }, { name: \"Goa\", phone: \"+91 9448286758\" }, { name: \"Delhi\", phone: \"+91 9321333022\" }, { name: \"Rajasthan\", phone: \"+91 9321333022\" }, { name: \"Madhya Pradesh\", phone: \"+91 9321333022\" }, { name: \"Chhattisgarh\", phone: \"+91 9321333022\" }, { name: \"Uttar Pradesh\", phone: \"+91 9321333022\" }, { name: \"Tamil Nadu\", phone: \"+91 9360101001\" }, { name: \"Haryana\", phone: \"+91 9321333022\" } ] }";
+    public static String GLOBAL_SETTINGS = "{ urls: { audioHelpEnglish : \"http://appapi.saralvaastu.com/mp3/help_english.mp3\", audioHelpHindi: \"http://appapi.saralvaastu.com/mp3/help_hindi.mp3\", about: \"fe3WPhsH4Gg\", floorPlan: \"ftxqKYpEgIg\" }, slider: { count : \"5\", url: \"http://appapi.saralvaastu.com/sliderimages/\" }, corporate: { phone: \"+9122 61092732\", email: \"support@saralvaastu.com\" }, branches: [ { name: \"Maharashtra\", phone: \"+91 9321333022\" }, { name: \"Karnataka\", phone: \"+91 9448286758\" }, { name: \"Gujarat\", phone: \"+91 9662015070\" }, { name: \"Goa\", phone: \"+91 9448286758\" }, { name: \"Delhi\", phone: \"+91 9321333022\" }, { name: \"Rajasthan\", phone: \"+91 9321333022\" }, { name: \"Madhya Pradesh\", phone: \"+91 9321333022\" }, { name: \"Chhattisgarh\", phone: \"+91 9321333022\" }, { name: \"Uttar Pradesh\", phone: \"+91 9321333022\" }, { name: \"Tamil Nadu\", phone: \"+91 9360101001\" }, { name: \"Haryana\", phone: \"+91 9321333022\" } ] }";
 
     public static String getSliderImagePath(int i){
         String folder = "";
@@ -365,4 +367,6 @@ public class Utils {
         Gson gson = new Gson();
         return gson.toJson(srcObj,tClass);
     }
+
+
 }

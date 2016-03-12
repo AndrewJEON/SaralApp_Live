@@ -32,6 +32,7 @@ import com.cgp.saral.event.ActivityResultEvent;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.RealPathUtil;
 import com.cgp.saral.myutils.Utils;
+import com.google.android.youtube.player.YouTubeIntents;
 import com.squareup.otto.Subscribe;
 
 import java.io.File;
@@ -86,7 +87,8 @@ public class FloorPUpload extends Fragment {
 
     private static final String ARG_PAGE_NUMBER = "page_number";
 
-    WebView videoView;
+    ImageView videoView;
+    ImageView buttonPreview;
 
     public FloorPUpload() {
         super();
@@ -154,15 +156,16 @@ public class FloorPUpload extends Fragment {
         }
 
         try {
-            // setRetainInstance(true);
-            videoView = (WebView) view.findViewById(R.id.vid_postvideo);
-            videoView.loadUrl(Utils.getFloorPlanVideoUrl());
-            videoView.getSettings().setJavaScriptEnabled(true);
-            videoView.setVisibility(View.VISIBLE);
-            videoView.getSettings().setPluginState(WebSettings.PluginState.ON);
-            ; //sets MediaController in the video view
+            videoView =(ImageView) view.findViewById(R.id.vid_postvideo);
+            buttonPreview = (ImageView) view.findViewById(R.id.button_preview);
+            buttonPreview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(), Utils.getFloorPlanVideoUrl(), true, true);
+                    getActivity().startActivity(intent);
 
-            videoView.requestFocus();//give focus to a specific view
+                }
+            });
         }catch (Exception e){
 
         }
@@ -535,25 +538,17 @@ public class FloorPUpload extends Fragment {
     @Override
     public void onDestroy() {
 
-        if(videoView != null){
-            videoView.destroy();
-            videoView = null;
-        }
         super.onDestroy();
     }
     @Override
     public void onPause() {
-        if(videoView != null){
-            videoView.onPause();
-        }
+
         super.onPause();
     }
 
     @Override
     public void onResume() {
-        if(videoView != null){
-            videoView.onResume();
-        }
+
         super.onResume();
     }
 }
