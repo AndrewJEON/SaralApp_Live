@@ -159,7 +159,7 @@ public class TestimonialsFragment extends BaseFragment {
         menu.setVisibility(View.GONE);
         languageSpinner = (Spinner) view.findViewById(R.id.spinnerlanguage);
 
-        prepareLanguageSpinner();
+        //prepareLanguageSpinner();
 
 
         if (!fragmentResume && fragmentVisible) {   //only when first time fragment is created
@@ -207,7 +207,7 @@ public class TestimonialsFragment extends BaseFragment {
         }
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> langAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, new ArrayList<String>(langKeyMap.keySet()));
+        ArrayAdapter<CharSequence> langAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item,android.R.id.text1, new ArrayList<String>(langKeyMap.keySet()));
 
         // Specify the layout to use when the list of choices appears
         langAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
