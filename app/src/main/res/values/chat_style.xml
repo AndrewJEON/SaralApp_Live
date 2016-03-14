@@ -3,4 +3,13 @@
 
     <!--Customize chat colors-->
     <color name="chat_bubble_visitor">@color/PaleVioletRed</color>
+    <style name="no_agents_button">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">8dp</item>
+    </style>
+    <style name="zopim_toolbar">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

@@ -565,7 +565,7 @@ try{
         Constants.GLOBAL_USER_NAME = bean.getUserFName();
         if (bean.getImgurl() != null) {
             Picasso.with(this).load(bean.getImgurl()).transform(new CircleTransform())
-                    .placeholder(R.color.colorAccent).error(R.drawable.ic_dp_grey).into(iv_userpro);
+                    .placeholder(R.drawable.ic_dp_grey).error(R.drawable.ic_dp_grey).into(iv_userpro);
         } else {
             iv_userpro.setImageResource(R.drawable.ic_dp_grey);
         }

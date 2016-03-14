@@ -34,7 +34,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:visibility="gone"
-                android:background="@color/background"
+                android:background="#00B2EE"
                 android:layout_below="@+id/spinnerlanguage">
             <TextView
                 android:id="@+id/tvUser"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:gravity="center"
-                android:textColor="@color/Black"
+                android:textColor="@color/white"
                 android:textSize="20sp"/>
             <TextView
                 android:id="@+id/tvWelcomeMsg"

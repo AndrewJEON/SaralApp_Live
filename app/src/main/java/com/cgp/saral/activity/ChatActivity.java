@@ -10,6 +10,7 @@
     import android.support.v4.app.FragmentManager;
     import android.support.v4.app.FragmentTransaction;
     import android.support.v7.app.AppCompatActivity;
+    import android.support.v7.widget.Toolbar;
     import android.view.View;
     import android.widget.TextView;
 
@@ -35,7 +36,7 @@
 
         private View view;
 
-
+        Toolbar toolbar;
         public ChatActivity() {
             // Required empty public constructor
         }
@@ -47,6 +48,17 @@
             setContentView(R.layout.activity_chat);
             ((TextView)findViewById(R.id.txt_title)).setText("Chat");
 
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+            if(toolbar != null) {
+                setSupportActionBar(toolbar);
+                // getSupportActionBar().setTitle("SaralApp");
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            }
             findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

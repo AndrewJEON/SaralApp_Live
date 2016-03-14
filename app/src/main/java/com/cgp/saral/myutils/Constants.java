@@ -129,10 +129,10 @@ public class Constants {
 
 
     //for production server
-   // public static String baseURL = "http://appapi.saralvaastu.com/";
+    public static String baseURL = "http://appapi.saralvaastu.com/";
 
     //for testing server
-    public static String baseURL = "http://appapitest.saralvaastu.com/";
+   // public static String baseURL = "http://appapitest.saralvaastu.com/";
 
 
     public static String userRegURL = baseURL + "User.svc/CreateUser";

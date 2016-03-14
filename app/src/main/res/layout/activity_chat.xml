@@ -1,39 +1,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/form_background"
     android:orientation="vertical">
-    <RelativeLayout
-        android:id="@+id/rlheader"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        >
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:titleTextColor="@color/white">
+        <RelativeLayout
+            android:id="@+id/rlheader"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
             android:layout_marginLeft="@dimen/from_right"
-            android:src="@drawable/ic_back_white"
+            android:layout_marginRight="@dimen/from_right">
 
-            />
-        <TextView
-            android:id="@+id/txt_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/iv_back"
-            android:text=""
-            android:layout_marginLeft="5dp"
-            android:fontFamily="fonts/Roboto-Midium.ttf"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFF" />
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back_white"
+
+                />
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_back"
+                android:text=""
+                android:layout_marginLeft="5dp"
+                android:fontFamily="fonts/Roboto-Midium.ttf"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFF" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
     <FrameLayout
         android:id="@+id/chat_fragment_container"
         android:layout_width="match_parent"
