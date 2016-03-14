@@ -637,7 +637,8 @@ try{
             FilterResults results = new FilterResults();
             try{
             // Create a FilterResults object
-
+                String language = null;
+                String category = null;
 
             // If the constraint (search string/pattern) is null
             // or its length is 0, i.e., its empty then
@@ -650,20 +651,49 @@ try{
                 // Some search copnstraint has been passed
                 // so let's filter accordingly
                 ArrayList<Datum> filteredContacts = new ArrayList<Datum>();
+                String[] constraints = constraint.toString().split(",");
+
+
+                if(constraints != null && constraints.length>0) {
+                    language = constraints[0];
+
+                    if(constraints.length>1) {
+                        category = constraints[1];
+                    }
+
 
                 // We'll go through all the contacts and see
                 // if they contain the supplied string
                 for (Datum c : list) {
-                    if (c.getContentDetails().get(0).getContentType().contains(constraint.toString().toUpperCase())) {
-                        // if `contains` == true then add it
-                        // to our filtered list
-                        filteredContacts.add(c);
+                    if(category != null && language != null) {
+                        if (c.getContentDetails().get(0).getContentType().contains(category.toString().toUpperCase())
+                                && c.getLanguage().equalsIgnoreCase(language)) {
+                            // if `contains` == true then add it
+                            // to our filtered list
+                            filteredContacts.add(c);
+                        }
+                    }else if(category != null){
+                        if (c.getContentDetails().get(0).getContentType().contains(category.toString().toUpperCase())) {
+                            // if `contains` == true then add it
+                            // to our filtered list
+                            filteredContacts.add(c);
+                        }
+                    }else if(language != null){
+                        if (c.getLanguage().equalsIgnoreCase(language)) {
+                            // if `contains` == true then add it
+                            // to our filtered list
+                            filteredContacts.add(c);
+                        }
                     }
                 }
 
                 // Finally set the filtered values and size/count
                 results.values = filteredContacts;
                 results.count = filteredContacts.size();
+                }else{
+                    results.values = list;
+                    results.count = list.size();
+                }
             }
             }catch (Throwable t){
                 Log.e("HomeTab_Adapter",t.getMessage(),t);

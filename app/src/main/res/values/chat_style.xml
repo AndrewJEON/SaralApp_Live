@@ -2,5 +2,5 @@
 <resources>
 
     <!--Customize chat colors-->
-    <color name="chat_bubble_visitor">@color/red_s</color>
+    <color name="chat_bubble_visitor">@color/PaleVioletRed</color>
 </resources>

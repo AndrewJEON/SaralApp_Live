@@ -18,6 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="0dp">
+            <Spinner
+                android:id="@+id/spinnerlanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"/>
             <LinearLayout
                 android:id="@+id/llWelcome"
                 android:layout_width="match_parent"
@@ -27,7 +33,8 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:visibility="gone"
-                android:background="@color/background">
+                android:background="@color/background"
+                android:layout_below="@+id/spinnerlanguage">
             <TextView
                 android:id="@+id/tvUser"
                 android:layout_width="wrap_content"
@@ -41,8 +48,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:gravity="center" />
+                android:gravity="center"
+                android:visibility="gone"/>
             </LinearLayout>
+
             <TextView
                 android:id="@+id/tv_category"
                 android:layout_width="match_parent"
@@ -51,7 +60,8 @@
                 android:text=""
                 android:visibility="gone"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/textColor_black" />
+                android:textColor="@color/textColor_black"
+                android:layout_below="@+id/llWelcome"/>
 
         </RelativeLayout>
 

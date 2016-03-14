@@ -10,7 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ import com.cgp.saral.databaseHelper.DataController;
 import com.cgp.saral.fab.FloatingActionMenu;
 import com.cgp.saral.model.Datum;
 import com.cgp.saral.model.FilteredFeedData;
+import com.cgp.saral.model.Language;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.ObjectSerializerHelper;
 import com.cgp.saral.myutils.SharedPreferenceManager;
@@ -35,6 +39,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -92,6 +98,10 @@ public class TestimonialsFragment extends BaseFragment {
     DataController dbController;
     private final String NEWS_FEED = "TESTIMONIALS_FEED";
     private static Long lastFeedTime;
+    HashMap<String,Integer> langKeyMap;
+    Integer langKey;
+    Spinner  languageSpinner;
+    String langFilter = "", catFilter = "";
     public TestimonialsFragment() {
         // Required empty public constructor
     }
@@ -147,7 +157,9 @@ public class TestimonialsFragment extends BaseFragment {
         //reference to the progressbar
         progBar = (ProgressBar) view.findViewById(R.id.progressBar);
         menu.setVisibility(View.GONE);
+        languageSpinner = (Spinner) view.findViewById(R.id.spinnerlanguage);
 
+        prepareLanguageSpinner();
 
 
         if (!fragmentResume && fragmentVisible) {   //only when first time fragment is created
@@ -184,6 +196,54 @@ public class TestimonialsFragment extends BaseFragment {
         recyclerView.setAdapter(adapter);
 
 
+    }
+
+    private void prepareLanguageSpinner(){
+        ArrayList<Language> langs = dbController.languageList();
+        langKeyMap = new LinkedHashMap<String,Integer>();
+        langKeyMap.put("Language",-1);
+        for (Language l : langs) {
+            langKeyMap.put(l.getName(),Integer.valueOf(l.getId()));
+        }
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> langAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, new ArrayList<String>(langKeyMap.keySet()));
+
+        // Specify the layout to use when the list of choices appears
+        langAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        languageSpinner.setAdapter(langAdapter);
+
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                langKey = langKeyMap.get(((TextView)view).getText());
+                langFilter = "";
+                if(langKey >0) {
+                    langFilter = langKey+"";
+                    performFeedFilter();
+                }else{
+                    tempList = feedList;
+                    adapter.resetData();
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void  performFeedFilter(){
+        tempList = feedList;
+        adapter.resetData();
+        //adapter.notifyDataSetChanged();
+        adapter.getFilter().filter(langFilter+","+catFilter);
+        adapter.notifyDataSetChanged();
     }
 
     public void getFeed(int page) {

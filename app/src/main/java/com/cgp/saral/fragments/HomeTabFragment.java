@@ -13,7 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +30,7 @@ import com.cgp.saral.fab.FloatingActionButton;
 import com.cgp.saral.fab.FloatingActionMenu;
 import com.cgp.saral.model.Datum;
 import com.cgp.saral.model.FeedData;
+import com.cgp.saral.model.Language;
 import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.Constants;
 import com.cgp.saral.myutils.ObjectSerializerHelper;
@@ -39,6 +43,8 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -103,12 +109,16 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
     private List<FloatingActionMenu> menus = new ArrayList<>();
     private Handler mUiHandler = new Handler();
-
+    Spinner  languageSpinner;
     HomeTab_Adapter adapter;
 
     DataController dbController;
     private final String DISCOVER_FEED = "DISCOVER_FEED";
     private static Long lastFeedTime;
+    HashMap<String,Integer> langKeyMap;
+    Integer langKey;
+
+    String langFilter = "", catFilter = "";
     public HomeTabFragment() {
 
     }
@@ -146,6 +156,8 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
                              Bundle savedInstanceState) {
 
         try{
+            langFilter = "";
+            catFilter = "";
         view = inflater.inflate(R.layout.fragment_home_tab, container, false);
 
         Bundle b = getArguments();
@@ -221,17 +233,9 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
         //reference to the progressbar
         progBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
-       /* TextView tv_title = (TextView)view.findViewById(R.id.tv_title_page);
-        tv_title.setText("Home");*/
+            languageSpinner = (Spinner) view.findViewById(R.id.spinnerlanguage);
 
-
-        //
-        // feedPage++;
-
-        //fetch initial Content feed
-        //if(!isLoadedDefault) {
-
-        //  }
+            prepareLanguageSpinner();
 
         getFeed(feedPage);
 
@@ -328,6 +332,46 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
 
     }
 
+
+    private void prepareLanguageSpinner(){
+        ArrayList<Language> langs = dbController.languageList();
+        langKeyMap = new LinkedHashMap<String,Integer>();
+        langKeyMap.put("Language",-1);
+        for (Language l : langs) {
+            langKeyMap.put(l.getName(),Integer.valueOf(l.getId()));
+        }
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> langAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, new ArrayList<String>(langKeyMap.keySet()));
+
+        // Specify the layout to use when the list of choices appears
+        langAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        languageSpinner.setAdapter(langAdapter);
+
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                langKey = langKeyMap.get(((TextView)view).getText());
+                langFilter = "";
+                if(langKey >0) {
+                    langFilter = langKey+"";
+                    performFeedFilter();
+                }else{
+                    tempList = feedList;
+                    adapter.resetData();
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
 
     public void getFeed(int page) {
         try {
@@ -559,21 +603,26 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
         });
     }
 
+  private void  performFeedFilter(){
+      tempList = feedList;
+      adapter.resetData();
+      //adapter.notifyDataSetChanged();
+        adapter.getFilter().filter(langFilter+","+catFilter);
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onClick(View v) {
         try{
-        tempList = feedList;
-        adapter.resetData();
-        adapter.notifyDataSetChanged();
+
         if (v == health) {
 
 
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Health");
-            adapter.getFilter().filter("" + 600004);
-            adapter.notifyDataSetChanged();
+            catFilter = "600004";
+            performFeedFilter();
 
             // }
         } else if (v == wealth) {
@@ -581,31 +630,28 @@ public class HomeTabFragment extends BaseFragment implements View.OnClickListene
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Wealth");
-            adapter.getFilter().filter("" + 600007);
-            adapter.notifyDataSetChanged();
+            catFilter = "600007";
+
 
         } else if (v == edu) {
 
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Education");
-            adapter.getFilter().filter("" + 600003);
-            adapter.notifyDataSetChanged();
+            catFilter = "600003";
 
         } else if (v == career) {
 
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Job/Business");
-            adapter.getFilter().filter("" + 600002);
-            adapter.notifyDataSetChanged();
+            catFilter = "600002";
 
         } else if (v == marriage) {
             menu1.close(true);
             category.setVisibility(View.VISIBLE);
             category.setText("Marriage & Relationship");
-            adapter.getFilter().filter("" + 600006);
-            adapter.notifyDataSetChanged();
+            catFilter = "600006";
 
         }
 
