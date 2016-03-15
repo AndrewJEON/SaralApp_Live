@@ -139,7 +139,7 @@ try{
 
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // textPaint.setColor(resources.getColor(R.color.blue));
-        textPaint.setTextSize((float) 26 * getResources().getDisplayMetrics().scaledDensity);// Setting here to display the font size.
+        textPaint.setTextSize((float) 24 * getResources().getDisplayMetrics().scaledDensity);// Setting here to display the font size.
 
         textPaint.setStyle(Paint.Style.STROKE);
         // mStrokePaint.setColor(mStrokeColor);

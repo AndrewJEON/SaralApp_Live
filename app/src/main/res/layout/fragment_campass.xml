@@ -367,8 +367,8 @@
 
                         <com.cgp.saral.customviews.CompassView
                             android:id="@+id/cmp"
-                            android:layout_width="320dp"
-                            android:layout_height="320dp"
+                            android:layout_width="290dp"
+                            android:layout_height="290dp"
                             android:layout_centerInParent="true"
                              />
                         <ImageView
