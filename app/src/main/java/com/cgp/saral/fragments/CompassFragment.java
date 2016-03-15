@@ -267,6 +267,9 @@ try{
             boolean comp = PM.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS);
             boolean gyro = PM.hasSystemFeature(PackageManager.FEATURE_SENSOR_GYROSCOPE);
 
+           /* TextView tvUser = (TextView)view.findViewById(R.id.tvUser);
+            tvUser.setText("Hi " + Constants.GLOBAL_USER_NAME.trim() + "!");*/
+
             Log.e("Compass ",""+" Accel "+accel+"  Compass "+comp+" Gyro "+gyro);
             //Toast.makeText(getActivity()," Accel "+accel+"  Compass "+comp+" Gyro "+gyro,Toast.LENGTH_LONG).show();
             compass = new Compass(getActivity());
