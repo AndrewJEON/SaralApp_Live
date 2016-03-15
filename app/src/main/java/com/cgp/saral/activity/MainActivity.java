@@ -45,6 +45,7 @@ import com.cgp.saral.model.DrawerItem;
 import com.cgp.saral.model.Userdata_Bean;
 import com.cgp.saral.myutils.CircleTransform;
 import com.cgp.saral.myutils.Constants;
+import com.cgp.saral.myutils.SharedPreferenceManager;
 import com.cgp.saral.myutils.Utils;
 import com.cgp.saral.social.helper.FbConnectHelper;
 import com.cgp.saral.social.helper.GooglePlusSignInHelper;
@@ -710,6 +711,7 @@ try{
 
 
         }
+        SharedPreferenceManager.getSharedInstance().clearAllPreferences();
         dismissDialog();
         startActivity(intent);
         finish();
