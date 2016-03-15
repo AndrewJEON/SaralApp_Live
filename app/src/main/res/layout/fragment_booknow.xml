@@ -52,6 +52,8 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
                         android:hint="Name*"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
                         android:inputType="text"
                         android:maxLength="50"
                         android:textColor="#424242"

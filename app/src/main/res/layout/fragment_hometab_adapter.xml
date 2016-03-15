@@ -14,7 +14,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:background="@color/saralGreen"
+        android:background="@color/green"
         android:layout_marginTop="5dp"/>
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -103,7 +103,7 @@
             android:id="@+id/tv_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1145 likes"
+            android:text="1145 Likes"
             android:textSize="11sp"/>
         <View
             android:layout_width="3dp"
@@ -116,7 +116,7 @@
             android:id="@+id/tv_dislike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="23 dislikes"
+            android:text="23 Dislikes"
             android:textSize="11sp"/>
         <View
             android:layout_width="3dp"
@@ -162,7 +162,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/thin_sep"
-        android:background="@color/saralBlue">
+        android:background="@color/blue">
 
         <com.github.curioustechizen.ago.RelativeTimeTextView
             android:id="@+id/tv_posttime"

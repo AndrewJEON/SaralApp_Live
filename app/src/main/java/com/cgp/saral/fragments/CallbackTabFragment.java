@@ -70,6 +70,7 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
     String TAG = "Callback";
     String serviceId="";
     TextView serviceIdMessage;
+    String AM_PM="";
 
     public CallbackTabFragment() {
 
@@ -202,8 +203,10 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
     TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener(){
         @Override
         public void onTimeSet(TimePicker timePicker, int i, int i1) {
+            String mins="";
             int mHour = i;
-            String AM_PM ="";
+            String hours="";
+
             if(i < 12) {
                 AM_PM = "AM";
 
@@ -217,7 +220,17 @@ public class CallbackTabFragment extends BaseFragment implements View.OnClickLis
                 AM_PM = "AM";
                 mHour = 12;
             }
-            String strD = mHour+":"+i1 + " "+ AM_PM;
+            if (i1 < 10){
+                mins= "0"+i1;
+            }else{
+                mins =String.valueOf(i1);
+            }
+            if (mHour < 10){
+                hours= "0"+mHour;
+            }else{
+                hours =String.valueOf(mHour);
+            }
+            String strD = hours+":"+mins + " "+ AM_PM;
             preferredTime.getEditText().setText(strD);
         }
     };

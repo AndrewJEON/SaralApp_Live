@@ -53,6 +53,8 @@
                         android:drawablePadding="15dp"
                         android:hint="Name*"
                         android:inputType="text"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
                         android:maxLength="50"
                         android:textColor="#424242"
                         android:focusable="false"/>
@@ -112,6 +114,8 @@
                             android:layout_height="wrap_content"
                             android:drawablePadding="15dp"
                             android:hint="Reason*"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
                             android:inputType="text"
                             android:maxLength="100"
                             android:textColor="#424242"/>
